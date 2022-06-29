@@ -1,0 +1,7 @@
+Login comum, cliente:
+CPF: 11111111111
+Senha: unisuam
+
+Login administrativo:
+CPF: 22222222222
+Senha: admin

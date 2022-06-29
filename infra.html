@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="fontawesome/css/all.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/scrollreveal.js"></script>
+    <title>Telecall</title>
+</head>
+<body>
+  
+<nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+    <div class="container-fluid" id="navCliente">
+        <div class="navbar-header">
+        </div>
+        <ul class="nav navbar-nav navbar-right ">
+        <li><a href="login.html" class="bg-primary rounded text-light" id="buttonCliente">Área do Cliente</a></li>
+        </ul>
+    </div>
+</nav>
+<nav class="navbar navbar-expand-lg bg-light navbar-light shadow p-3 mb-5 bg-white rounded">
+    <a href="index.html"><img src="images/navbar.png" class="navbar brand img-fluid"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarScroll">
+        <ul class="navbar-nav mr-auto my-2 my-lg-0 navbar-nav-scroll" style="max-height: 100vh">
+          <li class="nav-item">
+            <a class="nav-link text-primary bg-primary rounded text-light p-2" href="cpaas.html">
+            <i class="fas fa-cloud-arrow-up"></i> CPaaS
+            </a>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-primary" href="internet.html" id="navbarScrollingDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+              Internet
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+              <li><a class="dropdown-item" href="internet.html">Internet Dedicada</a></li>
+              <li><a class="dropdown-item" href="internet.html">Banda Larga</a></li>
+              <li><a href="internet.html" class="dropdown-item">Wifi</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-primary" href="telefonia.html" id="navbarScrollingDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+              Telefonia
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+              <li><a class="dropdown-item" href="telefonia.html">PABX IP Virtual</a></li>
+              <li><a class="dropdown-item" href="telefonia.html">E1</a></li>
+              <li><a href="telefonia.html" class="dropdown-item">SIP TRUNK</a></li>
+              <li><a href="telefonia.html" class="dropdown-item">Números 0800 e 40XX</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-primary" href="infra.html" id="navbarScrollingDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+              Rede e Infraestrutura
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+              <li><a class="dropdown-item" href="infra.html">Ponto-a-Ponto</a></li>
+              <li><a class="dropdown-item" href="infra.html">MPLS</a></li>
+              <li><a href="infra.html" class="dropdown-item">Fibra Apagada e Dutos</a></li>
+              <li><a href="infra.html" class="dropdown-item">Co-location</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-primary" href="mobilidade.html" id="navbarScrollingDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+              Mobilidade
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+              <li><a class="dropdown-item" href="mobilidade.html">Celular empresarial</a></li>
+              <li><a class="dropdown-item" href="mobilidade.html">MVNA/E</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-primary" href="eventos.html" id="navbarScrollingDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+              Eventos
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+              <li><a class="dropdown-item" href="eventos.html">Serviços para Eventos</a></li>
+              <li><a class="dropdown-item" href="eventos.html">Eventos Telecall</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-primary" href="outraSolu.html" id="navbarScrollingDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+              Outras soluções
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+              <li><a class="dropdown-item" href="outraSolu.html">Activtrak</a></li>
+            </ul>
+          </li>
+        </ul>
+        <form class="d-flex">
+          <input class="form-control mr-2" type="search" placeholder="Posso te ajudar?" aria-label="Search">
+          <button class="btn btn-outline-primary" type="submit">Procurar</button>
+        </form>
+      </div>
+    </nav>
+</nav>
+<div class="row no-gutters" id="rowFront">
+  <div class="container col-xl-11 default text-center mb-3">
+      <span class="h3 text-light">Serviços de Rede e Infraestrutura</span>
+  </div>
+</div>
+<div class="row no-gutters bg-primary text-light center">
+  <div class="row no-gutters default showHidden mb-5 mt-5">
+      <div class="col-xl-">
+          <div class="row no-gutters center">
+              <div class="col-sm-3">
+                  <i class="fas fa-plug fa-7x mt-3"></i>
+                  <p class="text-center mt-4"><h3 class="text-light ">Ponto-a-Ponto</h3></p>
+              </div>
+              <div class="col-sm-3">
+                  <i class="fas fa-cloud-arrow-down fa-7x mt-3"></i>
+                  <p class="text-center mt-4"><h3 class="text-light">MPLS</h3></p>
+              </div>
+              <div class="col-sm-3">
+                  <i class="fas fa-database fa-7x mt-3 ml-5 mr-5"></i>
+                  <p class="text-center mt-4"><h3 class="text-light">Fibra Apagada e Dutos</h3></p>
+              </div>
+              <div class="col-sm-3">
+                <i class="fas fa-server fa-7x mt-3 ml-5 mr-5"></i>
+                <p class="text-center mt-4"><h3 class="text-light ml-5 mr-5">Co-location</h3></p>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+<div class="row no-gutters" id="rowTextPage">
+  <div class="row no-gutters default showHidden p-5">
+      <div class="col-">
+          <h1 class="font-weight-bold">Ponto-a-Ponto</h1>
+          <hr class="w-25 ml-0 bg-primary">
+          <div class="row no-gutters left ml-5">
+              <div class="col-xl-5">
+                  <span class="mt-4"><h3 class="text-primary">Acesso dedicado para ligação entre dois pontos.</h3></span>
+                  <span class="mt-4 text-secondary font-italic h5">Conexão Ponto-a-Ponto para sua empresa</span><br><br>
+                  <span class="h5 font-weight-normal">Acesso dedicado que permite a conexão entre dois pontos remotos, como por exemplo uma sede e uma filial, através de uma conexão segura e de alta disponibilidade. Possui garantia de banda contratada, permitindo conexões Layer 2. Ideal para empresas que necessitam de qualidade na integração de filiais ou conexões a pontos remotos.</span><br><br>
+                  <span class="h3 font-weight-bold">Benefícios</span><br><br>
+                  <span class="h5 font-weight-normal"><i class="fas fa-circle-check text-success"></i> Velocidades de 10Mbps a 10Gbps. <br> <i class="fas fa-circle-check text-success"></i> Acesso fibra ótica.<br> <i class="fas fa-circle-check text-success"></i> Gestão e monitoramento proativo com NOC 24x7.</span>
+              </div>
+              <div class="col-xl-">
+                  <img src="images/2FA.png" alt="" width="700" height="500" id="rowHomePage">
+              </div>
+              <div class="row no-gutters" id="">
+                <div class="row no-gutters default showHidden p-5">
+                    <div class="col-xl-">
+                        <h1 class="font-weight-bold">Características</h1>
+                        <hr class="w-25 ml-0 bg-primary">
+                        <div class="row no-gutters center">
+                            <div class="col-sm-3 p-4">
+                                <i class="fas fa-circle-check fa-7x mt-3 text-success"></i>
+                                <p class="text-center mt-4"><h3 class="text-primary">SLA 99,2%</h3></p>
+                                <p class="fs-19 text-center">Garantia de máximo 6 horas para reparo do link em caso de falha.</p>
+                          
+                            </div>
+                            <div class="col-sm-3 p-4">
+                                <i class="fas fa-circle-check fa-7x mt-3 text-success"></i>
+                                <p class="text-center mt-4"><h3 class="text-primary">NOC 24X7</h3></p>
+                                <p class="fs-19 text-center">Gestão dos acessos em tempo real através do NOC (Network Operating Center) que funciona 24x7 com atendimento proativo aos clientes.</p>
+                            </div>
+                            <div class="col-sm-3 p-4">
+                                <i class="fas fa-circle-check fa-7x mt-3 text-success"></i>
+                                <p class="text-center mt-4"><h3 class="text-primary">Acesso Fibra Ótica</h3></p>
+                                <p class="fs-19 text-center">Rede de fibra ótica com equipamentos de alta capacidade e anéis de redundância que aumentam a disponibilidade da rede.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </div>        
+              </div>        
+          </div>
+      </div>
+  </div>
+</div>
+<div class="row no-gutters" id="">
+    <div class="row no-gutters default showHidden p-5">
+        <div class="col-">
+            <h1 class="font-weight-bold">MPLS</h1>
+            <hr class="w-25 ml-0 bg-primary">
+            <div class="row no-gutters left ml-5">
+                <div class="col-xl-5">
+                    <span class="mt-4"><h3 class="text-primary">Formação de rede com protocolo MPLS</h3></span>
+                    <span class="mt-4 text-secondary font-italic h5">Solução de rede com protocolo MPLS</span><br><br>
+                    <span class="h5 font-weight-normal">Formação de rede segura e de alta qualidade com tecnologia MPLS (Multi Protocol Label Switching), permitindo a priorização de tráfego dentro da rede contratada. Os pacotes de dados trafegados na rede são marcados com etiquetas de prioridade QoS (Quality of services). Ideal para empresas que precisam de conexão entre filiais com qualidade, alta disponibilidade e priorização de tráfego dentro dela.</span><br><br>
+                    <span class="h3 font-weight-bold">Benefícios</span><br><br>
+                    <span class="h5 font-weight-normal"><i class="fas fa-circle-check text-success"></i> Rede segura com alta disponibilidade<br> <i class="fas fa-circle-check text-success"></i> Velocidades de 10Mbps a 10Gbps<br> <i class="fas fa-circle-check text-success"></i> Acesso fibra ótica<br> <i class="fas fa-circle-check text-success"></i> Gestão e monitoramento proativo com NOC 24x7<br></span>
+                </div>
+                <div class="col-xl-">
+                    <img src="images/2FA.png" alt="" width="700" height="500" id="rowHomePage">
+                </div>
+                <div class="row no-gutters" id="">
+                  <div class="row no-gutters default showHidden p-5">
+                      <div class="col-xl-">
+                          <h1 class="font-weight-bold">Características</h1>
+                          <hr class="w-25 ml-0 bg-primary">
+                          <div class="row no-gutters center">
+                              <div class="col-sm-3 p-4">
+                                  <i class="fas fa-circle-check fa-7x mt-3 text-success"></i>
+                                  <p class="text-center mt-4"><h3 class="text-primary">Priorização de tráfego</h3></p>
+                                  <p class="fs-19 text-center">Tráfego etiquetado na rede de acordo com prioridades previamente estabelecidas.</p>
+                            
+                              </div>
+                              <div class="col-sm-3 p-4">
+                                  <i class="fas fa-circle-check fa-7x mt-3 text-success"></i>
+                                  <p class="text-center mt-4"><h3 class="text-primary">QoS</h3></p>
+                                  <p class="fs-19 text-center">Qualidade de serviço na rede permitindo um alto desempenho e melhor utilização dos recursos principalmente com dados multimídia tais como voz e vídeo.</p>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                </div>        
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row no-gutters" id="rowTextPage">
+    <div class="row no-gutters default showHidden p-5">
+        <div class="col-">
+            <h1 class="font-weight-bold">Fibra Apagada</h1>
+            <hr class="w-25 ml-0 bg-primary">
+            <div class="row no-gutters left ml-5">
+                <div class="col-xl-5">
+                    <span class="mt-4"><h3 class="text-primary">Locação de Fibra Apagada e Dutos</h3></span>
+                    <span class="mt-4 text-secondary font-italic h5">Locação de Fibra Apagada e Dutos.</span><br><br>
+                    <span class="h5 font-weight-normal">Locação privada de fibra apagada e dutos entre dois pontos para empresas que possuem alta demanda de tráfego de dados e uma estrutura de alta capacidade e velocidade. Esta solução não prevê gerenciamento do link por parte da Telecall, estando o cliente responsável pela configuração do seu circuito e instalação de roteadores.</span><br><br>
+                    <span class="h3 font-weight-bold">Benefícios</span><br><br>
+                    <span class="h5 font-weight-normal"><i class="fas fa-circle-check text-success"></i> Capilaridade da infraestrutura da Telecall<br> <i class="fas fa-circle-check text-success"></i> Time-to-market para atendimento de seus clientes<br> <i class="fas fa-circle-check text-success"></i> Trafego de dados em altíssima velocidade </span>
+                </div>
+                <div class="col-xl-">
+                    <img src="images/2FA.png" alt="" width="700" height="500" id="rowHomePage">
+                </div>
+                <div class="row no-gutters" id="rowTextPage">
+                  <div class="row no-gutters default showHidden p-5">
+                      <div class="col-xl-">
+                          <h1 class="font-weight-bold">Características</h1>
+                          <hr class="w-25 ml-0 bg-primary">
+                          <div class="row no-gutters center">
+                              <div class="col-sm-3 p-4">
+                                  <i class="fas fa-circle-check fa-7x mt-3 text-success"></i>
+                                  <p class="text-center mt-4"><h3 class="text-primary">Fibras Monomodo</h3></p>
+                                  <p class="fs-19 text-center">Possibilidade de uso em distâncias maiores e ilimitadas, quando comparadas as Fibras Óticas Multimodo. Taxas de Transmissão muito mais altas (superiores a 160 Gbit/s) quando comparadas as Fibras Óticas Multimodo.</p>
+                            
+                              </div>
+                              <div class="col-sm-3 p-4">
+                                  <i class="fas fa-circle-check fa-7x mt-3 text-success"></i>
+                                  <p class="text-center mt-4"><h3 class="text-primary">Dutos</h3></p>
+                                  <p class="fs-19 text-center">Ampla rede de dutos para passagem de Fibra com caixas de manobra de fácil acesso.</p>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                </div>        
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row no-gutters" id="">
+    <div class="row no-gutters default showHidden p-5">
+        <div class="col-">
+            <h1 class="font-weight-bold">Co-location</h1>
+            <hr class="w-25 ml-0 bg-primary">
+            <div class="row no-gutters left ml-5">
+                <div class="col-xl-5">
+                    <span class="mt-4"><h3 class="text-primary">Locação de espaço em rack em datacenter próprio</h3></span>
+                    <span class="mt-4 text-secondary font-italic h5">Soluções de Co-location</span><br><br>
+                    <span class="h5 font-weight-normal">Locação de espaço em rack dentro do Datacenter Telecall para empresas que não almejam investir ou não possuem infraestrutura adequada própria. Hospede seu servidor com segurança de acesso, energia, segurança contra incêndios e climatização.</span><br><br>
+                    <span class="h3 font-weight-bold">Benefícios</span><br><br>
+                    <span class="h5 font-weight-normal"><i class="fas fa-circle-check text-success"></i> Datacenter localizado na Barra da Tijuca no Rio de Janeiro com anel de fibra ótica e interconexão com diversas operadoras e data centers da cidade.<br> <i class="fas fa-circle-check text-success"></i> Ambiente dedicado, seguro e controlado<br> <i class="fas fa-circle-check text-success"></i> Estrutura de última geração e suporte 24x7 </span>
+                </div>
+                <div class="col-xl-">
+                    <img src="images/2FA.png" alt="" width="700" height="500" id="rowHomePage">
+                </div>
+                <div class="row no-gutters" id="">
+                  <div class="row no-gutters default showHidden p-5">
+                      <div class="col-xl-">
+                          <h1 class="font-weight-bold">Características</h1>
+                          <hr class="w-25 ml-0 bg-primary">
+                          <div class="row no-gutters center">
+                              <div class="col-sm-3 p-4">
+                                  <i class="fas fa-circle-check fa-7x mt-3 text-success"></i>
+                                  <p class="text-center mt-4"><h3 class="text-primary">Acesso Independente</h3></p>
+                                  <p class="fs-19 text-center">Acesso independente à área de clientes, não conflitando com acesso de técnicos da Telecall.</p>
+                            
+                              </div>
+                              <div class="col-sm-3 p-4">
+                                  <i class="fas fa-circle-check fa-7x mt-3 text-success"></i>
+                                  <p class="text-center mt-4"><h3 class="text-primary">Gestão de incêndios</h3></p>
+                                  <p class="fs-19 text-center">Uso do gás FM200 para aumento da segurança contra incêndios.</p>
+                              </div>
+                              <div class="col-sm-3 p-4">
+                                <i class="fas fa-circle-check fa-7x mt-3 text-success"></i>
+                                <p class="text-center mt-4"><h3 class="text-primary">Gestão de energia</h3></p>
+                                <p class="fs-19 text-center">Alta disponibilidade de fornecimento de energia ininterrupta com geradores, nobreaks e banco de baterias.</p>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                </div>        
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row no-gutters marginDefault" id="rowFooter">
+<div class="container">
+  <div class="row no-gutters">
+      <div class="col-xl marginDefault">
+          <img src="images/telecall-logo.png" alt="" class="img-fluid">
+      </div>
+      <div class="col-xl marginDefault">
+          <p></p>
+          <p class="text-light">Todos os direitos reservados à Telecall 2018 - 2022</p>
+      </div>
+  </div>
+  <br>
+</div>
+</div>
+</body>
+</html>
+<script src="js/jquery.slim.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/auth.js"></script>

@@ -1,0 +1,32 @@
+<div class="row no-gutters" id="rowTextPage">
+    <div class="row no-gutters default showHidden p-5">
+        <div class="col-xl-">
+            <h1 class="font-weight-bold">Como funciona?</h1>
+            <hr class="w-25 ml-0 bg-primary">
+            <div class="row no-gutters center">
+            <div class="col-sm-3 p-4">
+            <i class="fas fa-piggy-bank fa-7x mt-3"></i>
+            <p class="text-center mt-4"><h3 class="text-primary">Finanças</h3></p>
+            <p class="text-center"><img src="images/iconFinancas.png" alt="" class="img-fluid"></p>
+        </div>
+        <div class="col-sm-3 p-4">
+            <i class="fas fa-user-doctor fa-7x mt-3"></i>
+            <p class="text-center mt-4"><h3 class="text-primary">Saúde</h3></p>
+            <p class="text-center"><img src="images/iconSaude.png" alt="" class="img-fluid"></p>
+        
+        </div>
+        <div class="col-sm-3 p-4">
+            <i claz ss="fas fa-plane-departure fa-7x mt-3"></i>
+            <p class="text-center mt-4"><h3 class="text-primary">Turismo</h3></p>
+            <p class="text-center"><img src="images/iconTurismo.png" alt="" class="img-fluid"></p>
+        </div>
+        <div class="col-sm-2 p-4">
+            <i class="fas fa-building-lock fa-7x mt-3"></i>
+            <p class="text-center mt-4"><h3 class="text-primary">Governo</h3></p>
+            <p class="text-center"><img src="images/iconGoverno.png" alt="" class="img-fluid"></p>
+        </div>
+            </div>
+        </div>
+    </div>
+</div>
+            

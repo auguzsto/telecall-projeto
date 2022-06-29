@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="fontawesome/css/all.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/scrollreveal.js"></script>
+    <title>Telecall</title>
+</head>
+<body>
+  
+<nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+    <div class="container-fluid" id="navCliente">
+        <div class="navbar-header">
+        </div>
+        <ul class="nav navbar-nav navbar-right ">
+        <li><a href="login.html" class="bg-primary rounded text-light" id="buttonCliente">Área do Cliente</a></li>
+        </ul>
+    </div>
+</nav>
+<nav class="navbar navbar-expand-lg bg-light navbar-light shadow p-3 mb-5 bg-white rounded">
+    <a href="index.html"><img src="images/navbar.png" class="navbar brand img-fluid"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarScroll">
+        <ul class="navbar-nav mr-auto my-2 my-lg-0 navbar-nav-scroll" style="max-height: 100vh">
+          <li class="nav-item">
+            <a class="nav-link text-primary bg-primary rounded text-light p-2" href="cpaas.html">
+            <i class="fas fa-cloud-arrow-up"></i> CPaaS
+            </a>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-primary" href="internet.html" id="navbarScrollingDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+              Internet
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+              <li><a class="dropdown-item" href="internet.html">Internet Dedicada</a></li>
+              <li><a class="dropdown-item" href="internet.html">Banda Larga</a></li>
+              <li><a href="internet.html" class="dropdown-item">Wifi</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-primary" href="telefonia.html" id="navbarScrollingDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+              Telefonia
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+              <li><a class="dropdown-item" href="telefonia.html">PABX IP Virtual</a></li>
+              <li><a class="dropdown-item" href="telefonia.html">E1</a></li>
+              <li><a href="telefonia.html" class="dropdown-item">SIP TRUNK</a></li>
+              <li><a href="telefonia.html" class="dropdown-item">Números 0800 e 40XX</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-primary" href="infra.html" id="navbarScrollingDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+              Rede e Infraestrutura
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+              <li><a class="dropdown-item" href="infra.html">Ponto-a-Ponto</a></li>
+              <li><a class="dropdown-item" href="infra.html">MPLS</a></li>
+              <li><a href="infra.html" class="dropdown-item">Fibra Apagada e Dutos</a></li>
+              <li><a href="infra.html" class="dropdown-item">Co-location</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-primary" href="mobilidade.html" id="navbarScrollingDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+              Mobilidade
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+              <li><a class="dropdown-item" href="mobilidade.html">Celular empresarial</a></li>
+              <li><a class="dropdown-item" href="mobilidade.html">MVNA/E</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-primary" href="eventos.html" id="navbarScrollingDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+              Eventos
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+              <li><a class="dropdown-item" href="eventos.html">Serviços para Eventos</a></li>
+              <li><a class="dropdown-item" href="eventos.html">Eventos Telecall</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-primary" href="outraSolu.html" id="navbarScrollingDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+              Outras soluções
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+              <li><a class="dropdown-item" href="outraSolu.html">Activtrak</a></li>
+            </ul>
+          </li>
+        </ul>
+        <form class="d-flex">
+          <input class="form-control mr-2" type="search" placeholder="Posso te ajudar?" aria-label="Search">
+          <button class="btn btn-outline-primary" type="submit">Procurar</button>
+        </form>
+      </div>
+    </nav>
+</nav>
+    <div class="row no-gutters" id="rowFront">
+        <div class="container col-xl-11 default text-center p-2" id="logoFront">
+            <img src="images/telecall-logo.png" alt="" class="img-fluid">
+            <h1 class="text-light marginDefault">Soluções inteligentes para sua empresa</h1>
+            <div class="card-deck marginDefault">
+              <div class="card border-white border mb-3 bg-primary">
+                <a href="cpaas.html" class="text-light text-decoration-none"><div class="card-header border-primary text-light">
+                    <span class="fontTitleCard"><i class="fas fa-cloud-arrow-up"></i> CPaaS</span>
+                </div>
+                <div class="card-body text-light">
+                  É uma solução de software de comunicação que atua
+                  como uma base sobre a qual desenvolvedores podem
+                  integrar uma variedade de aplicativos
+                </div>
+            </div></a>
+                <div class="card border-danger mb-3 bg-danger">
+                    <a href="internet.html" class="text-light text-decoration-none"><div class="card-header text-light">
+                        <span class="fontTitleCard"><i class="fa-solid fa-at"></i> Internet</span>
+                    </div>
+                    <div class="card-body text-light">
+                        Soluções de internet em Fibra com alta qualidade e disponilibidade.
+                    </div>
+                </div></a>
+                <div class="card border-danger mb-3 bg-danger">
+                  <a href="telefonia.html" class="text-light text-decoration-none"><div class="card-header text-light">
+                        <span class="fontTitleCard"><i class="fa-solid fa-phone"></i> Telefonia</span>
+                    </div>
+                    <div class="card-body text-light">
+                        Soluções inteligentes de PABX IP na nuvem para sua telefonia fixa.
+                    </div>
+                </div></a>
+                <div class="card border-danger mb-3 bg-danger">
+                  <a href="mobilidade.html" class="text-light text-decoration-none"><div class="card-header text-light">
+                        <span class="fontTitleCard"><i class="fas fa-mobile-button"></i> Mobilidade</span>
+                    </div>
+                    <div class="card-body text-light">
+                        Monte planos de celular personalizados para sua empresa e pague apenas pelo que precisa.
+                    </div>
+                </div></a>
+            </div>
+            <br></br>
+        </div>
+    </div>
+    <div class="container default showHidden">
+        <div class="row no-gutters">
+            <div class="col-xl">
+                <img src="images/location2.jpg" alt="" class="img-fluid" width="432px" id="rowHomePage">
+            </div>
+            <div class="col-xl marginDefault" id="textsPage">
+                ESTAMOS EM TODO LUGAR
+                <h1>+800 KM de rede no Rio de Janeiro</h1>
+                Soluções de acesso que possibilitam as empresas a se conectarem a Internet com a máxima qualidade, disponilibidade e segurança. Solução ideal para empresas que necessitam de qualidade, garantia e simetria de banda no acesso a Internet, servindo para acessos a aplicações em nuvens, servidores remotos de e-mail, ligação com outras filiais através de VPNs ou simplesmente em navegação por sites.
+            </div>
+        </div>
+    </div>
+    <div class="row no-gutters" id="rowTextPage">
+        <div class="container default showHidden">
+            <div class="row no-gutters">
+                <div class="col-xl marginDefault" id="textsPage">
+                    COM O ACTIVTRAK
+                    <h1>Aumente sua produtividade</h1>
+                    Monitore seus colaboradores de perto com o Activtrak. Você pode monitorar as atividades e analisar a produtividade do seu time de forma remota e precisa.
+                </div>
+                <div class="col-xl">
+                    <img src="images/motoring-transp2.png" alt="" class="img-fluid" width="632px" id="rowHomePage">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container default showHidden">
+        <div class="row no-gutters">
+            <div class="col-xl">
+                <img src="images/telecloud-transp2.png" alt="" class="img-fluid" width="432px" id="rowHomePage">
+            </div>
+            <div class="col-xl marginDefault" id="textsPage">
+                TEMOS A SOLUÇÃO COM PABX IP VIRTUAL
+                <h1>Conheça nosso serviço de telefonia em nuvem</h1>
+                Uma solução de comunicação inteligente que vai reduzir seus gastos, aumentar sua produtividade, fidelizar seus clientes e integrar ainda mais a sua equipe.
+            </div>
+        </div>
+    </div>
+    <div class="row no-gutters marginDefault" id="rowFooter">
+        <div class="container">
+            <div class="row no-gutters">
+                <div class="col-xl marginDefault">
+                    <img src="images/telecall-logo.png" alt="" class="img-fluid">
+                </div>
+                <div class="col-xl marginDefault">
+                    <p></p>
+                   <p class="text-light">Todos os direitos reservados à Telecall 2018 - 2022</p>
+                </div>
+            </div>
+            <br>
+        </div>
+    </div>
+</body>
+</html>
+<script src="js/jquery.slim.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/auth.js"></script>
