@@ -1,14 +1,7 @@
 <?php
+use App\services\Router;
 
-    use Phroute\Phroute\RouteCollector;
-    use Phroute\Phroute\Dispatcher;
+    $router = new Router();
 
-    $router = new RouteCollector();
-
-    $router->get('/', function(){
-        include "app/src/views/index.html";
-    });
-
-    $dispatcher =  new Dispatcher($router->getData());
-
-    echo $dispatcher->dispatch('GET', '/');
+    $router->get("/", "app/src/views/index.html");
+    $router->get("/login", "app/src/views/login.html");
