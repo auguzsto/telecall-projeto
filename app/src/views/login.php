@@ -4,23 +4,22 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/style.css">
-    <script type="text/javascript" src="js/auth.js"></script>
+    <link rel="stylesheet" href="app/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="app/assets/css/style.css">
     <title>Telecall</title>
 </head>
 <body>
 <nav class="navbar navbar-extand-lg light bg-light shadow p-3 mb-5 bg-white rounded">
-    <a href="index.html"><img src="images/navbar.png" class="navbar brand img-fluid"></a>
-    <a href="cadastro.html" class="text-primary"><b>Fazer cadastro</b></a>
+    <a href="/"><img src="app/assets/images/navbar.png" class="navbar brand img-fluid"></a>
+    <a href="/cadastro" class="text-primary"><b>Fazer cadastro</b></a>
 </nav>
     <div class="container">
         <div class="row no-gutters">
             <div class="col-xl-6">
-                <img src="images/bg-login.png" alt="" id="bg-login" class="img-fluid">
+                <img src="app/assets/images/bg-login.png" alt="" id="bg-login" class="img-fluid">
             </div>
             <div class="col-sm-6">
-                <p class="center"><img src="images/cardTopLogin.png" alt=""></p>
+                <p class="center"><img src="app/assets/images/cardTopLogin.png" alt=""></p>
                 <div class="card">
                     <div class="card-header text-lg-center">
                         <h3>Login</h3>
@@ -55,7 +54,7 @@
     </div>
 </body>
 </html>
-<script src="js/jquery.slim.min.js"></script>
-<script src="js/popper.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script type="text/javascript" src="js/auth.js"></script>
+<script src="app/assets/js/jquery.slim.min.js"></script>
+<script src="app/assets/js/popper.min.js"></script>
+<script src="app/assets/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="app/assets/js/auth.js"></script>

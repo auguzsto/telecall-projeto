@@ -1,7 +1,6 @@
 <?php
 use App\services\Router;
 
-    $router = new Router();
-
-    $router->get("/", "app/src/views/index.html");
-    $router->get("/login", "app/src/views/login.html");
+    Router::get("/", "app/src/views/index.php");
+    Router::get("/login", "app/src/views/login.php");
+    Router::get("/cadastro", "app/src/views/cadastro.php");

@@ -3,11 +3,17 @@
 namespace App\services;
 
     class Router {
-        public function get(string $path, string $view) {
-            if ($_SERVER['REQUEST_URI'] != $path) {
-                return print "Page not found. 404";
-            }
+        public static function get(string $path, string $view) {
+            $request = $_SERVER['REQUEST_URI'];
 
-            require $view;
+            switch($request) {
+                case $path:
+                    require $view;
+                    break;
+                
+                default:
+                    http_response_code(404);
+                    break;
+            }
         }
     }
