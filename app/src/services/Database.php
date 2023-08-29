@@ -23,6 +23,7 @@ use PDOException;
 
         public function select(string $columns, string $table): array {
             $pdo = $this->connect();
-            return $pdo->query("SELECT $columns FROM $table")->fetchAll();
+            $query = "SELECT $columns FROM $table";
+            return $pdo->query($query)->fetchAll();
         }
     }
