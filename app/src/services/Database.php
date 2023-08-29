@@ -21,6 +21,11 @@ use PDOException;
             }
         }
 
+        public function runQuery(string $query) {
+            $pdo = $this->connect();
+            $pdo->query($query);
+        }
+
         public function select(string $columns, string $table): array {
             $pdo = $this->connect();
             $query = "SELECT $columns FROM $table";
