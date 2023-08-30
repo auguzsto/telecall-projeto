@@ -8,6 +8,6 @@ use App\services\Database;
         public static function auto(string $fileSQL): void {
             $db = new Database();
             $query = file_get_contents("app/src/db/$fileSQL");
-            $db->con()->query($query);
+            $db->runQuery($query);
         }
     }
