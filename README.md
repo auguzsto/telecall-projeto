@@ -2,6 +2,22 @@
 
 Implementação de back-end utilizando PHP. Proíbido a utilização de qualquer framework para realização deste projeto.
 
+# Requerimentos
+- PHP
+- Composer
+- MySQL ou MariaDB
+
+# Como correr o projeto?
+Certifique que tenha os requerimentos necessários acima. Na pasta raíz do projeto, faça os seguintes passos.
+1. Instale as depedências via composer.
+```
+composer install
+```
+2. Rode o servidor web nativo do php.
+```
+php -S 0.0.0.0:8000 -t .
+```
+
 ## Contexto.
 Uma Empresa de Telefonia e Telecomunicações fez um estudo de viabilidade para divulgação de seus
 produtos e serviços e identificou a necessidade de construir um site.
