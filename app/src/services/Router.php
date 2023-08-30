@@ -8,11 +8,7 @@ namespace App\services;
 
             switch($request) {
                 case $path:
-                    require $view;
-                    break;
-                
-                default:
-                    http_response_code(404);
+                    include $view;
                     break;
             }
         }
