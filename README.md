@@ -42,7 +42,7 @@ nome do usuário comum). Assim, a lista
 deverá apresentar a lista de todos os
 usuários comuns que contém a substring
 como parte de seu nome.
-- [ ] Cadastro de usuário - (Master | Comum)
+- [x] Cadastro de usuário - (Master | Comum)
     - Campo para cadastrar usuário comum.
 Somente o usuário comum poderá se
 cadastrar pelo sistema. Já o usuário master é
