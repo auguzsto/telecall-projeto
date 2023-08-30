@@ -26,9 +26,9 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-sm-" id="widthCol2">
-                                 <form action="" method="POST" name="">
+                                 <form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST" name="action">
                                      <h5>CPF: *</h5>
-                                     <input type="text" name="cpf" id="cpf" placeholder="Apenas números são permitidos." class="form-control" maxlength="11" onkeypress="somenteNumero();" autocomplete="off">
+                                     <input type="text" name="cpf" id="cpf" placeholder="Apenas números são permitidos." class="form-control" maxlength="14" onkeypress="" autocomplete="off">
                                      <h6 class="text-danger" id="cpfError"></h6>
                                      <h5>Senha: *</h5>
                                      <input type="password" name="password" id="senha" placeholder="Digite sua senha." class="form-control">
@@ -36,9 +36,14 @@
                                      <h5>Repita a senha: *</h5>
                                      <input type="password" name="rePassword" id="resenha" placeholder="Digite sua senha novamente." class="form-control">
                                      <h6 class="text-danger" id="resenhaError"></h6>      
-                                     <h5>Nome completo: *</h5>
-                                     <input type="text" name="nomeCompleto" id="nomeCompleto" placeholder="Digite seu nome completo." class="form-control">
-                                     <h6 class="text-danger" id="nomeCompletoError"></h6>
+                                     <h5>Nome: *</h5>
+                                     <input type="text" name="first_name" id="fist_name" placeholder="Seu primeiro nome" class="form-control">
+                                     <h6 class="text-danger" id=""></h6>
+                                     <h5>Último nome: *</h5>
+                                     <input type="text" name="last_name" id="last_name" placeholder="Seu último nome" class="form-control">
+                                     <h5>Email: *</h5>
+                                     <input type="text" name="email" id="email" placeholder="Seu email" class="form-control">
+                                     <h6 class="text-danger" id=""></h6>
                                      <h5>Nome materno: *</h5>
                                      <input type="text" name="maternoCompleto" id="maternoCompleto" placeholder="Digite o nome materno completo." class="form-control">
                                      <h6 class="text-danger" id="maternoCompletoError"></h6>    
@@ -56,10 +61,10 @@
                                  </select>
                                  <h6 class="text-danger" id="generoError"></h6>   
                                  <h5>Celular: *</h5>
-                                 <input type="text" maxlength="14" name="celular" id="celular" placeholder="Digite seu número de celular com DDD." class="form-control" onkeypress="somenteNumero();" autocomplete="off" value="+55">
+                                 <input type="text" maxlength="14" name="phone" id="celular" placeholder="Digite seu número de celular com DDD." class="form-control" onkeypress="somenteNumero();" autocomplete="off" value="+55">
                                  <h6 class="text-danger" id="celularError"></h6> 
                                  <h5>Telefone fixo: </h5>
-                                 <input type="text" name="telefoneFixo" placeholder="Digite seu telefon fixo." class="form-control" onkeypress="somenteNumero();">
+                                 <input type="text" name="telefoneFixo" placeholder="Digite seu telefone fixo." class="form-control" onkeypress="somenteNumero();">
                                  <h5>Endereço completo: *</h5>
                                  <input type="text" id="enderecoCompleto" name="endereço" placeholder="Digite seu endereço completo." class="form-control" autocomplete="off">
                                  <h6 class="text-danger" id="enderecoCompletoError"></h6>
@@ -67,7 +72,7 @@
                                  <input type="text" maxlength="8" name="cep" id="cep" placeholder="Digite seu CEP." class="form-control" onkeypress="somenteNumero();">
                                  <h6 class="text-danger" id="cepError"></h6>
                                  <label for=""></label>
-                                 <button class="form-control btn-primary border" id="enviarCadastro" name="enviarCadastro" onclick="checkRegister(); return false">Registrar</button>
+                                 <input type="submit" class="form-control btn-primary border" id="enviarCadastro" name="action" onclick="" value="Registrar"></input>
                                  <h6 class="text-success" id="checkAll"></h6>
                                  </form>
                                 </div>
@@ -85,3 +90,26 @@
 <script src="/app/assets/js/popper.min.js"></script>
 <script src="/app/assets/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/app/assets/js/auth.js"></script>
+
+<?php 
+
+use App\models\User;
+use App\controllers\UserController;
+
+    if(isset($_POST['action'])) {
+        $user = new User();
+        $userController = new UserController();
+        
+        $user->setIsAdmin(0);
+        $user->setFirstName($_POST['first_name']);
+        $user->setLastName($_POST['last_name']);
+        $user->setEmail($_POST['email']);
+        $user->setPassword($_POST['password']);
+        $user->setPhone(strval($_POST['phone']));
+        $user->setCep($_POST['cep']);
+        $user->setCpf($_POST['cpf']);
+
+        $userController->create($user);
+    }
+
+?>
