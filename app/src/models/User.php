@@ -1,8 +1,11 @@
 <?php
 
+namespace App\models;
+
     class User {
+        
         private int $id;
-        private bool $isAdmin;
+        private int $isAdmin;
         private string $first_name;
         private string $last_name;
         private string $email;
@@ -51,7 +54,7 @@
             return $this->id;
         }
 
-        public function getIsAdmin(): bool {
+        public function getIsAdmin(): int {
             return $this->isAdmin;
         }
 

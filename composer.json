@@ -13,6 +13,8 @@
         }
     ],
     "require": {
-        "phroute/phroute": "^2.2"
+        "php": "8.2.7",
+        "ext-pdo": "8.2.7",
+        "ext-pdo_mysql": "8.2.7"
     }
 }
