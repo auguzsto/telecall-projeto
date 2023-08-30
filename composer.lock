@@ -4,64 +4,19 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c4b38588e66321007415b7cd79669570",
-    "packages": [
-        {
-            "name": "phroute/phroute",
-            "version": "v2.2.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/mrjgreen/phroute.git",
-                "reference": "c1893b885966a0c7b50b9239dd867fda7a312dfa"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/mrjgreen/phroute/zipball/c1893b885966a0c7b50b9239dd867fda7a312dfa",
-                "reference": "c1893b885966a0c7b50b9239dd867fda7a312dfa",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.4.0"
-            },
-            "require-dev": {
-                "php-coveralls/php-coveralls": "^2.5",
-                "phpunit/phpunit": "^9.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Phroute\\Phroute\\": "src/Phroute"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Joe Green",
-                    "email": "joe.green.0991@gmail.com"
-                }
-            ],
-            "description": "Fast, fully featured restful request router for PHP",
-            "keywords": [
-                "router",
-                "routing"
-            ],
-            "support": {
-                "issues": "https://github.com/mrjgreen/phroute/issues",
-                "source": "https://github.com/mrjgreen/phroute/tree/v2.2.0"
-            },
-            "time": "2022-05-04T16:22:33+00:00"
-        }
-    ],
+    "content-hash": "549a1d7530a39623197792e4d633ef34",
+    "packages": [],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
+    "platform": {
+        "php": "8.2.7",
+        "ext-pdo": "8.2.7",
+        "ext-pdo_mysql": "8.2.7"
+    },
     "platform-dev": [],
     "plugin-api-version": "2.3.0"
 }

@@ -5,9 +5,22 @@ use App\services\Database;
 
     class Migration {
 
-        public static function auto(string $fileSQL): void {
+        public static function auto(string $fileSQL, string $type): void {
             $db = new Database();
-            $query = file_get_contents("app/src/db/$fileSQL");
-            $db->runQuery($query);
+
+            switch($type) {
+
+                case "default":
+                    $query = file_get_contents("app/src/db/$fileSQL");
+                    $migration = str_replace("CREATE TABLE", "CREATE TABLE IF NOT EXISTS", $query);
+                    $db->con()->query($migration);
+                    break;
+                
+                case "replace":
+                    $query = file_get_contents("app/src/db/$fileSQL");
+                    $migration = str_replace("CREATE TABLE", "CREATE OR REPLACE TABLE", $query);
+                    $db->con()->query($migration);
+                    break;
+            }
         }
     }
