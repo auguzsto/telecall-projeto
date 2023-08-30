@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS users(
+CREATE TABLE users(
         id BIGINT AUTO_INCREMENT,
         isadmin BOOLEAN NOT NULL,
         first_name VARCHAR(255) NOT NULL,
