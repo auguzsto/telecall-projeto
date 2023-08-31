@@ -14,4 +14,5 @@ use App\services\Router;
     Router::get("/servicos/mobilidade", "app/src/views/servicos/mobilidade.php");
 
     //Dashboard
-    Router::get("/dashboard", "app/src/views/dashboard/index.php");
+    Router::get("/dashboard/", "app/src/views/dashboard/index.php");
+    Router::get("/dashboard/signout", "app/src/views/dashboard/signout.php");
