@@ -8,11 +8,15 @@ namespace App\models;
         private int $isAdmin;
         private string $first_name;
         private string $last_name;
+        private string $mother_name;
         private string $email;
         private string $password;
         private string $phone;
         private string $cpf;
         private string $cep;
+        
+        private string $address;
+        private string $birth;
         private string $created_at;
         private string $updated_at;
         private string $deleted_at;
@@ -33,6 +37,10 @@ namespace App\models;
             $this->last_name = $last_name;
         }
 
+        public function setMotherName(string $mother_name): void {
+            $this->mother_name = $mother_name;
+        }
+
         public function setEmail(string $email): void {
             $this->email = $email;
         }
@@ -51,6 +59,13 @@ namespace App\models;
 
         public function setCep(string $cep): void {
             $this->cep = $cep;
+        }
+
+        public function setAddress(string $address): void {
+            $this->address = $address;
+        }
+        public function setBirth(string $birth): void {
+            $this->birth = $birth;
         }
 
         public function setCreated_at(string $created_at): void {
@@ -81,6 +96,10 @@ namespace App\models;
             return $this->last_name;
         }
 
+        public function getMotherName(): string {
+            return $this->mother_name;
+        }
+
         public function getEmail(): string {
             return $this->email;
         }
@@ -99,6 +118,14 @@ namespace App\models;
 
         public function getCep(): string {
             return $this->cep;
+        }
+
+        public function getAddress(): string {
+            return $this->address;
+        }
+
+        public function getBirth(): string {
+            return $this->birth;
         }
 
         public function getCreated_at(): string {

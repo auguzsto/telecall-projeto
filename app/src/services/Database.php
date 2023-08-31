@@ -4,6 +4,7 @@ namespace App\services;
 
 use PDO;
 use PDOException;
+use PDOStatement;
 
     class Database {
 
@@ -11,14 +12,19 @@ use PDOException;
             $this->con();
         }
 
-        public function con(): PDO {
+        private function con(): PDO {
             try {
-                $pdo = new PDO("mysql:host=localhost;dbname=telecall", "root", "password");
+                $pdo = new PDO("mysql:host=localhost:3306;dbname=telecall", "root", "password");
                 return $pdo;
                 
             } catch (PDOException $e) {
                 throw $e;
             }
+        }
+
+        public function query(string $query): PDOStatement {
+            $pdo = $this->con();
+            return $pdo->query($query);
         }
 
         public function insert(string $columns, string $table, mixed $entity, array $setValues) {
