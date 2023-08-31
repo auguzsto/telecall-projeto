@@ -15,14 +15,15 @@ use App\services\Database;
                 $encode = base64_encode($email.':'.hash('SHA256', $password));
                 $basic_token = $db->selectWhere("*", "auth", "basic_token = '$encode'")[0]['basic_token'];
 
-                if($basic_token != null) {
-                        $user_id = $db->selectWhere("*", "auth", "basic_token = '$basic_token'")[0]['user_id'];
-                        $map = $db->selectWhere("*", "users", "id = $user_id")[0];
-    
-                        Session::create($this->createUser($map));
-                        
-                } else {
+                if($basic_token != $encode) {
                     header("Location: /login");
+
+                } else {
+                    
+                    $user_id = $db->selectWhere("*", "auth", "basic_token = '$basic_token'")[0]['user_id'];
+                    $map = $db->selectWhere("*", "users", "id = $user_id")[0];
+    
+                    Session::create($this->createUser($map));
                 }
 
             } catch (\Throwable $e) {
