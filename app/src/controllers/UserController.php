@@ -9,15 +9,18 @@ use App\services\Database;
         
         public function create(User $user): void {
             $db = new Database();
-            $db->insert("isadmin, first_name, last_name, email, password, phone, cep, cpf, created_at", "users", $user, [
+            $db->insert("isadmin, first_name, last_name, mother_name, email, password, phone, cpf, cep, address, birth, created_at", "users", $user, [
                 $user->getIsAdmin(),
                 $user->getFirstName(), 
                 $user->getLastName(),
+                $user->getMotherName(),
                 $user->getEmail(),
                 password_hash($user->getPassword(), PASSWORD_BCRYPT),
                 $user->getPhone(),
-                $user->getCep(),
                 $user->getCpf(),
+                $user->getCep(),
+                $user->getAddress(),
+                $user->getBirth(),
                 $user->getCreated_at(),
             ]);
         }

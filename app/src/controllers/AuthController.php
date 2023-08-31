@@ -36,11 +36,14 @@ use App\services\Database;
                 $user->setIsAdmin($map['isadmin']);
                 $user->setFirstName($map['first_name']);
                 $user->setLastName($map['last_name']);
+                $user->setMotherName($map['mother_name']);
                 $user->setEmail($map['email']);
                 $user->setPassword($map['password']);
                 $user->setPhone(strval($map['phone']));
-                $user->setCep($map['cep']);
                 $user->setCpf($map['cpf']);
+                $user->setCep($map['cep']);
+                $user->setAddress($map['address']);
+                $user->setBirth($map['birth']);
                 $user->setCreated_at($map['created_at']);
 
                 return $user;

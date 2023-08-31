@@ -12,7 +12,7 @@
 <body>
 <nav class="navbar navbar-extand-lg light bg-light shadow p-3 mb-5 bg-white rounded">
     <a href="/"><img src="/app/assets/images/navbar.png" class="navbar brand img-fluid"></a>
-    <a href="/" class="text-primary"><b>Acessar conta</b></a>
+    <a href="/login" class="text-primary"><b>Acessar conta</b></a>
 </nav>
     <div class="container">
        <div class="row no-gutters">
@@ -45,10 +45,10 @@
                                      <input type="text" name="email" id="email" placeholder="Seu email" class="form-control">
                                      <h6 class="text-danger" id=""></h6>
                                      <h5>Nome materno: *</h5>
-                                     <input type="text" name="maternoCompleto" id="maternoCompleto" placeholder="Digite o nome materno completo." class="form-control">
+                                     <input type="text" name="mother_name" id="maternoCompleto" placeholder="Digite o nome materno completo." class="form-control">
                                      <h6 class="text-danger" id="maternoCompletoError"></h6>    
                                      <h5>Data de nascimento: *</h5>
-                                     <input type="date" name="dataNascimento" id="dataNascimento" placeholder="Insira sua data de nascimento." class="form-control">
+                                     <input type="date" name="birth" id="dataNascimento" placeholder="Insira sua data de nascimento." class="form-control" value="<?php echo date('Y-m-d'); ?>">
                                      <h6 class="text-danger" id="dataNascimentoError"></h6>    
                                 </div>
                                 <div class="col-sm-" id="widthCol2">
@@ -66,7 +66,7 @@
                                  <h5>Telefone fixo: </h5>
                                  <input type="text" name="telefoneFixo" placeholder="Digite seu telefone fixo." class="form-control" onkeypress="somenteNumero();">
                                  <h5>Endereço completo: *</h5>
-                                 <input type="text" id="enderecoCompleto" name="endereço" placeholder="Digite seu endereço completo." class="form-control" autocomplete="off">
+                                 <input type="text" id="enderecoCompleto" name="address" placeholder="Digite seu endereço completo." class="form-control" autocomplete="off">
                                  <h6 class="text-danger" id="enderecoCompletoError"></h6>
                                  <h5>CEP: *</h5>
                                  <input type="text" maxlength="8" name="cep" id="cep" placeholder="Digite seu CEP." class="form-control" onkeypress="somenteNumero();">
@@ -93,7 +93,6 @@
 
 <?php 
 
-use DateTime;
 use App\models\Auth;
 use App\models\User;
 use App\controllers\AuthController;
@@ -102,16 +101,18 @@ use App\controllers\UserController;
     if(isset($_POST['action'])) {
         $user = new User();
         $userController = new UserController();
-        $datetime = new DateTime();
         
         $user->setIsAdmin(0);
         $user->setFirstName($_POST['first_name']);
         $user->setLastName($_POST['last_name']);
+        $user->setMotherName($_POST['mother_name']);
         $user->setEmail($_POST['email']);
         $user->setPassword($_POST['password']);
         $user->setPhone(strval($_POST['phone']));
-        $user->setCep($_POST['cep']);
         $user->setCpf($_POST['cpf']);
+        $user->setCep($_POST['cep']);
+        $user->setAddress($_POST['address']);
+        $user->setBirth($_POST['birth']);
         $user->setCreated_at(date('Y-m-d H:i:s'));
 
         $userController->create($user);

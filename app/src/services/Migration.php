@@ -13,13 +13,13 @@ use App\services\Database;
                 case "default":
                     $query = file_get_contents("app/src/db/$fileSQL");
                     $migration = str_replace("CREATE TABLE", "CREATE TABLE IF NOT EXISTS", $query);
-                    $db->con()->query($migration);
+                    $db->query($migration);
                     break;
                 
                 case "replace":
                     $query = file_get_contents("app/src/db/$fileSQL");
                     $migration = str_replace("CREATE TABLE", "CREATE OR REPLACE TABLE", $query);
-                    $db->con()->query($migration);
+                    $db->query($migration);
                     break;
             }
         }
