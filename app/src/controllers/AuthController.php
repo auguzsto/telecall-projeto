@@ -15,8 +15,12 @@ use App\services\Router;
             $auth->setBasicToken($db->selectWhere("*", "auth", "basic_token = '$basic_token'")[0]['basic_token']);
             
             if($auth->getBasicToken() != null) {
-                header("Location: /dashboard");
+                $this->session();
             }
+        }
+
+        private function session(): void {
+            
         }
 
         public function basicToken(Auth $auth): void {
