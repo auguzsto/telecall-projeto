@@ -9,7 +9,7 @@ use App\services\Database;
         
         public function create(User $user): void {
             $db = new Database();
-            $db->insert("isadmin, first_name, last_name, email, password, phone, cep, cpf", "users", $user, [
+            $db->insert("isadmin, first_name, last_name, email, password, phone, cep, cpf, created_at", "users", $user, [
                 $user->getIsAdmin(),
                 $user->getFirstName(), 
                 $user->getLastName(),
@@ -18,7 +18,19 @@ use App\services\Database;
                 $user->getPhone(),
                 $user->getCep(),
                 $user->getCpf(),
+                $user->getCreated_at(),
             ]);
-            
+        }
+
+        public function findById(int $id): array {
+            $db = new Database();
+
+            return $db->selectWhere("*", "users", "id = $id");
+        }
+
+        public function findByEmail(string $email): array {
+            $db = new Database();
+
+            return $db->selectWhere("*", "users", "email = '$email'");
         }
     }

@@ -93,12 +93,16 @@
 
 <?php 
 
+use DateTime;
+use App\models\Auth;
 use App\models\User;
+use App\controllers\AuthController;
 use App\controllers\UserController;
 
     if(isset($_POST['action'])) {
         $user = new User();
         $userController = new UserController();
+        $datetime = new DateTime();
         
         $user->setIsAdmin(0);
         $user->setFirstName($_POST['first_name']);
@@ -108,8 +112,15 @@ use App\controllers\UserController;
         $user->setPhone(strval($_POST['phone']));
         $user->setCep($_POST['cep']);
         $user->setCpf($_POST['cpf']);
+        $user->setCreated_at(date('Y-m-d H:i:s'));
 
         $userController->create($user);
+
+        $auth = new Auth();
+        $authController = new AuthController();
+
+        $auth->setUser($user);
+        $authController->basicToken($auth);
     }
 
 ?>

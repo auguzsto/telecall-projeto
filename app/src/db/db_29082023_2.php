@@ -8,9 +8,9 @@ CREATE TABLE users(
         phone VARCHAR(14) UNIQUE NOT NULL,
         cpf VARCHAR(14) UNIQUE NOT NULL,
         cep VARCHAR(9) NOT NULL,
-        created_at DATATIME NOT NULL,
-        updated_at DATATIME NOT NULL,
-        deleted_at DATATIME NOT NULL,
+        created_at DATETIME NOT NULL,
+        updated_at DATETIME,
+        deleted_at DATETIME,
         PRIMARY KEY (id)
     );
 

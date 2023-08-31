@@ -13,6 +13,9 @@ namespace App\models;
         private string $phone;
         private string $cpf;
         private string $cep;
+        private string $created_at;
+        private string $updated_at;
+        private string $deleted_at;
 
         public function setId(int $id): void {
             $this->id = $id;
@@ -50,6 +53,18 @@ namespace App\models;
             $this->cep = $cep;
         }
 
+        public function setCreated_at(string $created_at): void {
+            $this->created_at = $created_at;
+        }
+
+        public function setUpdated_at(string $updated_at): void {
+            $this->updated_at = $updated_at;
+        }
+
+        public function setDeleted_at(string $deleted_at): void {
+            $this->deleted_at = $deleted_at;
+        }
+
         public function getId(): int {
             return $this->id;
         }
@@ -85,5 +100,16 @@ namespace App\models;
         public function getCep(): string {
             return $this->cep;
         }
+
+        public function getCreated_at(): string {
+            return $this->created_at;
+        }
         
+        public function getUpdate_at(): string {
+            return $this->updated_at;
+        }
+
+        public function getDeleted_at(): string {
+            return $this->deleted_at;
+        }
     }

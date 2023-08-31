@@ -32,6 +32,12 @@ use PDOException;
         public function select(string $columns, string $table): array {
             $pdo = $this->con();
             
-            return $pdo->prepare("SELECT $columns FROM $table")->fetchAll();
+            return $pdo->query("SELECT $columns FROM $table")->fetchAll();
+        }
+
+        public function selectWhere(string $columns, string $table, string $whereCondition): array {
+            $pdo = $this->con();
+            
+            return $pdo->query("SELECT $columns FROM $table WHERE $whereCondition")->fetchAll();
         }
     }
