@@ -4,8 +4,12 @@ Implementação de back-end utilizando PHP. Proíbido a utilização de qualquer
 
 # Requerimentos
 - PHP
+    - ext-pdo
+    - ext-pdo_mysql
 - Composer
 - MySQL ou MariaDB
+    - user: root
+    - password: password
 
 # Como correr o projeto?
 Certifique que tenha os requerimentos necessários acima. Na pasta raíz do projeto, faça os seguintes passos.
@@ -26,11 +30,11 @@ de ferramentas de desenvolvimento Back-End a fim de identificar a oportunidade d
 sistema.
 
 ## Perfis de usuário
-- [ ] Perfil administrativo (Master)
-- [ ] Perfil comum (Usuário)
+- [x] Perfil administrativo (Master)
+- [x] Perfil comum (Usuário)
 
 ## Funcionalidades
-- [ ] Login - (Master | Comum)
+- [x] Login - (Master | Comum)
     - Tela de Login deve possuir os campos Login e
 Senha. A tela deve ter a opção de tipo de
 perfil que o usuário pretende se logar. O tipo
