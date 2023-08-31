@@ -6,5 +6,5 @@ use App\services\Migration;
 
     require 'app/routes/routes.php';
 
-    Migration::auto("db_29082023.php", "default");
+    Migration::auto("db_29082023_2.php", "default");
    
