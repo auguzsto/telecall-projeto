@@ -3,11 +3,20 @@
 namespace App\controllers;
 use App\models\Auth;
 use App\services\Database;
+use App\services\Router;
 
     class AuthController {
         
-        public function signIn(string $email, string $password) {
+        public function signIn(string $email, string $password): void {
+            $db = new Database();
+            $auth = new Auth();
+
+            $basic_token = base64_encode($email.":".hash("SHA256", $password));
+            $auth->setBasicToken($db->selectWhere("*", "auth", "basic_token = '$basic_token'")[0]['basic_token']);
             
+            if($auth->getBasicToken() != null) {
+                header("Location: /dashboard");
+            }
         }
 
         public function basicToken(Auth $auth): void {
@@ -17,7 +26,7 @@ use App\services\Database;
                 $user = $auth->getUser();
 
                 $auth->getUser()->setId($userController->findByEmail($user->getEmail())[0][0]);
-                $auth->setBasicToken(base64_encode($user->getEmail().":".$user->getEmail()));
+                $auth->setBasicToken(base64_encode($user->getEmail().":".hash("SHA256", $user->getPassword())));
                 
                 $db->insert("user_id, basic_token", "auth", $auth, [
                     $auth->getUser()->getId(),

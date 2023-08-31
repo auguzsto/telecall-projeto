@@ -25,16 +25,16 @@
                         <h3>Login</h3>
                     </div>
                     <div class="card-body">
-                        <form action="#" method="POST">
+                        <form action="#" method="POST" name="action">
                             <div id="error" class="rounded bg-error border-danger text-danger text-center justify-content-center mt-3 mb-3"></div>
-                            <label for=""><h4>CPF:</h4></label>
+                            <label for=""><h4>E-mail:</h4></label>
                             <br>
-                            <input type="text" name="user" id="user" placeholder="Apenas números." class="form-control" maxlength="11" onkeypress="somenteNumero();" required autocomplete="off">
+                            <input type="text" name="email" id="user" placeholder="Seu e-mail" class="form-control" onkeypress="" required autocomplete="off">
                             <label for="" class="labelLogin"><h4>Senha:</h4></label>
                             <br>
                             <input type="password" name="password" id="password" placeholder="Sua senha." class="form-control" required>
                             <div id="error" class="rounded bg-error border-danger text-danger text-center justify-content-center mt-3 mb-3"></div>
-                            <button type="button" id="sendAuth" class="form-control btn-primary" onclick="checkUser();">Acessar</button>
+                            <input type="submit" name="action" id="sendAuth" class="form-control btn-primary" onclick="" value="Acessar"></input>
                         </form>
                         <br>
                        <p><a href="" class="text-primary">Esqueceu a senha?</a></p>
@@ -58,3 +58,17 @@
 <script src="app/assets/js/popper.min.js"></script>
 <script src="app/assets/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="app/assets/js/auth.js"></script>
+
+<?php 
+
+use App\controllers\AuthController;
+
+
+    if(isset($_POST['action'])) {
+
+        $authController = new AuthController();
+
+        $authController->signIn($_POST['email'], $_POST['password']);
+    }
+
+?>
