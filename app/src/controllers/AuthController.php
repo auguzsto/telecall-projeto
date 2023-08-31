@@ -9,17 +9,24 @@ use App\services\Database;
     class AuthController {
         
         public function signIn(string $email, string $password): void {
-            $db = new Database();
-            $auth = new Auth();
+            try {
+                $db = new Database();
 
-            $basic_token = base64_encode($email.":".hash("SHA256", $password));
-            $auth->setBasicToken($db->selectWhere("*", "auth", "basic_token = '$basic_token'")[0]['basic_token']);
-            
-            if($auth->getBasicToken() != null) {
-                $user_id = $db->selectWhere("*", "auth", "basic_token = '$basic_token'")[0]['user_id'];
-                $map = $db->selectWhere("*", "users", "id = $user_id")[0];
+                $encode = base64_encode($email.':'.hash('SHA256', $password));
+                $basic_token = $db->selectWhere("*", "auth", "basic_token = '$encode'")[0]['basic_token'];
 
-                Session::create($this->createUser($map));
+                if($basic_token != null) {
+                        $user_id = $db->selectWhere("*", "auth", "basic_token = '$basic_token'")[0]['user_id'];
+                        $map = $db->selectWhere("*", "users", "id = $user_id")[0];
+    
+                        Session::create($this->createUser($map));
+                        
+                } else {
+                    header("Location: /login");
+                }
+
+            } catch (\Throwable $e) {
+                throw $e;
             }
         }
 
