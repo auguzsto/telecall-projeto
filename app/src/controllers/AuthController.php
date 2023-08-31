@@ -6,8 +6,8 @@ use App\services\Database;
 
     class AuthController {
         
-        public function signIn(Auth $auth) {
-
+        public function signIn(string $email, string $password) {
+            
         }
 
         public function basicToken(Auth $auth): void {
