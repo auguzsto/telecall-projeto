@@ -12,3 +12,7 @@ use App\services\Router;
     Router::get("/servicos/internet", "app/src/views/servicos/internet.php");
     Router::get("/servicos/telefonia", "app/src/views/servicos/telefonia.php");
     Router::get("/servicos/mobilidade", "app/src/views/servicos/mobilidade.php");
+
+    //Dashboard
+    Router::get("/dashboard/", "app/src/views/dashboard/index.php");
+    Router::get("/dashboard/signout", "app/src/views/dashboard/signout.php");
