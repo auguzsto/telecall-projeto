@@ -1,6 +1,5 @@
 <?php
 
-use App\models\User;
 use App\services\Session;
 use App\services\Database;
 
@@ -12,9 +11,9 @@ use App\services\Database;
     $asks = $db->select("ask_1, ask_2, ask_3", "asks_2fa")[0];
     
     $responses = [
-        $asks[0] => $user->getMotherName(),
-        $asks[1] => $user->getBirth(),
-        $asks[2] => $user->getCep(),
+        $user->getMotherName(),
+        $user->getBirth(),
+        $user->getCep(),
     ];
 
 ?>
@@ -31,22 +30,33 @@ use App\services\Database;
         <?php 
             echo $asks[$rand];
         ?>?
-        <br/>
     </h1>
-    <form action="" method="POST">
-        <input type="text" name="response" placeholder="Digite sua resposta">
+    <form method="POST">
+        <?php
+
+            if($asks[$rand] != "Qual a data do seu nascimento") {
+                echo '<input type="text" name="response">';
+            } else {
+                echo '<input type="date" name="response">';
+            }
+
+        ?>
         <input type="submit" name="action" value="Confirmar">
     </form>
 </body>
 </html>
-<?php echo $responses[$asks[$rand]]; ?>
 <?php
+
     if(isset($_POST['action'])) {
 
-        if($_POST['response'] == $responses[$asks[$rand]]) {
-            $_SESSION['2fa'] = null;
-            Session::create($user);
-        } else {
-            header("Location: /2FA");
+        for($i = 0; $i < count($responses); $i++) {
+            if($responses[$i] == $_POST['response']) {
+                $_SESSION['2fa'] = null;
+                Session::create($user);
+                
+            } else {
+                header("Location: /2FA");
+            }
         }
+
     }

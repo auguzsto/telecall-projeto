@@ -8,7 +8,7 @@ use App\models\User;
 
         public static function create(User $user) {
             session_start();
-            
+
             $_SESSION['session'] = $user;
             header("Location: /dashboard/");
         }
@@ -24,7 +24,7 @@ use App\models\User;
             session_start();
 
             if($_SESSION['2fa'] == null) {
-                return header("Location: /dashboard/signout");
+                return header("Location: /dashboard/");
             }
         }
 
