@@ -13,6 +13,9 @@ use App\services\Router;
     Router::get("/servicos/telefonia", "app/src/views/servicos/telefonia.php");
     Router::get("/servicos/mobilidade", "app/src/views/servicos/mobilidade.php");
 
+    //2FA
+    Router::get("/2FA", "app/src/views/2FA.php");
+
     //Dashboard
     Router::get("/dashboard/", "app/src/views/dashboard/index.php");
     Router::get("/dashboard/signout", "app/src/views/dashboard/signout.php");

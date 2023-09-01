@@ -21,7 +21,7 @@ use App\services\Database;
                 } else {
                     $user_id = $auth['user_id'];
                     $map = $db->selectWhere("*", "users", "id = $user_id")[0];
-                    Session::create(User::fromMap($map));
+                    Session::twoFactorAuthentication(User::fromMap($map));
                     
                 }
 
