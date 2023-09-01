@@ -99,28 +99,28 @@ use App\controllers\AuthController;
 use App\controllers\UserController;
 
     if(isset($_POST['action'])) {
-        $user = new User();
-        $userController = new UserController();
+        $map = [
+            "first_name" => $_POST['first_name'],
+            "last_name" => $_POST['last_name'],
+            "mother_name" => $_POST['mother_name'],
+            "email" => $_POST['email'],
+            "password" => $_POST['password'],
+            "phone" => $_POST['phone'],
+            "cpf" => $_POST['cpf'],
+            "cep" => $_POST['cep'],
+            "address" => $_POST['address'],
+            "birth" => $_POST['birth'],
+            "created_at" => date('Y-m-d H:i:s'),
+        ];
         
-        $user->setIsAdmin(0);
-        $user->setFirstName($_POST['first_name']);
-        $user->setLastName($_POST['last_name']);
-        $user->setMotherName($_POST['mother_name']);
-        $user->setEmail($_POST['email']);
-        $user->setPassword($_POST['password']);
-        $user->setPhone(strval($_POST['phone']));
-        $user->setCpf($_POST['cpf']);
-        $user->setCep($_POST['cep']);
-        $user->setAddress($_POST['address']);
-        $user->setBirth($_POST['birth']);
-        $user->setCreated_at(date('Y-m-d H:i:s'));
+        $userController = new UserController();
 
-        $userController->create($user);
+        $userController->create(User::fromMap($map));
 
         $auth = new Auth();
         $authController = new AuthController();
 
-        $auth->setUser($user);
+        $auth->setUser(User::fromMap($map));
         $authController->basicToken($auth);
     }
 

@@ -21,32 +21,13 @@ use App\services\Database;
                 } else {
                     $user_id = $auth['user_id'];
                     $map = $db->selectWhere("*", "users", "id = $user_id")[0];
-                    Session::create($this->createUser($map));
+                    Session::create(User::fromMap($map));
                     
                 }
 
             } catch (\Throwable $e) {
                 throw $e;
             }
-        }
-
-        private function createUser(array $map): User {
-                $user = new User();
-                $user->setId($map['id']);
-                $user->setIsAdmin($map['isadmin']);
-                $user->setFirstName($map['first_name']);
-                $user->setLastName($map['last_name']);
-                $user->setMotherName($map['mother_name']);
-                $user->setEmail($map['email']);
-                $user->setPassword($map['password']);
-                $user->setPhone(strval($map['phone']));
-                $user->setCpf($map['cpf']);
-                $user->setCep($map['cep']);
-                $user->setAddress($map['address']);
-                $user->setBirth($map['birth']);
-                $user->setCreated_at($map['created_at']);
-
-                return $user;
         }
 
         public function basicToken(Auth $auth): void {
