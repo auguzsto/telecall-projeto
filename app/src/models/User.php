@@ -14,12 +14,30 @@ namespace App\models;
         private string $phone;
         private string $cpf;
         private string $cep;
-        
         private string $address;
         private string $birth;
         private string $created_at;
         private string $updated_at;
         private string $deleted_at;
+
+        public static function fromMap(array $map): User {
+            $user = new self();
+            isset($map['id']) ? $user->setId($map['id']) : null;
+            isset($map['isadmin']) ? $user->setIsAdmin($map['isadmin']) : $user->setIsAdmin(0);
+            $user->setFirstName($map['first_name']);
+            $user->setLastName($map['last_name']);
+            $user->setMotherName($map['mother_name']);
+            $user->setEmail($map['email']);
+            $user->setPassword($map['password']);
+            $user->setPhone(strval($map['phone']));
+            $user->setCpf($map['cpf']);
+            $user->setCep($map['cep']);
+            $user->setAddress($map['address']);
+            $user->setBirth($map['birth']);
+            $user->setCreated_at($map['created_at']);
+
+            return $user;
+    }
 
         public function setId(int $id): void {
             $this->id = $id;
