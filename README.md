@@ -45,7 +45,7 @@ cadastro de usuário.
     - Tela de erro quando algo inesperado
 acontece, como por exemplo, erro na
 autenticação do usuário.
-- [ ] Autenticação de dois fatores (2FA)
+- [x] Autenticação de dois fatores (2FA)
 - [ ] Dashboard - (Master | Comum)
     - Deve ter menu com as opções relacionadas
 ao acesso de cada perfil logado (lembre-se
