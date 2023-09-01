@@ -33,4 +33,4 @@ CREATE TABLE asks_2fa(
         PRIMARY KEY (id)
     );
 
-INSERT INTO asks_2fa (ask_1, ask_2, ask_3) VALUES ("Qual o nome da sua mãe", "Qual a data do seu nascimento", "Qual o CEP do seu endereço");
+REPLACE INTO asks_2fa (id, ask_1, ask_2, ask_3) VALUES (1, "Qual o nome da sua mãe", "Qual a data do seu nascimento", "Qual o CEP do seu endereço");
