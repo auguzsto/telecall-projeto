@@ -9,12 +9,6 @@ use App\services\Database;
 
     $db = new Database();
     $asks = $db->select("ask_1, ask_2, ask_3", "asks_2fa")[0];
-    
-    $responses = [
-        $user->getMotherName(),
-        $user->getBirth(),
-        $user->getCep(),
-    ];
 
 ?>
 
@@ -33,37 +27,47 @@ use App\services\Database;
     <a href="/"><img src="app/assets/images/navbar.png" class="navbar brand img-fluid"></a>
 </nav>
     <div class="container">
-    <h1>
         <?php 
-            echo $asks[$rand];
-        ?>?
-    </h1>
-    <form method="POST">
-        <?php
 
-            if($asks[$rand] != "Qual a data do seu nascimento") {
-                echo '<input type="text" name="response">';
-            } else {
-                echo '<input type="date" name="response">';
+            switch($rand) {
+                default:
+                    echo "
+                    <h1>$asks[$rand]?</h1>
+                    <form method='POST'>
+                        <input type='text' name='$rand'>
+                        <input type='submit' name='action'>
+                    </form>
+                    ";
+                break;
+
+                case 1:
+                    echo "
+                    <h1>$asks[$rand]?</h1>
+                    <form method='POST'>
+                        <input type='date' name='$rand'>
+                        <input type='submit' name='action'>
+                    </form>
+                    ";
             }
-
         ?>
-        <input type="submit" name="action" value="Confirmar">
-    </form>
+    </div>
+       
 </body>
 </html>
 <?php
 
     if(isset($_POST['action'])) {
 
-        for($i = 0; $i < count($responses); $i++) {
-            if($responses[$i] == $_POST['response']) {
-                $_SESSION['2fa'] = null;
-                Session::create($user);
-
-            } else {
-                header("Location: /2FA");
-            }
+        if($_POST['0'] == $user->getMotherName()) {
+            echo "true";
         }
 
+        if($_POST['1'] == $user->getBirth()) {
+            echo "true";
+        }
+
+        if($_POST['2'] == $user->getCep()) {
+            echo "true";
+        }
+        
     }
