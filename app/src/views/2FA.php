@@ -59,15 +59,15 @@ use App\services\Database;
     if(isset($_POST['action'])) {
 
         if($_POST['0'] == $user->getMotherName()) {
-            echo "true";
+            Session::create($user);
         }
 
         if($_POST['1'] == $user->getBirth()) {
-            echo "true";
+            Session::create($user);
         }
 
         if($_POST['2'] == $user->getCep()) {
-            echo "true";
+            Session::create($user);
         }
         
     }
