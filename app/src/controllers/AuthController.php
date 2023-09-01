@@ -1,6 +1,7 @@
 <?php
 
 namespace App\controllers;
+use App\handlers\Handlers;
 use App\models\Auth;
 use App\models\User;
 use App\services\Session;
@@ -16,7 +17,7 @@ use App\services\Database;
                 $auth = $db->selectWhere("*", "auth", "basic_token = '$encode'")[0];
 
                 if($auth['basic_token'] != $encode) {
-                    header("Location: /login");
+                    Handlers::error("Falha!", "Usuário ou senha inválidos.");
 
                 } else {
                     $user_id = $auth['user_id'];

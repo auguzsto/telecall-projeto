@@ -25,7 +25,7 @@
                         <h3>Login</h3>
                     </div>
                     <div class="card-body">
-                        <form action="#" method="POST" name="action">
+                        <form method="POST" name="action">
                             <div id="error" class="rounded bg-error border-danger text-danger text-center justify-content-center mt-3 mb-3"></div>
                             <label for=""><h4>E-mail:</h4></label>
                             <br>
@@ -57,6 +57,7 @@
 <script src="/app/assets/js/jquery.slim.min.js"></script>
 <script src="/app/assets/js/popper.min.js"></script>
 <script src="/app/assets/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <?php 
 
