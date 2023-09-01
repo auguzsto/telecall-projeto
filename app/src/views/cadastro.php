@@ -48,7 +48,7 @@
                                      <input type="text" name="mother_name" id="maternoCompleto" placeholder="Digite o nome materno completo." class="form-control">
                                      <h6 class="text-danger" id="maternoCompletoError"></h6>    
                                      <h5>Data de nascimento: *</h5>
-                                     <input type="date" name="birth" id="dataNascimento" placeholder="Insira sua data de nascimento." class="form-control" value="<?php echo date('Y-m-d'); ?>">
+                                     <input type="date" name="birth" id="dataNascimento" placeholder="Insira sua data de nascimento." class="form-control">
                                      <h6 class="text-danger" id="dataNascimentoError"></h6>    
                                 </div>
                                 <div class="col-sm-" id="widthCol2">
