@@ -2,6 +2,8 @@
 
 use App\services\Migration;
 
+    error_reporting(0); // SET 0 FOR PROD, SET -1 FOR DEVELOPEMENT
+
     require __DIR__ . '/vendor/autoload.php';
 
     require 'app/routes/routes.php';
