@@ -11,7 +11,7 @@ Implementação de back-end utilizando PHP. Proíbido a utilização de qualquer
 
 # Como correr o projeto?
 Certifique que tenha os requerimentos necessários acima. Na pasta raíz do projeto, faça os seguintes passos.
-1. Configure as variáveis, em /app/src/config/Config.php, para conexão de acordo com seu banco de dados.
+1. Configure as variáveis, em **/app/src/config/Config.php**, para conexão de acordo com seu banco de dados.
 ```
     public static string $dbhost = "LOCALHOST";
     public static string $dbport = "PORTA";
