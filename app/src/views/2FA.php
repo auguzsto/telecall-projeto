@@ -59,14 +59,17 @@ use App\services\Database;
     if(isset($_POST['action'])) {
 
         if($_POST['0'] == $user->getMotherName()) {
+            unset($_SESSION['2fa']);
             Session::create($user);
         }
 
         if($_POST['1'] == $user->getBirth()) {
+            unset($_SESSION['2fa']);
             Session::create($user);
         }
 
         if($_POST['2'] == $user->getCep()) {
+            unset($_SESSION['2fa']);
             Session::create($user);
         }
         

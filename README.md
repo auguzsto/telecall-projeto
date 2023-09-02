@@ -8,16 +8,22 @@ Implementação de back-end utilizando PHP. Proíbido a utilização de qualquer
     - ext-pdo_mysql
 - Composer
 - MySQL ou MariaDB
-    - user: root
-    - password: password
 
 # Como correr o projeto?
 Certifique que tenha os requerimentos necessários acima. Na pasta raíz do projeto, faça os seguintes passos.
-1. Instale as depedências via composer.
+1. Configure as variáveis, em /app/src/config/Config.php, para conexão de acordo com seu banco de dados.
+```
+    public static string $dbhost = "LOCALHOST";
+    public static string $dbport = "PORTA";
+    public static string $dbuser = "USUÁRIO";
+    public static string $dbpassword = "SENHA";
+    public static string $dbdatabase = "NOME DO BANCO";
+```
+2. Instale as depedências via composer.
 ```
 composer install
 ```
-2. Rode o servidor web nativo do php.
+3. Rode o servidor web nativo do php.
 ```
 php -S 0.0.0.0:8000 -t .
 ```
