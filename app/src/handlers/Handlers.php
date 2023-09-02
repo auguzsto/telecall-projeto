@@ -1,8 +1,9 @@
 <?php
 namespace App\handlers;
+use Exception;
 
-    class Handlers {
-        public static function sucess(string $title, string $message) {
+    class Handlers extends Exception {
+        public static function success(string $title, string $message) {
             echo "
                 <script>
                     Swal.fire(
@@ -21,6 +22,18 @@ namespace App\handlers;
                         '$title',
                         '$message',
                         'error'
+                    )
+                </script>
+            ";
+        }
+
+        public static function warning(string $title, string $message) {
+            echo "
+                <script>
+                    Swal.fire(
+                        '$title',
+                        '$message',
+                        'warning'
                     )
                 </script>
             ";
