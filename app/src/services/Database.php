@@ -5,6 +5,7 @@ namespace App\services;
 use PDO;
 use PDOException;
 use PDOStatement;
+use App\config\Config;
 
     class Database {
 
@@ -13,8 +14,15 @@ use PDOStatement;
         }
 
         private function con(): PDO {
+
+            $host = Config::$dbhost;
+            $port = Config::$dbport;
+            $dbname = Config::$dbdatabase;
+            $dbuser = Config::$dbuser;
+            $dbpassword = Config::$dbpassword;
+
             try {
-                $pdo = new PDO("mysql:host=localhost:3306;dbname=telecall", "root", "password");
+                $pdo = new PDO("mysql:host=$host:$port;dbname=$dbname", "$dbuser", "$dbpassword");
                 return $pdo;
                 
             } catch (PDOException $e) {
