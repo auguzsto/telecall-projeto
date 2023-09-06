@@ -26,30 +26,31 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-sm-" id="widthCol2">
-                                 <form action="<?php $_SERVER['PHP_SELF'] ?>" method="POST" name="action">
+                                 <form method="POST" name="action">
+
                                      <h5>CPF: *</h5>
-                                     <input type="text" name="cpf" id="cpf" placeholder="Apenas números são permitidos." class="form-control" maxlength="14" onkeypress="" autocomplete="off">
-                                     <h6 class="text-danger" id="cpfError"></h6>
+                                     <input type="text" name="cpf" id="cpf" placeholder="Apenas números são permitidos." class="form-control" maxlength="14" autocomplete="off" value="<?php echo $_POST['cpf']; ?>">
+
                                      <h5>Senha: *</h5>
-                                     <input type="password" name="password" id="senha" placeholder="Digite sua senha." class="form-control">
-                                     <h6 class="text-danger" id="senhaError"></h6>
+                                     <input type="password" name="password" id="password" placeholder="Digite sua senha." class="form-control">
+
                                      <h5>Repita a senha: *</h5>
-                                     <input type="password" name="rePassword" id="resenha" placeholder="Digite sua senha novamente." class="form-control">
-                                     <h6 class="text-danger" id="resenhaError"></h6>      
+                                     <input type="password" name="rePassword" id="rePassword" placeholder="Digite sua senha novamente." class="form-control">
+
                                      <h5>Nome: *</h5>
-                                     <input type="text" name="first_name" id="fist_name" placeholder="Seu primeiro nome" class="form-control">
-                                     <h6 class="text-danger" id=""></h6>
+                                     <input type="text" name="first_name" id="fist_name" placeholder="Seu primeiro nome" class="form-control" <?php echo $_POST['first_name']; ?>>
+
                                      <h5>Último nome: *</h5>
-                                     <input type="text" name="last_name" id="last_name" placeholder="Seu último nome" class="form-control">
+                                     <input type="text" name="last_name" id="last_name" placeholder="Seu último nome" class="form-control" <?php echo $_POST['last_name']; ?>>
+
                                      <h5>Email: *</h5>
-                                     <input type="text" name="email" id="email" placeholder="Seu email" class="form-control">
-                                     <h6 class="text-danger" id=""></h6>
+                                     <input type="text" name="email" id="email" placeholder="Seu email" class="form-control" value="<?php echo $_POST['email']; ?>">
+                                     
                                      <h5>Nome materno: *</h5>
-                                     <input type="text" name="mother_name" id="maternoCompleto" placeholder="Digite o nome materno completo." class="form-control">
-                                     <h6 class="text-danger" id="maternoCompletoError"></h6>    
+                                     <input type="text" name="mother_name" id="maternoCompleto" placeholder="Digite o nome materno completo." class="form-control" <?php echo $_POST['mother_name']; ?>>
+
                                      <h5>Data de nascimento: *</h5>
-                                     <input type="date" name="birth" id="dataNascimento" placeholder="Insira sua data de nascimento." class="form-control">
-                                     <h6 class="text-danger" id="dataNascimentoError"></h6>    
+                                     <input type="date" name="birth" id="dataNascimento" placeholder="Insira sua data de nascimento." class="form-control">    
                                 </div>
                                 <div class="col-sm-" id="widthCol2">
                                  <h5>Gênero: *</h5>
@@ -61,19 +62,20 @@
                                  </select>
                                  <h6 class="text-danger" id="generoError"></h6>   
                                  <h5>Celular: *</h5>
-                                 <input type="text" maxlength="14" name="phone" id="celular" placeholder="Digite seu número de celular com DDD." class="form-control" onkeypress="somenteNumero();" autocomplete="off" value="+55">
-                                 <h6 class="text-danger" id="celularError"></h6> 
+                                 <input type="text" maxlength="14" name="phone" id="celular" placeholder="Digite seu número de celular com DDD." class="form-control" autocomplete="off" value="<?php echo $_POST['phone']; ?>">
+
                                  <h5>Telefone fixo: </h5>
-                                 <input type="text" name="telefoneFixo" placeholder="Digite seu telefone fixo." class="form-control" onkeypress="somenteNumero();">
+                                 <input type="text" name="telefoneFixo" placeholder="Digite seu telefone fixo." class="form-control">
+
                                  <h5>Endereço completo: *</h5>
-                                 <input type="text" id="enderecoCompleto" name="address" placeholder="Digite seu endereço completo." class="form-control" autocomplete="off">
-                                 <h6 class="text-danger" id="enderecoCompletoError"></h6>
+                                 <input type="text" id="enderecoCompleto" name="address" placeholder="Digite seu endereço completo." class="form-control" autocomplete="off" value="<?php echo $_POST['address']; ?>">
+
                                  <h5>CEP: *</h5>
-                                 <input type="text" maxlength="8" name="cep" id="cep" placeholder="Digite seu CEP." class="form-control" onkeypress="somenteNumero();">
-                                 <h6 class="text-danger" id="cepError"></h6>
+                                 <input type="text" maxlength="8" name="cep" id="cep" placeholder="Digite seu CEP." class="form-control" value="<?php echo $_POST['cep']; ?>">
+
                                  <label for=""></label>
                                  <input type="submit" class="form-control btn-primary border" id="enviarCadastro" name="action" onclick="" value="Registrar"></input>
-                                 <h6 class="text-success" id="checkAll"></h6>
+
                                  </form>
                                 </div>
                             </div>
@@ -90,6 +92,8 @@
 <script src="/app/assets/js/popper.min.js"></script>
 <script src="/app/assets/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/app/assets/js/auth.js"></script>
+<script type="text/javascript" src="/app/assets/js/register.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <?php 
 
