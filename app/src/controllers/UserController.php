@@ -40,6 +40,12 @@ use PDOException;
 
         }
 
+        public function findAll(): array {
+            $db = new Database();
+
+            return $db->select("*", "users");
+        }
+
         public function findById(int $id): array {
             $db = new Database();
 

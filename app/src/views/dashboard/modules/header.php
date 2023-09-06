@@ -1,7 +1,7 @@
 <?php 
 
     function showToolsAdmin(int $isadmin, string $tool): string {
-        return $isadmin != 0 ? $tool : ''; 
+        return $isadmin != 0 ? print $tool : ''; 
     }
 
 ?>
