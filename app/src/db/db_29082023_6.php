@@ -9,7 +9,7 @@ CREATE TABLE users(
         mother_name VARCHAR(255) NOT NULL,
         email VARCHAR(255) UNIQUE NOT NULL,
         password VARCHAR(255) NOT NULL,
-        phone VARCHAR(14) UNIQUE NOT NULL,
+        phone VARCHAR(16) UNIQUE NOT NULL,
         cpf VARCHAR(14) UNIQUE NOT NULL,
         cep VARCHAR(9) NOT NULL,
         address VARCHAR(255) NOT NULL,
