@@ -18,4 +18,5 @@ use App\services\Router;
 
     //Dashboard
     Router::get("/dashboard/", "app/src/views/dashboard/index.php");
+    Router::get("/dashboard/profile", "app/src/views/dashboard/profile.php");
     Router::get("/dashboard/signout", "app/src/views/dashboard/signout.php");
