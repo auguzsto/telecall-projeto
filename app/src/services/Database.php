@@ -14,7 +14,7 @@ use App\config\Config;
            $this->con();
         }
 
-        protected function conToMigration(): PDO {
+        private function conToMigration(): PDO {
             try {
                 $host = Config::$dbhost;
                 $port = Config::$dbport;
