@@ -2,10 +2,11 @@
 
 namespace App\controllers;
 
-use App\handlers\Handlers;
-use App\models\User;
-use App\services\Database;
 use PDOException;
+use App\models\Auth;
+use App\models\User;
+use App\handlers\Handlers;
+use App\services\Database;
 
     class UserController {
         
@@ -26,6 +27,13 @@ use PDOException;
                     $user->getBirth(),
                     $user->getCreated_at(),
                 ]);
+                
+                //Create basic token after register user.
+                $auth = new Auth();
+                $authController = new AuthController();
+
+                $auth->setUser($user);
+                $authController->basicToken($auth);
 
                 Handlers::success("Sucesso", "Cadastro realizado");
 

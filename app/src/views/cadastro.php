@@ -44,13 +44,13 @@
                                      <input type="text" name="last_name" id="last_name" placeholder="Seu último nome" class="form-control" <?php echo $_POST['last_name']; ?>>
 
                                      <h5>Email: *</h5>
-                                     <input type="text" name="email" id="email" placeholder="Seu email" class="form-control" value="<?php echo $_POST['email']; ?>">
+                                     <input type="email" name="email" id="email" placeholder="Seu email" class="form-control" value="<?php echo $_POST['email']; ?>" required>
                                      
                                      <h5>Nome materno: *</h5>
-                                     <input type="text" name="mother_name" id="maternoCompleto" placeholder="Digite o nome materno completo." class="form-control" <?php echo $_POST['mother_name']; ?>>
+                                     <input type="text" name="mother_name" id="maternoCompleto" placeholder="Digite o nome materno completo." class="form-control" <?php echo $_POST['mother_name']; ?> required>
 
                                      <h5>Data de nascimento: *</h5>
-                                     <input type="date" name="birth" id="dataNascimento" placeholder="Insira sua data de nascimento." class="form-control">    
+                                     <input type="date" name="birth" id="dataNascimento" placeholder="Insira sua data de nascimento." class="form-control" required>    
                                 </div>
                                 <div class="col-sm-" id="widthCol2">
                                  <h5>Gênero: *</h5>
@@ -62,16 +62,16 @@
                                  </select>
                                  <h6 class="text-danger" id="generoError"></h6>   
                                  <h5>Celular: *</h5>
-                                 <input type="text" maxlength="14" name="phone" id="celular" placeholder="Digite seu número de celular com DDD." class="form-control" autocomplete="off" value="<?php echo $_POST['phone']; ?>">
+                                 <input type="text" maxlength="14" name="phone" id="celular" placeholder="Digite seu número de celular com DDD." class="form-control" autocomplete="off" value="<?php echo $_POST['phone']; ?>" required>
 
                                  <h5>Telefone fixo: </h5>
                                  <input type="text" name="telefoneFixo" placeholder="Digite seu telefone fixo." class="form-control">
 
                                  <h5>Endereço completo: *</h5>
-                                 <input type="text" id="enderecoCompleto" name="address" placeholder="Digite seu endereço completo." class="form-control" autocomplete="off" value="<?php echo $_POST['address']; ?>">
+                                 <input type="text" id="enderecoCompleto" name="address" placeholder="Digite seu endereço completo." class="form-control" autocomplete="off" value="<?php echo $_POST['address']; ?>" required>
 
                                  <h5>CEP: *</h5>
-                                 <input type="text" maxlength="8" name="cep" id="cep" placeholder="Digite seu CEP." class="form-control" value="<?php echo $_POST['cep']; ?>">
+                                 <input type="text" maxlength="8" name="cep" id="cep" placeholder="Digite seu CEP." class="form-control" value="<?php echo $_POST['cep']; ?>" required>
 
                                  <label for=""></label>
                                  <input type="submit" class="form-control btn-primary border" id="enviarCadastro" name="action" onclick="" value="Registrar"></input>
@@ -89,9 +89,9 @@
 </body>
 </html>
 <script src="/app/assets/js/jquery.slim.min.js"></script>
+<script src="/app/assets/js/jquery.mask.min.js"></script>
 <script src="/app/assets/js/popper.min.js"></script>
 <script src="/app/assets/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/app/assets/js/auth.js"></script>
 <script type="text/javascript" src="/app/assets/js/register.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -120,12 +120,6 @@ use App\controllers\UserController;
         $userController = new UserController();
 
         $userController->create(User::fromMap($map));
-
-        $auth = new Auth();
-        $authController = new AuthController();
-
-        $auth->setUser(User::fromMap($map));
-        $authController->basicToken($auth);
     }
 
 ?>

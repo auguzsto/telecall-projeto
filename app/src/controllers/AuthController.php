@@ -37,11 +37,11 @@ use App\services\Database;
                 $userController  = new UserController();
                 $user = $auth->getUser();
 
-                $auth->getUser()->setId($userController->findByEmail($user->getEmail())[0][0]);
+                $user->setId($userController->findByEmail($user->getEmail())[0]['id']);
                 $auth->setBasicToken(base64_encode($user->getEmail().":".hash("SHA256", $user->getPassword())));
                 
                 $db->insert("user_id, basic_token", "auth", $auth, [
-                    $auth->getUser()->getId(),
+                    $user->getId(),
                     $auth->getBasicToken(),
                 ]);
 
