@@ -46,12 +46,12 @@ perfil que o usuário pretende se logar. O tipo
 de perfil deve ser master ou usuário comum.
 A tela também deverá ter um link para o
 cadastro de usuário.
-- [ ] Tratamento de erros - (Master | Comum)
+- [x] Tratamento de erros - (Master | Comum)
     - Tela de erro quando algo inesperado
 acontece, como por exemplo, erro na
 autenticação do usuário.
 - [x] Autenticação de dois fatores (2FA)
-- [ ] Dashboard - (Master | Comum)
+- [x] Dashboard - (Master | Comum)
     - Deve ter menu com as opções relacionadas
 ao acesso de cada perfil logado (lembre-se
 que o menu do usuário master possui mais
