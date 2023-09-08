@@ -8,6 +8,6 @@ namespace App\config;
     public static string $dbport = "3306";
     public static string $dbuser = "root";
     public static string $dbpassword = "password";
-    public static string $dbdatabase = "telecall";
+    public static string $dbdatabase = "grp_16_bangu_noite";
 
    }

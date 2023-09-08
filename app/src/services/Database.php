@@ -2,6 +2,7 @@
 
 namespace App\services;
 
+use App\handlers\Handlers;
 use PDO;
 use PDOException;
 use PDOStatement;
@@ -10,7 +11,22 @@ use App\config\Config;
     class Database {
 
         public function __construct() {
-            $this->con();
+           $this->con();
+        }
+
+        protected function conToMigration(): PDO {
+            try {
+                $host = Config::$dbhost;
+                $port = Config::$dbport;
+                $dbuser = Config::$dbuser;
+                $dbpassword = Config::$dbpassword;
+
+                $pdo = new PDO("mysql:host=$host:$port;", "$dbuser", "$dbpassword");
+                return $pdo;
+
+            } catch (PDOException $e) {
+                throw $e;
+            }
         }
 
         private function con(): PDO {
@@ -26,7 +42,7 @@ use App\config\Config;
                 return $pdo;
                 
             } catch (PDOException $e) {
-                throw $e;
+                return $this->conToMigration();
             }
         }
 
