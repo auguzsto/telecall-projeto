@@ -8,4 +8,4 @@ use App\services\Migration;
 
     require __DIR__ . '/app/routes/routes.php';
 
-    Migration::auto("db_29082023_5.php", "default");
+    Migration::auto("db_29082023_6.php", "default");

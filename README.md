@@ -17,7 +17,6 @@ Certifique que tenha os requerimentos necessários acima. Na pasta raíz do proj
     public static string $dbport = "PORTA";
     public static string $dbuser = "USUÁRIO";
     public static string $dbpassword = "SENHA";
-    public static string $dbdatabase = "NOME DO BANCO";
 ```
 2. Instale as depedências via composer.
 ```
