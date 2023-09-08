@@ -10,21 +10,25 @@ Implementação de back-end utilizando PHP. Proíbido a utilização de qualquer
 - MySQL ou MariaDB
 
 # Como correr o projeto?
-Certifique que tenha os requerimentos necessários acima. Na pasta raíz do projeto, faça os seguintes passos.
-1. Configure as variáveis, em **/app/src/config/Config.php**, para conexão de acordo com seu banco de dados.
+Antes de tudo, certifique que tenha os requerimentos necessários acima.
+1. Clone e instale as depedências.
+```
+git clone https://github.com/auguzsto/telecall-projeto.git && cd telecall-projeto && composer install
+```
+2. Configure as variáveis, em **/app/src/config/Config.php**, para conexão de acordo com seu banco de dados.
 ```
     public static string $dbhost = "LOCALHOST";
     public static string $dbport = "PORTA";
     public static string $dbuser = "USUÁRIO";
     public static string $dbpassword = "SENHA";
 ```
-2. Instale as depedências via composer.
-```
-composer install
-```
 3. Rode o servidor web nativo do php.
 ```
 php -S 0.0.0.0:8000 -t .
+```
+4. Acesse o projeto
+```
+ http://localhost:8000/
 ```
 
 ## Contexto.
