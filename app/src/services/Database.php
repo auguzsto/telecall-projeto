@@ -70,4 +70,9 @@ use App\config\Config;
             
             return $pdo->query("SELECT $columns FROM $table WHERE $whereCondition")->fetchAll();
         }
+        public function selectWhereLike(string $columns, string $table, string $where, string $value): array {
+            $pdo = $this->con();
+            
+            return $pdo->query("SELECT $columns FROM $table WHERE $where LIKE '%$value%'")->fetchAll();
+        }
     }

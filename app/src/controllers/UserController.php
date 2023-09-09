@@ -54,6 +54,12 @@ use App\services\Database;
             return $db->select("*", "users");
         }
 
+        public function findByName(string $first_name): array {
+            $db = new Database();
+
+            return $db->selectWhereLike("*", "users", "first_name", $first_name);
+        }
+
         public function findById(int $id): array {
             $db = new Database();
 
