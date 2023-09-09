@@ -38,7 +38,7 @@
                                      <input type="password" name="rePassword" id="rePassword" placeholder="Digite sua senha novamente." class="form-control">
 
                                      <h5>Nome: *</h5>
-                                     <input type="text" name="first_name" id="fist_name" placeholder="Seu primeiro nome" class="form-control" <?php echo $_POST['first_name']; ?>>
+                                     <input type="text" name="first_name" id="first_name" placeholder="Seu primeiro nome" class="form-control" <?php echo $_POST['first_name']; ?>>
 
                                      <h5>Último nome: *</h5>
                                      <input type="text" name="last_name" id="last_name" placeholder="Seu último nome" class="form-control" <?php echo $_POST['last_name']; ?>>
@@ -97,9 +97,7 @@
 
 <?php 
 
-use App\models\Auth;
 use App\models\User;
-use App\controllers\AuthController;
 use App\controllers\UserController;
 
     if(isset($_POST['action'])) {

@@ -9,12 +9,12 @@ namespace App\services;
             switch($request) {
                 case $path:
                     include $view;
-                    die;
+                    break;
                 
                 case str_contains($path, ":params") && str_contains($request, "?"):
                     $r = $_REQUEST;
                     include $view;
-                    die;
+                    break;
             }
         }
     }
