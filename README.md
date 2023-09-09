@@ -62,7 +62,7 @@ que o menu do usuário master possui mais
 opções que o menu do usuário comum) e
 outras informações relacionadas à Empresa
 de Telefonia.
-- [ ] Consulta de usuário - (Master)
+- [x] Consulta de usuário - (Master)
     - Essa tela deve apresentar a lista de usuários
 do sistema. A tela deverá ter um campo de
 pesquisa, onde o usuário master poderá

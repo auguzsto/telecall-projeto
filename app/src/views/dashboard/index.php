@@ -18,14 +18,14 @@ use App\services\Session;
         <div class="col">
           <h1 class="h2">Dashboard</h1>
         </div>
-        <div class="col">
+        <div class="col d-flex justify-content-end">
           <form method="POST" class="form-inline">
-            <input type="text" name="name" class="form-control ml-5" placeholder="Procurar por nome" required>
+            <input type="text" name="name" class="form-control" placeholder="Procurar por nome" required>
             <input type="submit" value="OK" class="btn btn-dark" name="action">
           </form>
         </div>
       </div>
-      <?php include __DIR__ . "/listusers.php"; ?>
+      <?php require __DIR__ . "/stats.php"; ?>
 </main>
 
 <?php include __DIR__ . "/modules/footer.php"; ?>
@@ -34,8 +34,8 @@ use App\services\Session;
 
     if(isset($_POST['action'])) {
       
-      $name = $_POST['name'];
+      $name = urlencode($_POST['name']);
       header("Location: /dashboard/user/?name=$name");
-      
+
     }
 
