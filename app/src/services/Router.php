@@ -5,11 +5,16 @@ namespace App\services;
     class Router {
         public static function get(string $path, string $view) {
             $request = $_SERVER['REQUEST_URI'];
-            $requestParts = explode('/',explode('?',$request)[0]);
-            switch($requestParts[0]) {
+            
+            switch($request) {
                 case $path:
                     include $view;
-                    break;
+                    die;
+                
+                case str_contains($path, ":") && str_contains($request, "?"):
+                    $r = $_REQUEST;
+                    include $view;
+                    die;
             }
         }
     }
