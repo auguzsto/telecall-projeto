@@ -44,7 +44,7 @@
   </button>
   <ul class="navbar-nav px-3">
     <li class="nav-item text-nowrap">
-      <a class="nav-link" href="./signout">Sair</a>
+      <a class="nav-link" href="/dashboard/signout">Sair</a>
     </li>
   </ul>
 </nav>
@@ -55,20 +55,20 @@
       <div class="sidebar-sticky pt-3">
         <ul class="nav flex-column">
           <li class="nav-item">
-            <a class="nav-link" href="./">
+            <a class="nav-link" href="/dashboard/">
               <span data-feather="home"></span>
               Dashboard
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./profile">
+            <a class="nav-link" href="/dashboard/profile">
               <span data-feather="users"></span>
               Meu perfil
             </a>
           </li>
           <?php showToolsAdmin($user->getIsAdmin(), 
           '<li class="nav-item">
-            <a class="nav-link" href="./reports">
+            <a class="nav-link" href="/dashboard/">
               <span data-feather="bar-chart-2"></span>
               Relatórios
             </a>
