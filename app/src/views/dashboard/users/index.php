@@ -1,10 +1,14 @@
 <?php
 
+use App\services\Session;
+    
+    Session::check();
+    $user = $_SESSION['session'];
+    Session::isAdmin($user);
+
     if(isset($r['id'])) {
         return require __DIR__ ."/edit.php";
     }
-
-
 
     if(isset($r['all'])) {
         return require __DIR__ ."/list.php";

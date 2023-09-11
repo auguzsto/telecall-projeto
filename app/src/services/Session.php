@@ -37,6 +37,12 @@ use App\models\User;
             
         }
 
+        public static function isAdmin(User $user) {
+            if($user->getIsAdmin() == 0) {
+                return header('Location: /dashboard/profile');
+              }
+        }
+
         public static function destroy() {
             session_start();
             session_destroy();

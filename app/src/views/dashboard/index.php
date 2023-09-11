@@ -4,10 +4,7 @@ use App\services\Session;
     
     Session::check();
     $user = $_SESSION['session'];
-
-    if($user->getIsAdmin() == 0) {
-      return header('Location: ./profile');
-    }
+    Session::isAdmin($user);
 
 ?>
 
