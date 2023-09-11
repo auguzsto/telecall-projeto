@@ -15,7 +15,12 @@ use App\services\Session;
 
 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Usuário por nome</h1>
+        <div class="col">
+          <h1 class="h2">Usuário por nome</h1>
+        </div>
+        <div class="col d-flex justify-content-end">
+          <?php include __DIR__ . "/../modules/input_search.php"; ?>
+        </div>
       </div>
       <div class="table-responsive">
         <table class="table table-striped table-sm">
@@ -36,10 +41,11 @@ use App\services\Session;
             <?php
 
                 foreach($users as $user) {
+                    $id = $user['id'];
                     echo "
                     <tr>
                         <td>".$user['id']."</td>
-                        <td>".$user['first_name']." ".$user['last_name']."</td>
+                        <td><a href='/dashboad/user/?id=$id'>".$user['first_name']." ".$user['last_name']."</a></td>
                         <td>".$user['mother_name']."</td>
                         <td>".$user['cpf']."</td>
                         <td>".$user['birth']."</td>
