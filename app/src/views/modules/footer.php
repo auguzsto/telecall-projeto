@@ -18,3 +18,4 @@
 <script src="/app/assets/js/popper.min.js"></script>
 <script src="/app/assets/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/app/assets/js/auth.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
