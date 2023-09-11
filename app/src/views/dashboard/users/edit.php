@@ -16,7 +16,7 @@ use App\controllers\UserController;
 
 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Perfil</h1>  
+        <h1 class="h2">Perfil</h1><form method="post"><button class="btn btn-danger" name="action_delete">Excluir</button></form>
     </div>
     <form method="POST">
         <h5>CPF</h5>
@@ -38,6 +38,12 @@ use App\controllers\UserController;
         <button class="form-control btn btn-dark mt-2 mb-2">Atualizar</button>
     </form>
 </main>
+<?php require __DIR__ . "/../modules/footer.php"; ?>
+
 <?php
 
-    require __DIR__ . "/../modules/footer.php";
+    if(isset($_POST['action_delete'])) {
+
+        $userController = new UserController();
+        $userController->delete($userById);
+    }
