@@ -50,4 +50,18 @@ use App\services\Database;
             }
         }
         
+        public function updateToken(User $user): void {
+            $db = new Database();
+            $auth = new Auth();
+            $auth->setBasicToken(base64_encode($user->getEmail().":".hash("SHA256", $user->getPassword())));
+
+            $columns = [
+                "basic_token" => $auth->getBasicToken(),
+            ];
+
+            
+
+            $db->update($columns, "auth", "user_id = ".$user->getId());
+        }
+        
     }

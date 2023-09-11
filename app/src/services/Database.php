@@ -59,6 +59,12 @@ use App\config\Config;
             $pdo->prepare("INSERT INTO $table ($columns) VALUES ($numberValues)")->execute($setValues);
         }
 
+        public function update(array $columns, string $table, string $where) {
+            $pdo = $this->con();
+            $set = implode("=?, ", array_keys($columns));
+            $pdo->prepare("UPDATE $table SET $set = ? WHERE $where")->execute(array_values($columns));
+        }
+
         public function select(string $columns, string $table): array {
             $pdo = $this->con();
             

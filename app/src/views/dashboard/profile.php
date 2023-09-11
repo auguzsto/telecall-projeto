@@ -1,5 +1,6 @@
 <?php
 
+use App\controllers\UserController;
 use App\services\Session;
     
     Session::check();
@@ -21,7 +22,7 @@ use App\services\Session;
         <h5>Último nome</h5>
         <input class="form-control" type="text" value="<?php echo $user->getLastName(); ?>" disabled>
         <h5>Senha</h5>
-        <div class="input-group"><input class="form-control" type="password" value="<?php echo $user->getPassword(); ?>" disabled><div class="btn btn-dark">Alterar senha</div></div>
+        <div class="input-group"><input class="form-control" type="password" name="password" value="<?php echo $user->getPassword(); ?>"><div class="btn btn-dark">Alterar senha</div></div>
         <h5>E-mail</h5>
         <input class="form-control" type="text" value="<?php echo $user->getEmail(); ?>">
         <h5>CEP</h5>
@@ -30,9 +31,16 @@ use App\services\Session;
         <input class="form-control" type="text" value="<?php echo $user->getPhone(); ?>">
         <h5>Endereço completo</h5>
         <input class="form-control" type="text" value="<?php echo $user->getAddress(); ?>">
-        <button class="form-control btn btn-dark mt-2 mb-2">Atualizar</button>
+        <button class="form-control btn btn-dark mt-2 mb-2" name="action">Atualizar</button>
     </form>
 </main>
+<?php include __DIR__ . "/modules/footer.php"; ?>
+
 <?php
 
-    include __DIR__ . "/modules/footer.php";
+    if(isset($_POST['action'])) {
+
+        $userController = new UserController();
+        $user->setPassword($_POST['password']);
+        $userController->update($user);
+    }
