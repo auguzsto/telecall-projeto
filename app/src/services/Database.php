@@ -11,7 +11,15 @@ use App\config\Config;
     class Database {
 
         public function __construct() {
-           $this->con();
+            $this->doCon();
+        }
+
+        private function doCon(): void {
+            try {
+                $this->con();
+            } catch (PDOException $e) {
+                Handlers::error("Sem conexão", "Não foi possível conectar ao banco de dados, verifique se os dados de conexão estão corretos.");
+            }
         }
 
         private function conToMigration(): PDO {
