@@ -68,9 +68,9 @@
           </li>
           <?php showToolsAdmin($user->getIsAdmin(), 
           '<li class="nav-item">
-            <a class="nav-link" href="/dashboard/">
+            <a class="nav-link" href="/dashboard/user/?all">
               <span data-feather="bar-chart-2"></span>
-              Relatórios
+              Usuários
             </a>
           </li>');?>
         </ul>
