@@ -12,30 +12,30 @@ use App\services\Database;
         
         public function create(User $user): void {
             try {
-                    $db = new Database();
-                    $db->insert("isadmin, first_name, last_name, mother_name, email, password, phone, cpf, cep, address, birth, created_at", "users", $user, [
-                    $user->getIsAdmin(),
-                    $user->getFirstName(), 
-                    $user->getLastName(),
-                    $user->getMotherName(),
-                    $user->getEmail(),
-                    password_hash($user->getPassword(), PASSWORD_BCRYPT),
-                    $user->getPhone(),
-                    $user->getCpf(),
-                    $user->getCep(),
-                    $user->getAddress(),
-                    $user->getBirth(),
-                    $user->getCreated_at(),
-                ]);
-                
-                //Create basic token after register user.
-                $auth = new Auth();
-                $authController = new AuthController();
+                $db = new Database();
+                $db->insert("isadmin, first_name, last_name, mother_name, email, password, phone, cpf, cep, address, birth, created_at", "users", $user, [
+                $user->getIsAdmin(),
+                $user->getFirstName(), 
+                $user->getLastName(),
+                $user->getMotherName(),
+                $user->getEmail(),
+                password_hash($user->getPassword(), PASSWORD_BCRYPT),
+                $user->getPhone(),
+                $user->getCpf(),
+                $user->getCep(),
+                $user->getAddress(),
+                $user->getBirth(),
+                $user->getCreated_at(),
+            ]);
+            
+            //Create basic token after register user.
+            $auth = new Auth();
+            $authController = new AuthController();
 
-                $auth->setUser($user);
-                $authController->basicToken($auth);
+            $auth->setUser($user);
+            $authController->basicToken($auth);
 
-                Handlers::success("Sucesso", "Cadastro realizado");
+            Handlers::success("Sucesso", "Cadastro realizado");
 
             } catch (PDOException $e) {
                 $m = $e->getMessage();
@@ -46,6 +46,25 @@ use App\services\Database;
                 str_contains($m, 'email') ? Handlers::warning("Atenção", "E-mail já cadastrado") : null;
             }
 
+        }
+
+        public function update(User $user): void {
+           try {
+            $db = new Database();
+            $authController = new AuthController();
+
+            $columns = [
+                "password" => password_hash($user->getPassword(), PASSWORD_BCRYPT)
+            ];
+
+            $db->update($columns, "users", "id = ".$user->getId());
+            $authController->updateToken($user);
+
+            Handlers::success("Atualizado", "Operação realizada com sucesso");
+            
+           } catch (PDOException $e) {
+               Handlers::error("Falha", "Ocorreu um problema de execução");
+           }
         }
 
         public function findAll(): array {

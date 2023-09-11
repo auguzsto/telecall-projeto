@@ -23,6 +23,9 @@ CREATE TABLE auth(
     id BIGINT AUTO_INCREMENT,
     user_id bigint NOT NULL,
     basic_token varchar(255) NOT NULL,
+    created_at DATETIME NOT NULL,
+    updated_at DATETIME,
+    deleted_at DATETIME,
     PRIMARY KEY (id),
     FOREIGN KEY (user_id) REFERENCES users(id)
 );

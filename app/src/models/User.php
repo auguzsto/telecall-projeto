@@ -34,7 +34,7 @@ namespace App\models;
             $user->setCep($map['cep']);
             $user->setAddress($map['address']);
             $user->setBirth($map['birth']);
-            $user->setCreated_at($map['created_at']);
+            $user->setCreated_at();
 
             return $user;
     }
@@ -86,16 +86,16 @@ namespace App\models;
             $this->birth = $birth;
         }
 
-        public function setCreated_at(string $created_at): void {
-            $this->created_at = $created_at;
+        public function setCreated_at(): void {
+            $this->created_at = date('Y-m-d H:i:s');
         }
 
-        public function setUpdated_at(string $updated_at): void {
-            $this->updated_at = $updated_at;
+        public function setUpdated_at(): void {
+            $this->updated_at = date('Y-m-d H:i:s');
         }
 
-        public function setDeleted_at(string $deleted_at): void {
-            $this->deleted_at = $deleted_at;
+        public function setDeleted_at(): void {
+            $this->deleted_at = date('Y-m-d H:i:s');
         }
 
         public function getId(): int {
