@@ -77,7 +77,7 @@ Somente o usuário comum poderá se
 cadastrar pelo sistema. Já o usuário master é
 criado dentro do próprio banco de dados, via
 script sql.
-- [ ] Alteração de senha - (Master | Comum)
+- [x] Alteração de senha - (Master | Comum)
     - Somente o usuário comum poderá alterar a
 senha dele próprio
 - [ ] Modelo do banco de dados - (Master | Comum)
