@@ -9,7 +9,9 @@ use App\models\User;
         private int $id;
         private User $user;
         private string $basic_token;
-
+        private string $created_at;
+        private string $updated_at;
+        private string $deleted_at;
 
         public function setId(int $id): void {
             $this->id = $id;
@@ -23,6 +25,19 @@ use App\models\User;
             $this->basic_token = base64_encode($user->getEmail().":".hash("SHA256", $user->getPassword()));
         }
 
+        public function setCreated_at(): void {
+            $this->created_at = date('Y-m-d H:i:s');
+        }
+
+        public function setUpdated_at(): void {
+            $this->updated_at = date('Y-m-d H:i:s');
+        }
+
+        public function setDeleted_at(): void {
+            $this->deleted_at = date('Y-m-d H:i:s');
+        }
+
+
         public function getId(): int {
             return $this->id;
         }
@@ -33,5 +48,17 @@ use App\models\User;
 
         public function getBasicToken(): string {
             return $this->basic_token;
+        }
+
+        public function getCreated_at(): string {
+            return $this->created_at;
+        }
+
+        public function getUpdated_at(): string {
+            return $this->updated_at;
+        }
+
+        public function getDeleted_at(): string {
+            return $this->deleted_at;
         }
     }

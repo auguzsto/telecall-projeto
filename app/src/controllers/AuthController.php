@@ -39,10 +39,12 @@ use App\services\Database;
 
                 $user->setId($userController->findByEmail($user->getEmail())[0]['id']);
                 $auth->setBasicToken($user);
+                $auth->setCreated_at();
                 
-                $db->insert("user_id, basic_token", "auth", $auth, [
+                $db->insert("user_id, basic_token, created_at", "auth", $auth, [
                     $user->getId(),
                     $auth->getBasicToken(),
+                    $auth->getCreated_at(),
                 ]);
 
             } catch (\PDOException $e) {
@@ -53,14 +55,12 @@ use App\services\Database;
         public function updateToken(User $user): void {
             $db = new Database();
             $auth = new Auth();
-            
+
             $auth->setBasicToken($user);
 
             $columns = [
                 "basic_token" => $auth->getBasicToken(),
             ];
-
-            
 
             $db->update($columns, "auth", "user_id = ".$user->getId());
         }

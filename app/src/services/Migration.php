@@ -1,6 +1,7 @@
 <?php
 
 namespace App\services;
+use App\config\Config;
 use App\services\Database;
 
     class Migration {
@@ -16,7 +17,9 @@ use App\services\Database;
                     $db->query($migration);
                     break;
                 
-                case "replace":
+                case "rework":
+                    $db->query("DROP DATABASE ". Config::$dbdatabase);
+                    
                     $query = file_get_contents("app/src/db/$fileSQL");
                     $migration = str_replace("CREATE TABLE", "CREATE OR REPLACE TABLE", $query);
                     $db->query($migration);
