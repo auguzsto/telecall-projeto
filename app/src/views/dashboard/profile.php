@@ -21,7 +21,7 @@ use App\services\Session;
         <h5>Último nome</h5>
         <input class="form-control" type="text" value="<?php echo $user->getLastName(); ?>" disabled>
         <h5>Senha</h5>
-        <input class="form-control" type="password" value="<?php echo $user->getPassword(); ?>" disabled>
+        <div class="input-group"><input class="form-control" type="password" value="<?php echo $user->getPassword(); ?>" disabled><div class="btn btn-dark">Alterar senha</div></div>
         <h5>E-mail</h5>
         <input class="form-control" type="text" value="<?php echo $user->getEmail(); ?>">
         <h5>CEP</h5>
@@ -30,6 +30,7 @@ use App\services\Session;
         <input class="form-control" type="text" value="<?php echo $user->getPhone(); ?>">
         <h5>Endereço completo</h5>
         <input class="form-control" type="text" value="<?php echo $user->getAddress(); ?>">
+        <button class="form-control btn btn-dark mt-2 mb-2">Atualizar</button>
     </form>
 </main>
 <?php

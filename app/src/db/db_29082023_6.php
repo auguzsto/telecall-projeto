@@ -1,6 +1,5 @@
 CREATE DATABASE IF NOT EXISTS grp_16_bangu_noite;
 
-
 CREATE TABLE users(
         id BIGINT AUTO_INCREMENT,
         isadmin BOOLEAN DEFAULT 0,
