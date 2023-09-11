@@ -63,7 +63,7 @@ use App\config\Config;
             $pdo = $this->con();
             $set = implode("=?, ", array_keys($columns));
             $pdo->prepare("UPDATE $table SET $set = ? WHERE $where")->execute(array_values($columns));
-            $pdo->prepare("UPDATE $table SET updated_at = ? WHERE $where")->execute([date("Y-m-d HH:mm:ss")]);
+            $pdo->prepare("UPDATE $table SET updated_at = ? WHERE $where")->execute([date('Y-m-d H:i:s')]);
         }
 
         public function select(string $columns, string $table): array {
