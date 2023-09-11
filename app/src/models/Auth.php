@@ -19,8 +19,8 @@ use App\models\User;
             $this->user = $user;
         }
 
-        public function setBasicToken(string $basic_token): void {
-            $this->basic_token = $basic_token;
+        public function setBasicToken(User $user): void {
+            $this->basic_token = base64_encode($user->getEmail().":".hash("SHA256", $user->getPassword()));
         }
 
         public function getId(): int {

@@ -38,7 +38,7 @@ use App\services\Database;
                 $user = $auth->getUser();
 
                 $user->setId($userController->findByEmail($user->getEmail())[0]['id']);
-                $auth->setBasicToken(base64_encode($user->getEmail().":".hash("SHA256", $user->getPassword())));
+                $auth->setBasicToken($user);
                 
                 $db->insert("user_id, basic_token", "auth", $auth, [
                     $user->getId(),
@@ -53,7 +53,8 @@ use App\services\Database;
         public function updateToken(User $user): void {
             $db = new Database();
             $auth = new Auth();
-            $auth->setBasicToken(base64_encode($user->getEmail().":".hash("SHA256", $user->getPassword())));
+            
+            $auth->setBasicToken($user);
 
             $columns = [
                 "basic_token" => $auth->getBasicToken(),
