@@ -59,9 +59,11 @@ use App\services\Database;
 
             $db->update($columns, "users", "id = ".$user->getId());
             $authController->updateToken($user);
+
+            Handlers::success("Atualizado", "Operação realizada com sucesso");
             
            } catch (PDOException $e) {
-            throw $e;
+               Handlers::error("Falha", "Ocorreu um problema de execução");
            }
         }
 
