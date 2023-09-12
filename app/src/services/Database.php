@@ -18,41 +18,27 @@ require __DIR__ . "/../../../config.php";
         private function doCon(): void {
             try {
                 $this->con();
+                
             } catch (PDOException $e) {
                 Handlers::error("Sem conexão", "Não foi possível conectar ao banco de dados, verifique se os dados de conexão estão corretos.");
             }
         }
-
-        private function conToMigration(): PDO {
-            try {
-                global $config;
-                $host = $config['host'];
-                $port = $config['port'];
-                $dbuser = $config['user'];
-                $dbpassword = $config['password'];
-
-                $pdo = new PDO("mysql:host=$host:$port;", "$dbuser", "$dbpassword");
-                return $pdo;
-
-            } catch (PDOException $e) {
-                throw $e;
-            }
-        }
-
+        
         private function con(): PDO {
             try {
                 global $config;
                 $host = $config['host'];
                 $port = $config['port'];
+                $dbname = $config['database'];
                 $dbuser = $config['user'];
                 $dbpassword = $config['password'];
-                $dbname = $config['database'];
 
                 $pdo = new PDO("mysql:host=$host:$port;dbname=$dbname", "$dbuser", "$dbpassword");
                 return $pdo;
                 
             } catch (PDOException $e) {
-                return $this->conToMigration();
+                $pdo = new PDO("mysql:host=$host:$port;", "$dbuser", "$dbpassword");
+                return $pdo;
             }
         }
 

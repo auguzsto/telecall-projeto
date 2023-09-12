@@ -38,20 +38,21 @@
                                      <input type="password" name="rePassword" id="rePassword" placeholder="Digite sua senha novamente." class="form-control">
 
                                      <h5>Nome: *</h5>
-                                     <input type="text" name="first_name" id="first_name" placeholder="Seu primeiro nome" class="form-control" <?php echo $_POST['first_name']; ?>>
+                                     <input type="text" name="first_name" id="first_name" placeholder="Seu primeiro nome" class="form-control" value="<?php echo $_POST['first_name']; ?>">
 
                                      <h5>Último nome: *</h5>
-                                     <input type="text" name="last_name" id="last_name" placeholder="Seu último nome" class="form-control" <?php echo $_POST['last_name']; ?>>
+                                     <input type="text" name="last_name" id="last_name" placeholder="Seu último nome" class="form-control" value="<?php echo $_POST['last_name']; ?>">
 
                                      <h5>Email: *</h5>
                                      <input type="email" name="email" id="email" placeholder="Seu email" class="form-control" value="<?php echo $_POST['email']; ?>" required>
                                      
                                      <h5>Nome materno: *</h5>
-                                     <input type="text" name="mother_name" id="maternoCompleto" placeholder="Digite o nome materno completo." class="form-control" <?php echo $_POST['mother_name']; ?> required>
+                                     <input type="text" name="mother_name" id="maternoCompleto" placeholder="Digite o nome materno completo." class="form-control" value="<?php echo $_POST['mother_name']; ?>" required>
 
                                      <h5>Data de nascimento: *</h5>
-                                     <input type="date" name="birth" id="dataNascimento" placeholder="Insira sua data de nascimento." class="form-control" required>    
+                                     <input type="date" name="birth" id="dataNascimento" placeholder="Insira sua data de nascimento." class="form-control" value="<?php echo $_POST['birth']; ?>" required>    
                                 </div>
+                                
                                 <div class="col-sm-" id="widthCol2">
                                  <h5>Gênero: *</h5>
                                  <select name="genero" id="genero" class="form-control">
@@ -61,6 +62,7 @@
                                      <option value="4">Prefiro não dizer</option>
                                  </select>
                                  <h6 class="text-danger" id="generoError"></h6>   
+                                 
                                  <h5>Celular: *</h5>
                                  <input type="text" maxlength="14" name="phone" id="celular" placeholder="Digite seu número de celular com DDD." class="form-control" autocomplete="off" value="<?php echo $_POST['phone']; ?>" required>
 
