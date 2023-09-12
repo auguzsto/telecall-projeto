@@ -77,6 +77,7 @@ use App\services\Database;
              ];
  
              $db->update($columns, "users", "id = ".$user->getId());
+             $db->update($columns, "auth", "user_id =".$user->getId());
  
              Handlers::success("Atualizado", "Operação realizada com sucesso");
              
