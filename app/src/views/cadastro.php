@@ -67,11 +67,17 @@
                                  <h5>Telefone fixo: </h5>
                                  <input type="text" name="telefoneFixo" placeholder="Digite seu telefone fixo." class="form-control">
 
-                                 <h5>Endereço completo: *</h5>
-                                 <input type="text" id="enderecoCompleto" name="address" placeholder="Digite seu endereço completo." class="form-control" autocomplete="off" value="<?php echo $_POST['address']; ?>" required>
-
                                  <h5>CEP: *</h5>
-                                 <input type="text" maxlength="8" name="cep" id="cep" placeholder="Digite seu CEP." class="form-control" value="<?php echo $_POST['cep']; ?>" required>
+                                 <input type="text" maxlength="8" name="address-cep" id="cep" placeholder="Digite seu CEP." class="form-control" value="<?php echo $_POST['address-cep']; ?>" required>
+
+                                 <h5>Logradouro: *</h5>
+                                 <input type="text" maxlength="8" name="address-type" id="" placeholder="Digite o tipo de logradouro." class="form-control" value="<?php echo $_POST['address-type']; ?>" required>
+
+                                 <h5>Nome logradouro: *</h5>
+                                 <input type="text" name="address-street" id="" placeholder="Digite o nome do logradouro." class="form-control" value="<?php echo $_POST['address-street']; ?>" required>
+
+                                 <h5>Número: *</h5>
+                                 <input type="text" name="address-number" id="" placeholder="Digite o número do logradouro." class="form-control" value="<?php echo $_POST['address-number']; ?>" required>
 
                                  <label for=""></label>
                                  <input type="submit" class="form-control btn-primary border" id="enviarCadastro" name="action" onclick="" value="Registrar"></input>
@@ -101,7 +107,8 @@ use App\models\User;
 use App\controllers\UserController;
 
     if(isset($_POST['action'])) {
-        $map = [
+
+        $user = [
             "first_name" => $_POST['first_name'],
             "last_name" => $_POST['last_name'],
             "mother_name" => $_POST['mother_name'],
@@ -109,15 +116,13 @@ use App\controllers\UserController;
             "password" => $_POST['password'],
             "phone" => $_POST['phone'],
             "cpf" => $_POST['cpf'],
-            "cep" => $_POST['cep'],
-            "address" => $_POST['address'],
             "birth" => $_POST['birth'],
             "created_at" => date('Y-m-d H:i:s'),
         ];
         
         $userController = new UserController();
 
-        $userController->create(User::fromMap($map));
+        $userController->create(User::fromMap($user));
     }
 
 ?>

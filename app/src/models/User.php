@@ -2,6 +2,8 @@
 
 namespace App\models;
 
+use App\models\Address;
+
     class User {
         
         private int $id;
@@ -13,8 +15,7 @@ namespace App\models;
         private string $password;
         private string $phone;
         private string $cpf;
-        private string $cep;
-        private string $address;
+        private Address $address;
         private string $birth;
         private string $created_at;
         private string $updated_at;
@@ -27,12 +28,10 @@ namespace App\models;
             $user->setFirstName($map['first_name']);
             $user->setLastName($map['last_name']);
             $user->setMotherName($map['mother_name']);
+            $user->setCpf($map['cpf']);
             $user->setEmail($map['email']);
             $user->setPassword($map['password']);
             $user->setPhone(strval($map['phone']));
-            $user->setCpf($map['cpf']);
-            $user->setCep($map['cep']);
-            $user->setAddress($map['address']);
             $user->setBirth($map['birth']);
             isset($map['created_at']) ? $user->setCreated_at($map['created_at']) : $user->setCreated_at(date("Y-m-d H:m:s"));
 
@@ -75,11 +74,7 @@ namespace App\models;
             $this->cpf = $cpf;
         }
 
-        public function setCep(string $cep): void {
-            $this->cep = $cep;
-        }
-
-        public function setAddress(string $address): void {
+        public function setAddress(Address $address): void {
             $this->address = $address;
         }
         public function setBirth(string $birth): void {
@@ -134,11 +129,7 @@ namespace App\models;
             return $this->cpf;
         }
 
-        public function getCep(): string {
-            return $this->cep;
-        }
-
-        public function getAddress(): string {
+        public function getAddress(): Address {
             return $this->address;
         }
 
