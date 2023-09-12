@@ -59,14 +59,6 @@ use App\config\Config;
             return $pdo->query($query);
         }
 
-        // public function insert(string $columns, string $table, mixed $entity, array $setValues) {
-        //     $pdo = $this->con();
-        //     $array = (array) $entity;
-        //     $numberValues = substr(str_repeat("?,", count($array)), 0, -1);
-
-        //     $pdo->prepare("INSERT INTO $table ($columns) VALUES ($numberValues)")->execute($setValues);
-        // }
-
         public function insert(array $columnsAndValues, string $table): void {
             try {
                 $pdo = $this->con();
