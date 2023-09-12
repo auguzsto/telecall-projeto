@@ -37,7 +37,7 @@ namespace App\models;
             isset($map['created_at']) ? $user->setCreated_at($map['created_at']) : $user->setCreated_at(date("Y-m-d H:m:s"));
 
             return $user;
-    }
+        }
 
         public function setId(int $id): void {
             $this->id = $id;
