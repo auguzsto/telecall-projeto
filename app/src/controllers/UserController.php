@@ -39,11 +39,11 @@ use App\services\Database;
 
             } catch (PDOException $e) {
                 $m = $e->getMessage();
-                str_contains($m, 'birth') ? Handlers::warning("Atenção", "Verifique sua data de nascimento", $m) : null;
-                str_contains($m, 'phone') ? Handlers::warning("Atenção", "Número de celular já cadastrado", $m) : null;
-                str_contains($m, 'cpf') ? Handlers::warning("Atenção", "CPF já cadastrado", $m) : null;
-                str_contains($m, 'email') ? Handlers::warning("Atenção", "E-mail já cadastrado", $m) : null;
-                Handlers::error("Error", "Ocorre um error inesperado", $m);
+                str_contains($m, 'birth') ? Handlers::warning("Atenção", "Verifique sua data de nascimento") : null;
+                str_contains($m, 'phone') ? Handlers::warning("Atenção", "Número de celular já cadastrado") : null;
+                str_contains($m, 'cpf') ? Handlers::warning("Atenção", "CPF já cadastrado") : null;
+                str_contains($m, 'email') ? Handlers::warning("Atenção", "E-mail já cadastrado") : null;
+                Handlers::error("Error", "Ocorreu um erro inesperado", $m);
             }
 
         }

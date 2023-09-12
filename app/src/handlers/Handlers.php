@@ -30,7 +30,7 @@ use Exception;
             Logger::createInFolderLog($_SERVER['PATH_INFO'], $getMessageException);
         }
 
-        public static function warning(string $title, string $message, string $getMessageException) {
+        public static function warning(string $title, string $message) {
             echo "
                 <script>
                     Swal.fire(
@@ -40,7 +40,5 @@ use Exception;
                     )
                 </script>
             ";
-
-            Logger::createInFolderLog($_SERVER['PATH_INFO'], $getMessageException);
         }
     }

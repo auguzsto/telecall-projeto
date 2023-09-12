@@ -18,7 +18,7 @@ use App\services\Database;
                 $auth = $db->selectWhere("*", "auth", "deleted_at IS NULL and basic_token = '$encode'")[0];
 
                 if($auth['basic_token'] != $encode) {
-                    Handlers::error("Falha!", "Usuário ou senha inválidos.", "Autenticação falhou");
+                    Handlers::warning("Falha!", "Usuário ou senha inválidos.");
 
                 } else {
                     $user_id = $auth['user_id'];
