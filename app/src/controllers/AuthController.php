@@ -41,11 +41,13 @@ use App\services\Database;
                 $auth->setBasicToken($user);
                 $auth->setCreated_at();
                 
-                $db->insert("user_id, basic_token, created_at", "auth", $auth, [
-                    $user->getId(),
-                    $auth->getBasicToken(),
-                    $auth->getCreated_at(),
-                ]);
+                $columnsAndValues = [
+                    "user_id" => $user->getId(),
+                    "basic_token" => $auth->getBasicToken(),
+                    "created_at" => $auth->getCreated_at(),
+                ];
+
+                $db->insert($columnsAndValues, "auth");
 
             } catch (\PDOException $e) {
                 throw $e;

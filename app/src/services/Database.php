@@ -59,12 +59,25 @@ use App\config\Config;
             return $pdo->query($query);
         }
 
-        public function insert(string $columns, string $table, mixed $entity, array $setValues) {
-            $pdo = $this->con();
-            $array = (array) $entity;
-            $numberValues = substr(str_repeat("?,", count($array)), 0, -1);
+        // public function insert(string $columns, string $table, mixed $entity, array $setValues) {
+        //     $pdo = $this->con();
+        //     $array = (array) $entity;
+        //     $numberValues = substr(str_repeat("?,", count($array)), 0, -1);
 
-            $pdo->prepare("INSERT INTO $table ($columns) VALUES ($numberValues)")->execute($setValues);
+        //     $pdo->prepare("INSERT INTO $table ($columns) VALUES ($numberValues)")->execute($setValues);
+        // }
+
+        public function insert(array $columnsAndValues, string $table): void {
+            try {
+                $pdo = $this->con();
+                $columns = implode(", ", array_keys($columnsAndValues));
+                $values = implode(", :", array_keys($columnsAndValues));
+                
+                $pdo->prepare("INSERT INTO $table ($columns) VALUES (:$values)")->execute($columnsAndValues);
+
+            } catch (PDOException $e) {
+                throw $e;
+            }
         }
 
         public function update(array $columns, string $table, string $where) {
