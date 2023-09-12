@@ -86,23 +86,6 @@ use App\services\Database;
             }
          }
 
-         public function reactive(User $user): void {
-            try {
-             $db = new Database();
- 
-             $columns = [
-                 "deleted_at" => NULL,
-             ];
- 
-             $db->update($columns, "users", "id = ".$user->getId());
- 
-             Handlers::success("Atualizado", "Operação realizada com sucesso");
-             
-            } catch (PDOException $e) {
-                Handlers::error("Falha", "Ocorreu um problema de execução");
-            }
-         }
-
         public function findAll(): array {
             $db = new Database();
 
