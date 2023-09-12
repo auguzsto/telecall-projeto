@@ -27,7 +27,7 @@ use Exception;
                 </script>
             ";
 
-            Logger::createInFolderLog($_SERVER['PATH_INFO'], $getMessageException);
+            Logger::createInFolderLog($getMessageException);
         }
 
         public static function warning(string $title, string $message) {
