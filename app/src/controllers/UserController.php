@@ -39,11 +39,11 @@ use App\services\Database;
 
             } catch (PDOException $e) {
                 $m = $e->getMessage();
-                str_contains($m, 'birth') ? Handlers::warning("Atenção", "Verifique sua data de nascimento") : null;
-                str_contains($m, 'phone') ? Handlers::warning("Atenção", "Número de celular já cadastrado") : null;
-                str_contains($m, 'cpf') ? Handlers::warning("Atenção", "CPF já cadastrado") : null;
-                str_contains($m, 'email') ? Handlers::warning("Atenção", "E-mail já cadastrado") : null;
-                Handlers::error("Error", $m);
+                str_contains($m, 'birth') ? Handlers::warning("Atenção", "Verifique sua data de nascimento", $m) : null;
+                str_contains($m, 'phone') ? Handlers::warning("Atenção", "Número de celular já cadastrado", $m) : null;
+                str_contains($m, 'cpf') ? Handlers::warning("Atenção", "CPF já cadastrado", $m) : null;
+                str_contains($m, 'email') ? Handlers::warning("Atenção", "E-mail já cadastrado", $m) : null;
+                Handlers::error("Error", "Ocorre um error inesperado", $m);
             }
 
         }
@@ -63,7 +63,7 @@ use App\services\Database;
             Handlers::success("Atualizado", "Operação realizada com sucesso");
             
            } catch (PDOException $e) {
-               Handlers::error("Falha", "Ocorreu um problema de execução");
+               Handlers::error("Falha", "Ocorreu um problema de execução", $e->getMessage());
            }
         }
 
@@ -82,7 +82,7 @@ use App\services\Database;
              Handlers::success("Atualizado", "Operação realizada com sucesso");
              
             } catch (PDOException $e) {
-                Handlers::error("Falha", "Ocorreu um problema de execução");
+                Handlers::error("Falha", "Ocorreu um problema de execução", $e->getMessage());
             }
          }
 

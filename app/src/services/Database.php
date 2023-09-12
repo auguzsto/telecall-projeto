@@ -18,9 +18,9 @@ require __DIR__ . "/../../../config.php";
         private function doCon(): void {
             try {
                 $this->con();
-                
+
             } catch (PDOException $e) {
-                Handlers::error("Sem conexão", "Não foi possível conectar ao banco de dados, verifique se os dados de conexão estão corretos.");
+                Handlers::error("Sem conexão", "Não foi possível conectar ao banco de dados, verifique se os dados de conexão estão corretos.", $e->getMessage());
             }
         }
         
@@ -56,7 +56,7 @@ require __DIR__ . "/../../../config.php";
                 $pdo->prepare("INSERT INTO $table ($columns) VALUES (:$values)")->execute($columnsAndValues);
 
             } catch (PDOException $e) {
-                throw $e;
+                Handlers::error("Error", "Problema na inserção de dados", $e->getMessage());
             }
         }
 
