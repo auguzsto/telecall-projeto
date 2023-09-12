@@ -1,10 +1,12 @@
 <?php
 
 namespace App\controllers;
-use App\handlers\Handlers;
+use Exception;
+use PDOException;
 use App\models\Auth;
 use App\models\User;
 use App\services\Session;
+use App\handlers\Handlers;
 use App\services\Database;
 
     class AuthController {
@@ -14,7 +16,7 @@ use App\services\Database;
                 $db = new Database();
 
                 $encode = base64_encode($email.':'.hash('SHA256', $password));
-                $auth = $db->selectWhere("*", "auth", "basic_token = '$encode'")[0];
+                $auth = $db->selectWhere("*", "auth", "deleted_at IS NULL and basic_token = '$encode'")[0];
 
                 if($auth['basic_token'] != $encode) {
                     Handlers::error("Falha!", "Usuário ou senha inválidos.");
@@ -26,28 +28,30 @@ use App\services\Database;
                     
                 }
 
-            } catch (\Throwable $e) {
+            } catch (Exception $e) {
                 throw $e;
             }
         }
 
-        public function basicToken(Auth $auth): void {
+        public function basicToken(User $user): void {
             try {
                 $db = new Database();
+                $auth = new Auth();
                 $userController  = new UserController();
-                $user = $auth->getUser();
 
                 $user->setId($userController->findByEmail($user->getEmail())[0]['id']);
                 $auth->setBasicToken($user);
                 $auth->setCreated_at();
                 
-                $db->insert("user_id, basic_token, created_at", "auth", $auth, [
-                    $user->getId(),
-                    $auth->getBasicToken(),
-                    $auth->getCreated_at(),
-                ]);
+                $columnsAndValues = [
+                    "user_id" => $user->getId(),
+                    "basic_token" => $auth->getBasicToken(),
+                    "created_at" => $auth->getCreated_at(),
+                ];
 
-            } catch (\PDOException $e) {
+                $db->insert($columnsAndValues, "auth");
+
+            } catch (PDOException $e) {
                 throw $e;
             }
         }

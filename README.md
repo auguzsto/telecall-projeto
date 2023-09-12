@@ -15,12 +15,12 @@ Antes de tudo, certifique que tenha os requerimentos necessários acima.
 ```
 git clone https://github.com/auguzsto/telecall-projeto.git && cd telecall-projeto && composer install
 ```
-2. Configure as variáveis, em **/app/src/config/Config.php**, para conexão de acordo com seu banco de dados.
+2. Configure as variáveis, em **config.php**, para conexão de acordo com seu banco de dados.
 ```
-    public static string $dbhost = "LOCALHOST";
-    public static string $dbport = "PORTA";
-    public static string $dbuser = "USUÁRIO";
-    public static string $dbpassword = "SENHA";
+    $config['host'] = "LOCALHOST";
+    $config['port'] = "PORTA";
+    $config['user'] = "USUÁRIO";
+    $config['password'] = "SENHA";
 ```
 3. Rode o servidor web nativo do php.
 ```

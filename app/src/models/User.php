@@ -34,7 +34,7 @@ namespace App\models;
             $user->setCep($map['cep']);
             $user->setAddress($map['address']);
             $user->setBirth($map['birth']);
-            isset($map['created_at']) ? $user->setCreated_at($map['created_at']) : $user->setCreated_at(date("Y-m-d H:m:s"));
+            $user->setCreated_at($map['created_at']);
 
             return $user;
     }

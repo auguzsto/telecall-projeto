@@ -6,7 +6,8 @@ use App\handlers\Handlers;
 use PDO;
 use PDOException;
 use PDOStatement;
-use App\config\Config;
+
+require __DIR__ . "/../../../config.php";
 
     class Database {
 
@@ -24,10 +25,11 @@ use App\config\Config;
 
         private function conToMigration(): PDO {
             try {
-                $host = Config::$dbhost;
-                $port = Config::$dbport;
-                $dbuser = Config::$dbuser;
-                $dbpassword = Config::$dbpassword;
+                global $config;
+                $host = $config['host'];
+                $port = $config['port'];
+                $dbuser = $config['user'];
+                $dbpassword = $config['password'];
 
                 $pdo = new PDO("mysql:host=$host:$port;", "$dbuser", "$dbpassword");
                 return $pdo;
@@ -38,14 +40,14 @@ use App\config\Config;
         }
 
         private function con(): PDO {
-
-            $host = Config::$dbhost;
-            $port = Config::$dbport;
-            $dbname = Config::$dbdatabase;
-            $dbuser = Config::$dbuser;
-            $dbpassword = Config::$dbpassword;
-
             try {
+                global $config;
+                $host = $config['host'];
+                $port = $config['port'];
+                $dbuser = $config['user'];
+                $dbpassword = $config['password'];
+                $dbname = $config['database'];
+
                 $pdo = new PDO("mysql:host=$host:$port;dbname=$dbname", "$dbuser", "$dbpassword");
                 return $pdo;
                 
@@ -59,18 +61,24 @@ use App\config\Config;
             return $pdo->query($query);
         }
 
-        public function insert(string $columns, string $table, mixed $entity, array $setValues) {
-            $pdo = $this->con();
-            $array = (array) $entity;
-            $numberValues = substr(str_repeat("?,", count($array)), 0, -1);
+        public function insert(array $columnsAndValues, string $table): void {
+            try {
+                $pdo = $this->con();
+                $columns = implode(", ", array_keys($columnsAndValues));
+                $values = implode(", :", array_keys($columnsAndValues));
+                
+                $pdo->prepare("INSERT INTO $table ($columns) VALUES (:$values)")->execute($columnsAndValues);
 
-            $pdo->prepare("INSERT INTO $table ($columns) VALUES ($numberValues)")->execute($setValues);
+            } catch (PDOException $e) {
+                throw $e;
+            }
         }
 
-        public function update(array $columns, string $table, string $where) {
+        public function update(array $columnsAndValues, string $table, string $where): void {
             $pdo = $this->con();
-            $set = implode("=?, ", array_keys($columns));
-            $pdo->prepare("UPDATE $table SET $set = ? WHERE $where")->execute(array_values($columns));
+            $set = implode("=?, ", array_keys($columnsAndValues));
+
+            $pdo->prepare("UPDATE $table SET $set = ? WHERE $where")->execute(array_values($columnsAndValues));
             $pdo->prepare("UPDATE $table SET updated_at = ? WHERE $where")->execute([date('Y-m-d H:i:s')]);
         }
 
