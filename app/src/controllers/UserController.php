@@ -32,11 +32,8 @@ use App\services\Database;
                 $db->insert($columnsAndValues, "users");
                 
                 //Create basic token after register user.
-                $auth = new Auth();
                 $authController = new AuthController();
-
-                $auth->setUser($user);
-                $authController->basicToken($auth);
+                $authController->basicToken($user);
 
                 Handlers::success("Sucesso", "Cadastro realizado");
 
@@ -76,7 +73,7 @@ use App\services\Database;
              $user->setDeleted_at(date('Y-m-d H:m:s'));
              
              $columns = [
-                 "deleted_at" => $user->getDeleted_at(),
+                "deleted_at" => $user->getDeleted_at(),
              ];
  
              $db->update($columns, "users", "id = ".$user->getId());

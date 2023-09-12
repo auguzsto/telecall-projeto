@@ -6,7 +6,8 @@ use App\handlers\Handlers;
 use PDO;
 use PDOException;
 use PDOStatement;
-use App\config\Config;
+
+require __DIR__ . "/../../../config.php";
 
     class Database {
 
@@ -24,10 +25,11 @@ use App\config\Config;
 
         private function conToMigration(): PDO {
             try {
-                $host = Config::$dbhost;
-                $port = Config::$dbport;
-                $dbuser = Config::$dbuser;
-                $dbpassword = Config::$dbpassword;
+                global $config;
+                $host = $config['host'];
+                $port = $config['port'];
+                $dbuser = $config['user'];
+                $dbpassword = $config['password'];
 
                 $pdo = new PDO("mysql:host=$host:$port;", "$dbuser", "$dbpassword");
                 return $pdo;
@@ -38,14 +40,14 @@ use App\config\Config;
         }
 
         private function con(): PDO {
-
-            $host = Config::$dbhost;
-            $port = Config::$dbport;
-            $dbname = Config::$dbdatabase;
-            $dbuser = Config::$dbuser;
-            $dbpassword = Config::$dbpassword;
-
             try {
+                global $config;
+                $host = $config['host'];
+                $port = $config['port'];
+                $dbuser = $config['user'];
+                $dbpassword = $config['password'];
+                $dbname = $config['database'];
+
                 $pdo = new PDO("mysql:host=$host:$port;dbname=$dbname", "$dbuser", "$dbpassword");
                 return $pdo;
                 
