@@ -74,10 +74,11 @@ require __DIR__ . "/../../../config.php";
             }
         }
 
-        public function update(array $columns, string $table, string $where) {
+        public function update(array $columnsAndValues, string $table, string $where): void {
             $pdo = $this->con();
-            $set = implode("=?, ", array_keys($columns));
-            $pdo->prepare("UPDATE $table SET $set = ? WHERE $where")->execute(array_values($columns));
+            $set = implode("=?, ", array_keys($columnsAndValues));
+
+            $pdo->prepare("UPDATE $table SET $set = ? WHERE $where")->execute(array_values($columnsAndValues));
             $pdo->prepare("UPDATE $table SET updated_at = ? WHERE $where")->execute([date('Y-m-d H:i:s')]);
         }
 

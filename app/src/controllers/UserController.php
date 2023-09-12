@@ -53,11 +53,11 @@ use App\services\Database;
             $db = new Database();
             $authController = new AuthController();
 
-            $columns = [
+            $columnsAndValues = [
                 "password" => password_hash($user->getPassword(), PASSWORD_BCRYPT)
             ];
 
-            $db->update($columns, "users", "id = ".$user->getId());
+            $db->update($columnsAndValues, "users", "id = ".$user->getId());
             $authController->updateToken($user);
 
             Handlers::success("Atualizado", "Operação realizada com sucesso");
@@ -72,12 +72,12 @@ use App\services\Database;
              $db = new Database();
              $user->setDeleted_at(date('Y-m-d H:m:s'));
              
-             $columns = [
+             $columnsAndValues = [
                 "deleted_at" => $user->getDeleted_at(),
              ];
  
-             $db->update($columns, "users", "id = ".$user->getId());
-             $db->update($columns, "auth", "user_id =".$user->getId());
+             $db->update($columnsAndValues, "users", "id = ".$user->getId());
+             $db->update($columnsAndValues, "auth", "user_id =".$user->getId());
  
              Handlers::success("Atualizado", "Operação realizada com sucesso");
              

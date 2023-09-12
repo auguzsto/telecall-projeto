@@ -28,7 +28,7 @@ use App\services\Session;
             <tr>
               <th>ID</th>
               <th>Nome completo</th>
-              <th>Nome da mãe</th>
+              <th>Nome materno</th>
               <th>CPF</th>
               <th>Data de nascimento</th>
               <th>E-mail</th>
