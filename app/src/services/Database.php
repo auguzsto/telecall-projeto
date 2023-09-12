@@ -56,7 +56,7 @@ require __DIR__ . "/../../../config.php";
                 $pdo->prepare("INSERT INTO $table ($columns) VALUES (:$values)")->execute($columnsAndValues);
 
             } catch (PDOException $e) {
-                Handlers::error("Error", "Ocorreu um erro inesperado\n. Contate o administrador", $e->getMessage());
+                throw $e;
             }
         }
 
@@ -64,12 +64,12 @@ require __DIR__ . "/../../../config.php";
             try {
                 $pdo = $this->con();
                 $set = implode("=?, ", array_keys($columnsAndValues));
-
+    
                 $pdo->prepare("UPDATE $table SET $set = ? WHERE $where")->execute(array_values($columnsAndValues));
                 $pdo->prepare("UPDATE $table SET updated_at = ? WHERE $where")->execute([date('Y-m-d H:i:s')]);
-                
+
             } catch (PDOException $e) {
-                Handlers::error("Error", "Ocorreu um erro inesperado\n. Contate o administrador", $e->getMessage());
+                throw $e;
             }
         }
 
