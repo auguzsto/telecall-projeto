@@ -43,7 +43,7 @@ use App\services\Session;
         $userController = new UserController();
 
         $user->setEmail($_POST['email']);
-        $user->setEmail($_POST['phone']);
+        $user->setPhone($_POST['phone']);
         $user->setCep($_POST['cep']);
         $user->setAddress($_POST['address']);
 

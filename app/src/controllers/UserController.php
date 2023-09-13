@@ -52,6 +52,7 @@ use App\services\Database;
             $currentDataUser = User::fromMap($userController->findById($user->getId())[0]);
 
             $columnsAndValues = [
+                "email" => $user->getEmail() != $currentDataUser->getEmail() ? $user->getEmail() : $currentDataUser->getEmail(),
                 "cep" => $user->getCep() != $currentDataUser->getCep() ? $user->getCep() : $currentDataUser->getCep(),
                 "address" => $user->getAddress() != $currentDataUser->getAddress() ? $user->getAddress() : $currentDataUser->getAddress(),
                 "phone" => $user->getPhone() != $currentDataUser->getPhone() ? $user->getPhone() : $currentDataUser->getPhone(),
@@ -63,6 +64,7 @@ use App\services\Database;
             
            } catch (PDOException $e) {
                Handlers::error("Falha", "Ocorreu um problema de execução", $e->getMessage());
+               throw $e;
            }
         }
 
