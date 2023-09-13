@@ -21,7 +21,7 @@ CREATE TABLE users(
 
 CREATE TABLE auth(
     id BIGINT AUTO_INCREMENT,
-    user_id bigint NOT NULL,
+    user_id bigint UNIQUE NOT NULL,
     basic_token varchar(255) NOT NULL,
     created_at DATETIME NOT NULL,
     updated_at DATETIME,

@@ -18,41 +18,27 @@ require __DIR__ . "/../../../config.php";
         private function doCon(): void {
             try {
                 $this->con();
-            } catch (PDOException $e) {
-                Handlers::error("Sem conexão", "Não foi possível conectar ao banco de dados, verifique se os dados de conexão estão corretos.");
-            }
-        }
-
-        private function conToMigration(): PDO {
-            try {
-                global $config;
-                $host = $config['host'];
-                $port = $config['port'];
-                $dbuser = $config['user'];
-                $dbpassword = $config['password'];
-
-                $pdo = new PDO("mysql:host=$host:$port;", "$dbuser", "$dbpassword");
-                return $pdo;
 
             } catch (PDOException $e) {
-                throw $e;
+                Handlers::error("Sem conexão", "Não foi possível conectar ao banco de dados, verifique se os dados de conexão estão corretos.", $e->getMessage());
             }
         }
-
+        
         private function con(): PDO {
             try {
                 global $config;
                 $host = $config['host'];
                 $port = $config['port'];
+                $dbname = $config['database'];
                 $dbuser = $config['user'];
                 $dbpassword = $config['password'];
-                $dbname = $config['database'];
 
                 $pdo = new PDO("mysql:host=$host:$port;dbname=$dbname", "$dbuser", "$dbpassword");
                 return $pdo;
                 
             } catch (PDOException $e) {
-                return $this->conToMigration();
+                $pdo = new PDO("mysql:host=$host:$port;", "$dbuser", "$dbpassword");
+                return $pdo;
             }
         }
 
@@ -70,16 +56,23 @@ require __DIR__ . "/../../../config.php";
                 $pdo->prepare("INSERT INTO $table ($columns) VALUES (:$values)")->execute($columnsAndValues);
 
             } catch (PDOException $e) {
+                Handlers::error("Error", "Inesperado", $e->getMessage());
                 throw $e;
             }
         }
 
         public function update(array $columnsAndValues, string $table, string $where): void {
-            $pdo = $this->con();
-            $set = implode("=?, ", array_keys($columnsAndValues));
+            try {
+                $pdo = $this->con();
+                $set = implode("=?, ", array_keys($columnsAndValues));
+    
+                $pdo->prepare("UPDATE $table SET $set = ? WHERE $where")->execute(array_values($columnsAndValues));
+                $pdo->prepare("UPDATE $table SET updated_at = ? WHERE $where")->execute([date('Y-m-d H:i:s')]);
 
-            $pdo->prepare("UPDATE $table SET $set = ? WHERE $where")->execute(array_values($columnsAndValues));
-            $pdo->prepare("UPDATE $table SET updated_at = ? WHERE $where")->execute([date('Y-m-d H:i:s')]);
+            } catch (PDOException $e) {
+                Handlers::error("Error", "Inesperado", $e->getMessage());
+                throw $e;
+            }
         }
 
         public function select(string $columns, string $table): array {

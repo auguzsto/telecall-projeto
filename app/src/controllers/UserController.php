@@ -3,7 +3,6 @@
 namespace App\controllers;
 
 use PDOException;
-use App\models\Auth;
 use App\models\User;
 use App\handlers\Handlers;
 use App\services\Database;
@@ -38,12 +37,10 @@ use App\services\Database;
                 Handlers::success("Sucesso", "Cadastro realizado");
 
             } catch (PDOException $e) {
-                $m = $e->getMessage();
-                str_contains($m, 'birth') ? Handlers::warning("Atenção", "Verifique sua data de nascimento") : null;
-                str_contains($m, 'phone') ? Handlers::warning("Atenção", "Número de celular já cadastrado") : null;
-                str_contains($m, 'cpf') ? Handlers::warning("Atenção", "CPF já cadastrado") : null;
-                str_contains($m, 'email') ? Handlers::warning("Atenção", "E-mail já cadastrado") : null;
-                Handlers::error("Error", $m);
+                str_contains($e->getMessage(), "cpf") ? Handlers::warning("Atenção", "CPF já cadastrado.") : null;
+                str_contains($e->getMessage(), "phone") ? Handlers::warning("Atenção", "Celular já cadastrado.") : null;
+                str_contains($e->getMessage(), "email") ? Handlers::warning("Atenção", "E-mail já cadastrado.") : null;
+                str_contains($e->getMessage(), "bith") ? Handlers::warning("Atenção", "Verifque sua data de nascimento.") : null;
             }
 
         }
@@ -63,7 +60,7 @@ use App\services\Database;
             Handlers::success("Atualizado", "Operação realizada com sucesso");
             
            } catch (PDOException $e) {
-               Handlers::error("Falha", "Ocorreu um problema de execução");
+               Handlers::error("Falha", "Ocorreu um problema de execução", $e->getMessage());
            }
         }
 
@@ -82,7 +79,7 @@ use App\services\Database;
              Handlers::success("Atualizado", "Operação realizada com sucesso");
              
             } catch (PDOException $e) {
-                Handlers::error("Falha", "Ocorreu um problema de execução");
+                Handlers::error("Falha", "Ocorreu um problema de execução", $e->getMessage());
             }
          }
 
