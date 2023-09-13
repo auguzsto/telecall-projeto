@@ -48,19 +48,23 @@ use App\services\Database;
         public function update(User $user): void {
            try {
             $db = new Database();
-            $authController = new AuthController();
+            $userController = new UserController();
+            $currentDataUser = User::fromMap($userController->findById($user->getId())[0]);
 
             $columnsAndValues = [
-                "password" => password_hash($user->getPassword(), PASSWORD_BCRYPT)
+                "email" => $user->getEmail() != $currentDataUser->getEmail() ? $user->getEmail() : $currentDataUser->getEmail(),
+                "cep" => $user->getCep() != $currentDataUser->getCep() ? $user->getCep() : $currentDataUser->getCep(),
+                "address" => $user->getAddress() != $currentDataUser->getAddress() ? $user->getAddress() : $currentDataUser->getAddress(),
+                "phone" => $user->getPhone() != $currentDataUser->getPhone() ? $user->getPhone() : $currentDataUser->getPhone(),
             ];
 
             $db->update($columnsAndValues, "users", "id = ".$user->getId());
-            $authController->updateToken($user);
 
             Handlers::success("Atualizado", "Operação realizada com sucesso");
             
            } catch (PDOException $e) {
                Handlers::error("Falha", "Ocorreu um problema de execução", $e->getMessage());
+               throw $e;
            }
         }
 
