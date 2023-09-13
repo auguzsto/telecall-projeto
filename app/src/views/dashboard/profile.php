@@ -24,13 +24,13 @@ use App\services\Session;
         <h5>Senha</h5>
         <div class="input-group"><input class="form-control" type="password" name="password" value="<?php echo $user->getPassword(); ?>"><div class="btn btn-dark">Alterar senha</div></div>
         <h5>E-mail</h5>
-        <input class="form-control" type="text" value="<?php echo $user->getEmail(); ?>">
+        <input class="form-control" type="text" name="email" value="<?php echo $user->getEmail(); ?>">
         <h5>CEP</h5>
-        <input class="form-control" type="text" value="<?php echo $user->getCep(); ?>">
+        <input class="form-control" type="text" name="cep" value="<?php echo $user->getCep(); ?>">
         <h5>Celular</h5>
-        <input class="form-control" type="text" value="<?php echo $user->getPhone(); ?>">
+        <input class="form-control" type="text" name="phone" value="<?php echo $user->getPhone(); ?>">
         <h5>Endereço completo</h5>
-        <input class="form-control" type="text" value="<?php echo $user->getAddress(); ?>">
+        <input class="form-control" type="text" name="address" value="<?php echo $user->getAddress(); ?>">
         <button class="form-control btn btn-dark mt-2 mb-2" name="action">Atualizar</button>
     </form>
 </main>
@@ -41,6 +41,11 @@ use App\services\Session;
     if(isset($_POST['action'])) {
 
         $userController = new UserController();
-        $user->setPassword($_POST['password']);
+
+        $user->setEmail($_POST['email']);
+        $user->setEmail($_POST['phone']);
+        $user->setCep($_POST['cep']);
+        $user->setAddress($_POST['address']);
+
         $userController->update($user);
     }

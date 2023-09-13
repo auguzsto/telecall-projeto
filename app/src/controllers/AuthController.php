@@ -29,6 +29,7 @@ use App\services\Database;
 
             } catch (PDOException $e) {
                 Handlers::error("Error", "Ocorreu um erro inesperado", $e->getMessage());
+                throw $e;
             }
         }
 
@@ -51,21 +52,28 @@ use App\services\Database;
                 $db->insert($columnsAndValues, "auth");
 
             } catch (PDOException $e) {
-               Handlers::error("Error", "Ocorreu um erro inesperado", $e->getMessage());
+               Handlers::error("Error", "Erro ao criar token de autenticação", $e->getMessage());
+               throw $e;
             }
         }
         
         public function updateToken(User $user): void {
-            $db = new Database();
-            $auth = new Auth();
+            try {
+                $db = new Database();
+                $auth = new Auth();
 
-            $auth->setBasicToken($user);
+                $auth->setBasicToken($user);
 
-            $columns = [
-                "basic_token" => $auth->getBasicToken(),
-            ];
+                $columns = [
+                    "basic_token" => $auth->getBasicToken(),
+                ];
 
-            $db->update($columns, "auth", "user_id = ".$user->getId());
+                $db->update($columns, "auth", "user_id = ".$user->getId());
+
+            } catch (PDOException $e) {
+                Handlers::error("Error", "Erro ao atualizar token de autenticação", $e->getMessage());
+                throw $e;
+            }
         }
         
     }
