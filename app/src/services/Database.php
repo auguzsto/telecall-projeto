@@ -21,6 +21,7 @@ require __DIR__ . "/../../../config.php";
 
             } catch (PDOException $e) {
                 Handlers::error("Sem conexão", "Não foi possível conectar ao banco de dados, verifique se os dados de conexão estão corretos.", $e->getMessage());
+                throw $e;
             }
         }
         
@@ -76,19 +77,34 @@ require __DIR__ . "/../../../config.php";
         }
 
         public function select(string $columns, string $table): array {
-            $pdo = $this->con();
-            
-            return $pdo->query("SELECT $columns FROM $table")->fetchAll();
+            try {
+                $pdo = $this->con();
+                return $pdo->query("SELECT $columns FROM $table")->fetchAll();
+
+            } catch (PDOException $e) {
+                Handlers::error("Error", "Inesperado", $e->getMessage());
+                throw $e;
+            }
         }
 
         public function selectWhere(string $columns, string $table, string $whereCondition): array {
-            $pdo = $this->con();
-            
-            return $pdo->query("SELECT $columns FROM $table WHERE $whereCondition")->fetchAll();
+            try {
+                $pdo = $this->con();
+                return $pdo->query("SELECT $columns FROM $table WHERE $whereCondition")->fetchAll();
+
+            } catch (PDOException $e) {
+                Handlers::error("Error", "Inesperado", $e->getMessage());
+                throw $e;
+            }
         }
         public function selectWhereLike(string $columns, string $table, string $where, string $value): array {
-            $pdo = $this->con();
-            
-            return $pdo->query("SELECT $columns FROM $table WHERE $where LIKE '%$value%'")->fetchAll();
+            try {
+                $pdo = $this->con();
+                return $pdo->query("SELECT $columns FROM $table WHERE $where LIKE '%$value%'")->fetchAll();
+
+            } catch (PDOException $e) {
+                Handlers::error("Error", "Inesperado", $e->getMessage());
+                throw $e;
+            }
         }
     }
