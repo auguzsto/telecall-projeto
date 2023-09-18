@@ -66,6 +66,26 @@ use App\services\Database;
            }
         }
 
+        public function updatePassword(User $user): void {
+            try {
+                $db = new Database();
+                $authController = new AuthController();
+
+                $columnsAndValues = [
+                    "password" => password_hash($user->getPassword(), PASSWORD_BCRYPT),
+                ];
+
+                $db->update($columnsAndValues, "users", "id = ".$user->getId());
+                $authController->updateToken($user);
+
+                Handlers::success("Atualizado", "Operação realizada com sucesso");
+
+                } catch (PDOException $e) {
+                Handlers::error("Falha", "Ocorreu um problema de execução", $e->getMessage());
+                throw $e;
+                }
+         }
+
         public function delete(User $user): void {
             try {
              $db = new Database();
