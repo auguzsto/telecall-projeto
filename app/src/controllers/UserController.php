@@ -48,14 +48,12 @@ use App\services\Database;
         public function update(User $user): void {
            try {
             $db = new Database();
-            $userController = new UserController();
-            $currentDataUser = User::fromMap($userController->findById($user->getId())[0]);
 
             $columnsAndValues = [
-                "email" => $user->getEmail() != $currentDataUser->getEmail() ? $user->getEmail() : $currentDataUser->getEmail(),
-                "cep" => $user->getCep() != $currentDataUser->getCep() ? $user->getCep() : $currentDataUser->getCep(),
-                "address" => $user->getAddress() != $currentDataUser->getAddress() ? $user->getAddress() : $currentDataUser->getAddress(),
-                "phone" => $user->getPhone() != $currentDataUser->getPhone() ? $user->getPhone() : $currentDataUser->getPhone(),
+                "email" => $user->getEmail(),
+                "cep" => $user->getCep(),
+                "address" => $user->getAddress(),
+                "phone" => $user->getPhone(),
             ];
 
             $db->update($columnsAndValues, "users", "id = ".$user->getId());
