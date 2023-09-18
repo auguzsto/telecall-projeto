@@ -1,6 +1,7 @@
 <?php
 
 use App\models\User;
+use App\services\Logger;
 use App\services\Session;
 use App\handlers\Handlers;
 use App\controllers\UserController;

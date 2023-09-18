@@ -1,7 +1,8 @@
 <?php
 
-use App\controllers\UserController;
+use App\services\Logger;
 use App\services\Session;
+use App\controllers\UserController;
     
     Session::check();
     $user = $_SESSION['session'];

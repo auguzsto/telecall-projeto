@@ -4,6 +4,8 @@ namespace App\controllers;
 
 use PDOException;
 use App\models\User;
+use App\services\Logger;
+use App\services\Session;
 use App\handlers\Handlers;
 use App\services\Database;
 
@@ -46,7 +48,8 @@ use App\services\Database;
         }
 
         public function update(User $user): void {
-           try {
+            try {
+                $userLogged = $_SESSION['session'];
                 $db = new Database();
 
                 $columnsAndValues = [
@@ -60,6 +63,8 @@ use App\services\Database;
 
                 Handlers::success("Atualizado", "Operação realizada com sucesso");
 
+                Logger::createDatabaseLog($userLogged, $user->getId(), "update", "updated user");
+
                 } catch (PDOException $e) {
                     str_contains($e->getMessage(), "cpf") ? Handlers::warning("Atenção", "CPF já cadastrado.") : null;
                     str_contains($e->getMessage(), "phone") ? Handlers::warning("Atenção", "Celular já cadastrado.") : null;
@@ -70,6 +75,7 @@ use App\services\Database;
 
         public function updatePassword(User $user): void {
             try {
+                $userLogged = $_SESSION['session'];
                 $db = new Database();
                 $authController = new AuthController();
 
@@ -79,8 +85,10 @@ use App\services\Database;
 
                 $db->update($columnsAndValues, "users", "id = ".$user->getId());
                 $authController->updateToken($user);
-
+                
                 Handlers::success("Atualizado", "Operação realizada com sucesso");
+
+                Logger::createDatabaseLog($userLogged, $user->getId(), "update", "updated password user");
 
                 } catch (PDOException $e) {
                     Handlers::error("Falha", "Ocorreu um problema de execução", $e->getMessage());
@@ -90,6 +98,7 @@ use App\services\Database;
 
         public function delete(User $user): void {
             try {
+                $userLogged = $_SESSION['session'];
                 $db = new Database();
                 $user->setDeleted_at(date('Y-m-d H:m:s'));
 
@@ -101,6 +110,8 @@ use App\services\Database;
                 $db->update($columnsAndValues, "auth", "user_id =".$user->getId());
 
                 Handlers::success("Atualizado", "Operação realizada com sucesso");
+
+                Logger::createDatabaseLog($userLogged, $user->getId(), "deleted", "deleted user");
 
                 } catch (PDOException $e) {
                     Handlers::error("Falha", "Ocorreu um problema de execução", $e->getMessage());

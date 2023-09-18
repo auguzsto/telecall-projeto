@@ -10,6 +10,7 @@ use App\models\User;
             session_start();
 
             $_SESSION['session'] = $user;
+            Logger::createDatabaseLog($user, $user->getId(), "sigin", "user has accessed");
             header("Location: /dashboard/");
         }
 

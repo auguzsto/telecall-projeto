@@ -4,6 +4,7 @@ namespace App\controllers;
 use PDOException;
 use App\models\Auth;
 use App\models\User;
+use App\services\Logger;
 use App\services\Session;
 use App\handlers\Handlers;
 use App\services\Database;
@@ -64,11 +65,11 @@ use App\services\Database;
 
                 $auth->setBasicToken($user);
 
-                $columns = [
+                $columnsAndValues = [
                     "basic_token" => $auth->getBasicToken(),
                 ];
 
-                $db->update($columns, "auth", "user_id = ".$user->getId());
+                $db->update($columnsAndValues, "auth", "user_id = ".$user->getId());
 
             } catch (PDOException $e) {
                 Handlers::error("Error", "Erro ao atualizar token de autenticação", $e->getMessage());
