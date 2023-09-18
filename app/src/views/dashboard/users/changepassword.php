@@ -42,6 +42,4 @@ use App\controllers\UserController;
 
         $userById->setPassword($_POST['new-password']);
         $userController->updatePassword($userById);
-
-        Logger::createDatabaseLog($user, $userById->getId(), "update", "updated user");
     }

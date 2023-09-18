@@ -49,6 +49,4 @@ use App\controllers\UserController;
         $user->setAddress($_POST['address']);
 
         $userController->update($user);
-
-        Logger::createDatabaseLog($user, $user->getId(), "update", "updated user");
     }

@@ -47,8 +47,6 @@ use App\controllers\UserController;
 
         $userController = new UserController();
         $userController->delete($userById);
-
-        Logger::createDatabaseLog($user, $userById->getId(), "delete", "deleted user");
     }
 
     if(isset($_POST['action'])) {
@@ -61,6 +59,4 @@ use App\controllers\UserController;
         $userById->setAddress($_POST['address']);
 
         $userController->update($userById);
-
-        Logger::createDatabaseLog($user, $userById->getId(), "update", "updated user");
     }
