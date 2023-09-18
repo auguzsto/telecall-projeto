@@ -18,4 +18,8 @@ use App\services\Session;
         return require __DIR__ ."/search.php";
     }
 
+    if(isset($r['changepassword'])) {
+        return require __DIR__ ."/changepassword.php";
+    }
+
 ?>

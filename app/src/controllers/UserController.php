@@ -47,23 +47,23 @@ use App\services\Database;
 
         public function update(User $user): void {
            try {
-            $db = new Database();
+                $db = new Database();
 
-            $columnsAndValues = [
-                "email" => $user->getEmail(),
-                "cep" => $user->getCep(),
-                "address" => $user->getAddress(),
-                "phone" => $user->getPhone(),
-            ];
+                $columnsAndValues = [
+                    "email" => $user->getEmail(),
+                    "cep" => $user->getCep(),
+                    "address" => $user->getAddress(),
+                    "phone" => $user->getPhone(),
+                ];
 
-            $db->update($columnsAndValues, "users", "id = ".$user->getId());
+                $db->update($columnsAndValues, "users", "id = ".$user->getId());
 
-            Handlers::success("Atualizado", "Operação realizada com sucesso");
-            
-           } catch (PDOException $e) {
-               Handlers::error("Falha", "Ocorreu um problema de execução", $e->getMessage());
-               throw $e;
-           }
+                Handlers::success("Atualizado", "Operação realizada com sucesso");
+
+                } catch (PDOException $e) {
+                    Handlers::error("Falha", "Ocorreu um problema de execução", $e->getMessage());
+                    throw $e;
+                }
         }
 
         public function updatePassword(User $user): void {
@@ -81,28 +81,28 @@ use App\services\Database;
                 Handlers::success("Atualizado", "Operação realizada com sucesso");
 
                 } catch (PDOException $e) {
-                Handlers::error("Falha", "Ocorreu um problema de execução", $e->getMessage());
-                throw $e;
+                    Handlers::error("Falha", "Ocorreu um problema de execução", $e->getMessage());
+                    throw $e;
                 }
          }
 
         public function delete(User $user): void {
             try {
-             $db = new Database();
-             $user->setDeleted_at(date('Y-m-d H:m:s'));
-             
-             $columnsAndValues = [
-                "deleted_at" => $user->getDeleted_at(),
-             ];
- 
-             $db->update($columnsAndValues, "users", "id = ".$user->getId());
-             $db->update($columnsAndValues, "auth", "user_id =".$user->getId());
- 
-             Handlers::success("Atualizado", "Operação realizada com sucesso");
-             
-            } catch (PDOException $e) {
-                Handlers::error("Falha", "Ocorreu um problema de execução", $e->getMessage());
-            }
+                $db = new Database();
+                $user->setDeleted_at(date('Y-m-d H:m:s'));
+
+                $columnsAndValues = [
+                    "deleted_at" => $user->getDeleted_at(),
+                ];
+
+                $db->update($columnsAndValues, "users", "id = ".$user->getId());
+                $db->update($columnsAndValues, "auth", "user_id =".$user->getId());
+
+                Handlers::success("Atualizado", "Operação realizada com sucesso");
+
+                } catch (PDOException $e) {
+                    Handlers::error("Falha", "Ocorreu um problema de execução", $e->getMessage());
+                }
          }
 
         public function findAll(): array {
