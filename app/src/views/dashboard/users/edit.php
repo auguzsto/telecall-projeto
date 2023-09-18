@@ -26,7 +26,7 @@ use App\controllers\UserController;
         <h5>Último nome</h5>
         <input class="form-control" type="text" value="<?php echo $userById->getLastName(); ?>" disabled>
         <h5>Senha</h5>
-        <div class="input-group"><input class="form-control" type="password" value="<?php echo $user->getPassword(); ?>" disabled><div class="btn btn-dark">Alterar senha</div></div>
+        <div class="input-group"><input class="form-control" type="password" value="<?php echo $user->getPassword(); ?>" disabled><a href="/dashboard/user/?changepassword=<?php echo $r['id']; ?>"><div class="btn btn-dark">Alterar senha</div></a></div>
         <h5>E-mail</h5>
         <input class="form-control" type="text" value="<?php echo $userById->getEmail(); ?>">
         <h5>CEP</h5>
