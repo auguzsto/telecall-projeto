@@ -79,7 +79,7 @@ require __DIR__ . "/../../../config.php";
         public function select(string $columns, string $table): array {
             try {
                 $pdo = $this->con();
-                return $pdo->query("SELECT $columns FROM $table")->fetchAll();
+                return $pdo->query("SELECT $columns FROM $table ORDER BY id DESC")->fetchAll();
 
             } catch (PDOException $e) {
                 Handlers::error("Error", "Inesperado", $e->getMessage());

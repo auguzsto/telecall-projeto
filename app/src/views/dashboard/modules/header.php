@@ -73,6 +73,13 @@
               Usuários
             </a>
           </li>');?>
+          <?php showToolsAdmin($user->getIsAdmin(), 
+          '<li class="nav-item">
+            <a class="nav-link" href="/dashboard/log">
+              <span data-feather="bar-chart-2"></span>
+              Log de alterações
+            </a>
+          </li>');?>
         </ul>
       </div>
     </nav>

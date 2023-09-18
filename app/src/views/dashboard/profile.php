@@ -1,6 +1,5 @@
 <?php
 
-use App\services\Logger;
 use App\services\Session;
 use App\controllers\UserController;
     
