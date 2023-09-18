@@ -22,7 +22,7 @@ use App\services\Session;
         <h5>Último nome</h5>
         <input class="form-control" type="text" value="<?php echo $user->getLastName(); ?>" disabled>
         <h5>Senha</h5>
-        <div class="input-group"><input class="form-control" type="password" name="password" value="<?php echo $user->getPassword(); ?>"><div class="btn btn-dark">Alterar senha</div></div>
+        <div class="input-group"><input class="form-control" type="password" name="password" value="<?php echo $user->getPassword(); ?>" disabled><div class="btn btn-dark">Alterar senha</div></div>
         <h5>E-mail</h5>
         <input class="form-control" type="text" name="email" value="<?php echo $user->getEmail(); ?>">
         <h5>CEP</h5>
