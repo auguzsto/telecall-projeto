@@ -111,8 +111,6 @@ use App\services\Database;
 
                 Handlers::success("Atualizado", "Operação realizada com sucesso");
 
-
-
                 Logger::createDatabaseLog($userLogged, $user->getId(), "deleted", "deleted user");
 
                 } catch (PDOException $e) {
