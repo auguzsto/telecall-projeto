@@ -32,8 +32,9 @@ CREATE TABLE auth(
 
 CREATE TABLE log(
     id BIGINT AUTO_INCREMENT,
-    user_id bigint UNIQUE NOT NULL,
+    user_id bigint NOT NULL,
     type_log varchar(255) NOT NULL,
+    description varchar(255) NOT NULL,
     created_at DATETIME NOT NULL,
     updated_at DATETIME,
     deleted_at DATETIME,

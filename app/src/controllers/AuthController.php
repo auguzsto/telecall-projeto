@@ -70,7 +70,6 @@ use App\services\Database;
                 ];
 
                 $db->update($columnsAndValues, "auth", "user_id = ".$user->getId());
-                Logger::createDatabaseLog($user, "update token");
 
             } catch (PDOException $e) {
                 Handlers::error("Error", "Erro ao atualizar token de autenticação", $e->getMessage());
