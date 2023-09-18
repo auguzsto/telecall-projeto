@@ -8,13 +8,14 @@ use PDOException;
 
     class Logger {
 
-        public static function createDatabaseLog(User $user, string $type_log, string $description): void {
+        public static function createDatabaseLog(User $user,int $changed_entity_id, string $type_log, string $description): void {
             try {
                 $db = new Database();
 
                 $columnsAndValues = [
                     "user_id" => $user->getId(),
                     "type_log" => $type_log,
+                    "changed_entity_id" => $changed_entity_id,
                     "description" => $description,
                     "created_at" => date("Y-m-d H:m:s"),
                 ];

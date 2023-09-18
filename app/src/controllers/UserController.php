@@ -58,7 +58,6 @@ use App\services\Database;
                 ];
 
                 $db->update($columnsAndValues, "users", "id = ".$user->getId());
-                Logger::createDatabaseLog($user, "update", "updated user");
 
                 Handlers::success("Atualizado", "Operação realizada com sucesso");
 
@@ -81,7 +80,6 @@ use App\services\Database;
 
                 $db->update($columnsAndValues, "users", "id = ".$user->getId());
                 $authController->updateToken($user);
-                Logger::createDatabaseLog($user, "update", "updated user password");
                 
                 Handlers::success("Atualizado", "Operação realizada com sucesso");
 
@@ -102,7 +100,6 @@ use App\services\Database;
 
                 $db->update($columnsAndValues, "users", "id = ".$user->getId());
                 $db->update($columnsAndValues, "auth", "user_id =".$user->getId());
-                Logger::createDatabaseLog($user, "delete", "deleted user");
 
                 Handlers::success("Atualizado", "Operação realizada com sucesso");
 

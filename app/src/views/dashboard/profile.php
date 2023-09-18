@@ -1,7 +1,8 @@
 <?php
 
-use App\controllers\UserController;
+use App\services\Logger;
 use App\services\Session;
+use App\controllers\UserController;
     
     Session::check();
     $user = $_SESSION['session'];
@@ -48,4 +49,6 @@ use App\services\Session;
         $user->setAddress($_POST['address']);
 
         $userController->update($user);
+
+        Logger::createDatabaseLog($user, $user->getId(), "update", "updated user");
     }

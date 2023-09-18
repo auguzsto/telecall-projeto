@@ -1,6 +1,7 @@
 <?php
 
 use App\models\User;
+use App\services\Logger;
 use App\services\Session;
 use App\controllers\UserController;
     
@@ -28,14 +29,14 @@ use App\controllers\UserController;
         <h5>Senha</h5>
         <div class="input-group"><input class="form-control" type="password" value="<?php echo $user->getPassword(); ?>" disabled><a href="/dashboard/user/?changepassword=<?php echo $r['id']; ?>"><div class="btn btn-dark">Alterar senha</div></a></div>
         <h5>E-mail</h5>
-        <input class="form-control" type="text" value="<?php echo $userById->getEmail(); ?>">
+        <input class="form-control" type="text" name="email" value="<?php echo $userById->getEmail(); ?>">
         <h5>CEP</h5>
-        <input class="form-control" type="text" value="<?php echo $userById->getCep(); ?>">
+        <input class="form-control" id="cep" name="cep" type="text" value="<?php echo $userById->getCep(); ?>">
         <h5>Celular</h5>
-        <input class="form-control" type="text" value="<?php echo $userById->getPhone(); ?>">
+        <input class="form-control" id="celular" name="phone" type="text" value="<?php echo $userById->getPhone(); ?>">
         <h5>Endereço completo</h5>
-        <input class="form-control" type="text" value="<?php echo $userById->getAddress(); ?>">
-        <button class="form-control btn btn-dark mt-2 mb-2">Atualizar</button>
+        <input class="form-control" type="text" name="address" value="<?php echo $userById->getAddress(); ?>">
+        <button class="form-control btn btn-dark mt-2 mb-2" name="action">Atualizar</button>
     </form>
 </main>
 <?php require __DIR__ . "/../modules/footer.php"; ?>
@@ -46,4 +47,20 @@ use App\controllers\UserController;
 
         $userController = new UserController();
         $userController->delete($userById);
+
+        Logger::createDatabaseLog($user, $userById->getId(), "delete", "deleted user");
+    }
+
+    if(isset($_POST['action'])) {
+
+        $userController = new UserController();
+
+        $userById->setEmail($_POST['email']);
+        $userById->setPhone($_POST['phone']);
+        $userById->setCep($_POST['cep']);
+        $userById->setAddress($_POST['address']);
+
+        $userController->update($userById);
+
+        Logger::createDatabaseLog($user, $userById->getId(), "update", "updated user");
     }
