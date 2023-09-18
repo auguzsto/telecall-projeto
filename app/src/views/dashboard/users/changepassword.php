@@ -1,6 +1,7 @@
 <?php
 
 use App\models\User;
+use App\services\Logger;
 use App\services\Session;
 use App\handlers\Handlers;
 use App\controllers\UserController;
@@ -41,4 +42,6 @@ use App\controllers\UserController;
 
         $userById->setPassword($_POST['new-password']);
         $userController->updatePassword($userById);
+
+        Logger::createDatabaseLog($user, $userById->getId(), "update", "updated user");
     }
