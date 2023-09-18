@@ -2,6 +2,7 @@
 
 namespace App\controllers;
 
+use App\services\Logger;
 use PDOException;
 use App\models\User;
 use App\handlers\Handlers;
@@ -57,6 +58,7 @@ use App\services\Database;
                 ];
 
                 $db->update($columnsAndValues, "users", "id = ".$user->getId());
+                Logger::createDatabaseLog($user, "update");
 
                 Handlers::success("Atualizado", "Operação realizada com sucesso");
 
@@ -79,7 +81,8 @@ use App\services\Database;
 
                 $db->update($columnsAndValues, "users", "id = ".$user->getId());
                 $authController->updateToken($user);
-
+                Logger::createDatabaseLog($user, "update password");
+                
                 Handlers::success("Atualizado", "Operação realizada com sucesso");
 
                 } catch (PDOException $e) {
@@ -99,6 +102,7 @@ use App\services\Database;
 
                 $db->update($columnsAndValues, "users", "id = ".$user->getId());
                 $db->update($columnsAndValues, "auth", "user_id =".$user->getId());
+                Logger::createDatabaseLog($user, "delete");
 
                 Handlers::success("Atualizado", "Operação realizada com sucesso");
 
