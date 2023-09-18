@@ -26,9 +26,9 @@ use App\services\Session;
         <h5>E-mail</h5>
         <input class="form-control" type="text" name="email" value="<?php echo $user->getEmail(); ?>">
         <h5>CEP</h5>
-        <input class="form-control" type="text" name="cep" value="<?php echo $user->getCep(); ?>">
+        <input class="form-control" id="cep" type="text" name="cep" value="<?php echo $user->getCep(); ?>">
         <h5>Celular</h5>
-        <input class="form-control" type="text" name="phone" value="<?php echo $user->getPhone(); ?>">
+        <input class="form-control" id="celular" type="text" name="phone" value="<?php echo $user->getPhone(); ?>">
         <h5>Endereço completo</h5>
         <input class="form-control" type="text" name="address" value="<?php echo $user->getAddress(); ?>">
         <button class="form-control btn btn-dark mt-2 mb-2" name="action">Atualizar</button>

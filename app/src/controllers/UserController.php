@@ -61,7 +61,9 @@ use App\services\Database;
                 Handlers::success("Atualizado", "Operação realizada com sucesso");
 
                 } catch (PDOException $e) {
-                    Handlers::error("Falha", "Ocorreu um problema de execução", $e->getMessage());
+                    str_contains($e->getMessage(), "cpf") ? Handlers::warning("Atenção", "CPF já cadastrado.") : null;
+                    str_contains($e->getMessage(), "phone") ? Handlers::warning("Atenção", "Celular já cadastrado.") : null;
+                    str_contains($e->getMessage(), "email") ? Handlers::warning("Atenção", "E-mail já cadastrado.") : null;
                     throw $e;
                 }
         }
