@@ -21,7 +21,7 @@ use App\services\Session;
         <h1 class="h2">Relatórios</h1>  
     </div>
     <div>
-        <form action="/dashboard/reports/gen" method="post" target="_blank">
+        <form method="post" target="_blank">
             <select name="table" id="report">
                 <option value="users">Usuários</option>
             </select>
@@ -41,6 +41,9 @@ use App\services\Session;
             $reports = $reportController->byTableBetweenDateCreated("*", $_POST['table'], $_POST['where'], $_POST['betweenBegin'], $_POST['betweenFinal']);
 
             $_SESSION['reports'] = $reports;
+            
+            header("Location: /dashboard/reports/?users");
+            
         } 
 
         ?>

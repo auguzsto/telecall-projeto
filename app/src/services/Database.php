@@ -111,7 +111,7 @@ require __DIR__ . "/../../../config.php";
         public function selectDataBetweenDate(string $columns, string $table, string $where, string $betweenBegin, string $betweenFinal): array {
             try {
                 $pdo = $this->con();
-                return $pdo->query("SELECT $columns FROM $table WHERE date($where) BETWEEN '$betweenBegin' AND '$betweenFinal'")->fetchAll();
+                return $pdo->query("SELECT $columns FROM $table WHERE date($where) BETWEEN '$betweenBegin' AND '$betweenFinal' ORDER BY $where DESC")->fetchAll();
 
             } catch (PDOException $e) {
                 Handlers::error("Error", "Inesperado", $e->getMessage());
