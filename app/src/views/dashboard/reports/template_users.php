@@ -29,11 +29,11 @@ use App\services\Session;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Relatório gerado</title>
+    <title>Relatório de usuários <?php echo $type; ?> entre <?php echo $r['begin']; ?> à <?php echo $r['final']; ?></title>
     <link rel="stylesheet" href="/app/assets/css/bootstrap.min.css">
 </head>
 <body>
-<h1>Relatório de usuários <?php echo $type; ?> entre <?php echo $r['begin']; ?> à <?php echo $r['final']; ?></h1>
+<h2>Relatório de usuários <?php echo $type; ?> entre <?php echo $r['begin']; ?> à <?php echo $r['final']; ?></h2>
 <div class="table-responsive">
         <table class="table table-striped table-sm">
           <thead>
