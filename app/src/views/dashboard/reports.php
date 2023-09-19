@@ -23,9 +23,9 @@ use App\services\Session;
                 <option value="users">Usuários</option>
             </select>
             <select name="where" id="report" class="form-control">
-                <option value="created_at">Criado em</option>
-                <option value="updated_at">Atualizado em</option>
-                <option value="deleted_at">Deletado em</option>
+                <option value="created_at">Criados em</option>
+                <option value="updated_at">Atualizados em</option>
+                <option value="deleted_at">Deletados em</option>
             </select>
             <input type="date" name="betweenBegin" id="" value="<?php echo date('Y-m-d'); ?>" class="form-control" required>
             <input type="date" name="betweenFinal" id="" value="<?php echo date('Y-m-d'); ?>" class="form-control" required>
