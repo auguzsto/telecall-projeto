@@ -33,7 +33,10 @@ use App\services\Session;
     <link rel="stylesheet" href="/app/assets/css/bootstrap.min.css">
 </head>
 <body>
-<h2>Relatório de usuários <?php echo $type; ?> entre <?php echo $r['begin']; ?> à <?php echo $r['final']; ?></h2>
+  <div class="d-flex justify-content-between p-2">
+    <h2>Relatório de usuários <?php echo $type; ?> entre <?php echo $r['begin']; ?> à <?php echo $r['final']; ?></h2>
+    <a onclick="window.print()"><div class="btn btn-dark d-print-none">Imprmir | PDF</div></a>
+  </div>
 <div class="table-responsive">
         <table class="table table-striped table-sm">
           <thead>
@@ -73,8 +76,7 @@ use App\services\Session;
         </table>
       </div>
 <div class="col p-2">
-  <h5>Total de resultados <?php echo count($reports) ?></h5> 
-  <a onclick="window.print()"><div class="btn btn-dark d-print-none">Imprmir | PDF</div></a>
+  <h5>Total de resultados <?php echo count($reports); ?></h5>
 </div>
 </div>
 </body>
