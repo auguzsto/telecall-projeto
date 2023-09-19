@@ -42,14 +42,7 @@ use App\services\Session;
 
             $_SESSION['reports'] = $reports;
             
-            switch($_POST['where']) {
-                case "created_at":
-                    header("Location: /dashboard/reports/?".$_POST['table']."=created&begin=".$_POST['betweenBegin']."&final=".$_POST['betweenFinal']);
-                
-                case "updated_at":
-                    header("Location: /dashboard/reports/?".$_POST['table']."=created&begin=".$_POST['betweenBegin']."&final=".$_POST['betweenFinal']);
-                
-            }
+            header("Location: /dashboard/reports/?".$_POST['table']."=".$_POST['where']."&begin=".$_POST['betweenBegin']."&final=".$_POST['betweenFinal']);
             
         } 
 

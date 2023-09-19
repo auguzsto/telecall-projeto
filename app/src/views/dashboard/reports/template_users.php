@@ -8,15 +8,17 @@ use App\services\Session;
 
     $reports = $_SESSION['reports'];
 
-    $type = "";
-
     switch($r['users']) {
-      case "created":
+      case "created_at":
         $type = "criados";
         break;
 
-      case "updated":
+      case "updated_at":
         $type = "atualizados";
+        break;
+
+      case "deleted_at":
+        $type = "detalados";
         break;
     }
 
@@ -70,5 +72,6 @@ use App\services\Session;
           </tbody>
         </table>
       </div>
+<h5>Total de resultados <?php echo count($reports) ?></h5> <button>Imprmir | PDF</button>
 </body>
 </html>
