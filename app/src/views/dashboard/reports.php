@@ -9,9 +9,6 @@ use App\services\Session;
 
     $reportController = new ReportController();
 
-    $betweenBegin = isset($_POST['betweenBegin']) ? $_POST['betweenBegin'] : date('Y-m-d');
-    $betweenFinal = isset($_POST['betweenFinal']) ? $_POST['betweenFinal'] : date('Y-m-d');
-
 ?>
 
 <?php include __DIR__ . "/modules/header.php"; ?>
@@ -30,19 +27,24 @@ use App\services\Session;
                 <option value="updated_at">Atualizado em</option>
                 <option value="deleted_at">Deletado em</option>
             </select>
-            <input type="date" name="betweenBegin" id="" value="<?php echo $betweenBegin ?>" class="form-control" required>
-            <input type="date" name="betweenFinal" id="" value="<?php echo $betweenFinal ?>" class="form-control" required>
+            <input type="date" name="betweenBegin" id="" value="<?php echo date('Y-m-d'); ?>" class="form-control" required>
+            <input type="date" name="betweenFinal" id="" value="<?php echo date('Y-m-d'); ?>" class="form-control" required>
             <button type="submit" name="action" class="form-control btn btn-primary">Gerar relatório</button>
         </form>
         <?php 
 
         if(isset($_POST['action'])) {
 
-            $reports = $reportController->byTableBetweenDate("*", $_POST['table'], $_POST['where'], $_POST['betweenBegin'], $_POST['betweenFinal']);
+            $table = $_POST['table'];
+            $where = $_POST['where'];
+            $betweenBegin = $_POST['betweenBegin'];
+            $betweenFinal = $_POST['betweenFinal'];
+
+            $reports = $reportController->byTableBetweenDate("*", $table, $where, $betweenBegin, $betweenFinal);
 
             $_SESSION['reports'] = $reports;
             
-            header("Location: /dashboard/reports/?".$_POST['table']."=".$_POST['where']."&begin=".$_POST['betweenBegin']."&final=".$_POST['betweenFinal']);
+            header("Location: /dashboard/reports/?$table=$where&begin=$betweenBegin&final=$betweenFinal");
             
         } 
 
