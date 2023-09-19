@@ -7,7 +7,7 @@ use App\services\Database;
 
     class ReportController {
         
-        public function byTableBetweenDateCreated(string $columns, string $table, string $where, string $betweenBegin, $betweenFinal): array {
+        public function byTableBetweenDate(string $columns, string $table, string $where, string $betweenBegin, $betweenFinal): array {
             try {
                 $db = new Database();
 

@@ -79,3 +79,7 @@ use App\services\Session;
 </div>
 </body>
 </html>
+
+<?php 
+
+      unset($_SESSION['reports']);

@@ -38,7 +38,7 @@ use App\services\Session;
 
         if(isset($_POST['action'])) {
 
-            $reports = $reportController->byTableBetweenDateCreated("*", $_POST['table'], $_POST['where'], $_POST['betweenBegin'], $_POST['betweenFinal']);
+            $reports = $reportController->byTableBetweenDate("*", $_POST['table'], $_POST['where'], $_POST['betweenBegin'], $_POST['betweenFinal']);
 
             $_SESSION['reports'] = $reports;
             
