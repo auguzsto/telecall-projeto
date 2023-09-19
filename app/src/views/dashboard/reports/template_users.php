@@ -8,6 +8,18 @@ use App\services\Session;
 
     $reports = $_SESSION['reports'];
 
+    $type = "";
+
+    switch($r['users']) {
+      case "created":
+        $type = "criados";
+        break;
+
+      case "updated":
+        $type = "atualizados";
+        break;
+    }
+
 ?>
 
 <!DOCTYPE html>
@@ -19,6 +31,7 @@ use App\services\Session;
     <link rel="stylesheet" href="/app/assets/css/bootstrap.min.css">
 </head>
 <body>
+<h1>Relatório de usuários <?php echo $type; ?> entre <?php echo $r['begin']; ?> à <?php echo $r['final']; ?></h1>
 <div class="table-responsive">
         <table class="table table-striped table-sm">
           <thead>
