@@ -1,5 +1,6 @@
 <?php
 
+use App\controllers\ReportController;
 use App\services\Session;
 use App\services\Database;
     
@@ -7,9 +8,10 @@ use App\services\Database;
     $user = $_SESSION['session'];
     Session::isAdmin($user);
 
-    $db = new Database();
+    $reportController = new ReportController();
 
-    $logs = $db->select("*", "log");
+    $betweenBegin = isset($_POST['betweenBegin']) ? $_POST['betweenBegin'] : date('Y-m-d');
+    $betweenFinal = isset($_POST['betweenFinal']) ? $_POST['betweenFinal'] : date('Y-m-d');
 
 ?>
 
@@ -19,6 +21,35 @@ use App\services\Database;
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Relatórios</h1>  
     </div>
-    Here button with params to report.
+    <div>
+        <form method="post">
+            <select name="table" id="report">
+                <option value="users">Usuários</option>
+            </select>
+            <select name="where" id="report">
+                <option value="created_at">Criado em</option>
+                <option value="updated_at">Atualizado em</option>
+                <option value="deleted_at">Deletado em</option>
+            </select>
+            <input type="date" name="betweenBegin" id="" value="<?php echo $betweenBegin ?>" required>
+            <input type="date" name="betweenFinal" id="" required>
+            <button type="submit" name="action">Gerar</button>
+        </form>
+        <?php 
+
+        if(isset($_POST['action'])) {
+
+            $report = [
+                "table" => $_POST['table'],
+                "where" => $_POST['where'],
+                "betweenBegin" => $_POST['betweenBegin'],
+                "betweenFinal" => $_POST['betweenFinal'],
+            ];
+
+            print_r($reportController->byTableBetweenDateCreated("*", $report['table'], $_POST['where'], $report['betweenBegin'], $report['betweenFinal']));
+        } 
+
+        ?>
+    </div>
 </main>
 <?php include __DIR__ . "/modules/footer.php"; ?>
