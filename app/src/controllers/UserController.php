@@ -5,7 +5,6 @@ namespace App\controllers;
 use PDOException;
 use App\models\User;
 use App\services\Logger;
-use App\services\Session;
 use App\handlers\Handlers;
 use App\services\Database;
 
@@ -63,7 +62,7 @@ use App\services\Database;
 
                 Handlers::success("Atualizado", "Operação realizada com sucesso");
 
-                Logger::createDatabaseLog($userLogged, $user->getId(), "update", "updated user");
+                Logger::createDatabaseLog($userLogged, $user->getId(), "atualização", "usuário foi atualizado");
 
                 } catch (PDOException $e) {
                     str_contains($e->getMessage(), "cpf") ? Handlers::warning("Atenção", "CPF já cadastrado.") : null;
@@ -88,7 +87,7 @@ use App\services\Database;
                 
                 Handlers::success("Atualizado", "Operação realizada com sucesso");
 
-                Logger::createDatabaseLog($userLogged, $user->getId(), "update", "updated password user");
+                Logger::createDatabaseLog($userLogged, $user->getId(), "atualização", "senha do usuário foi atualizada");
 
                 } catch (PDOException $e) {
                     Handlers::error("Falha", "Ocorreu um problema de execução", $e->getMessage());
@@ -100,7 +99,7 @@ use App\services\Database;
             try {
                 $userLogged = $_SESSION['session'];
                 $db = new Database();
-                $user->setDeleted_at(date('Y-m-d H:m:s'));
+                $user->setDeleted_at(date('Y-m-d H:i:s'));
 
                 $columnsAndValues = [
                     "deleted_at" => $user->getDeleted_at(),
@@ -111,7 +110,7 @@ use App\services\Database;
 
                 Handlers::success("Atualizado", "Operação realizada com sucesso");
 
-                Logger::createDatabaseLog($userLogged, $user->getId(), "deleted", "deleted user");
+                Logger::createDatabaseLog($userLogged, $user->getId(), "exclusão", "usuário foi deletado ");
 
                 } catch (PDOException $e) {
                     Handlers::error("Falha", "Ocorreu um problema de execução", $e->getMessage());

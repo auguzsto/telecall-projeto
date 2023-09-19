@@ -17,7 +17,7 @@ use PDOException;
                     "type_log" => $type_log,
                     "changed_entity_id" => $changed_entity_id,
                     "description" => $description,
-                    "created_at" => date("Y-m-d H:m:s"),
+                    "created_at" => date("Y-m-d H:i:s"),
                 ];
 
                 $db->insert($columnsAndValues, "log");
@@ -31,7 +31,7 @@ use PDOException;
         public static function createInFolderLog(string $getMessageException): void {
             $origin = $_SERVER['PATH_INFO'];
             $date = date("Y-m-d");
-            $dateInLog = date("Y-m-d H:m:s");
+            $dateInLog = date("Y-m-d H:i:s");
             $log = "Origem: $origin - $dateInLog - $getMessageException\n";
 
             file_put_contents("./logs/log_".$date.".txt", $log, FILE_APPEND);
