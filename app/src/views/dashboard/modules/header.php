@@ -80,6 +80,13 @@
               Log de alterações
             </a>
           </li>');?>
+          <?php showToolsAdmin($user->getIsAdmin(), 
+          '<li class="nav-item">
+            <a class="nav-link" href="/dashboard/reports">
+              <span data-feather="bar-chart-2"></span>
+              Relatórios
+            </a>
+          </li>');?>
         </ul>
       </div>
     </nav>

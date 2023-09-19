@@ -84,7 +84,7 @@ senha dele próprio
     - Essa tela deverá ter uma imagem com a
 modelagem do banco de dados utilizada para
 este sistema.
-- [ ] Inserir botão para baixar lista de usuários no formato PDF. (Master)
+- [x] Inserir botão para baixar lista de usuários no formato PDF. (Master)
 
 ## Sobre 2FA
 A tela deve ter os seguintes campos:

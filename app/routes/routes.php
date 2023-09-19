@@ -21,5 +21,7 @@ use App\services\Router;
     Router::get("/dashboard/profile", "app/src/views/dashboard/profile.php");
     Router::get("/dashboard/changepassword", "app/src/views/dashboard/changepassword.php");
     Router::get("/dashboard/log", "app/src/views/dashboard/log.php");
+    Router::get("/dashboard/reports", "app/src/views/dashboard/reports.php");
+    Router::get("/dashboard/reports/:params", "app/src/views/dashboard/reports/index.php");
     Router::get("/dashboard/user/:params", "app/src/views/dashboard/users/index.php");
     Router::get("/dashboard/signout", "app/src/views/dashboard/signout.php");
