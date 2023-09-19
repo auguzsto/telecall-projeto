@@ -21,18 +21,18 @@ use App\services\Session;
         <h1 class="h2">Relatórios</h1>  
     </div>
     <div>
-        <form method="post" target="_blank">
-            <select name="table" id="report">
+        <form method="post" target="_blank" class="input-group">
+            <select name="table" id="report" class="form-control">
                 <option value="users">Usuários</option>
             </select>
-            <select name="where" id="report">
+            <select name="where" id="report" class="form-control">
                 <option value="created_at">Criado em</option>
                 <option value="updated_at">Atualizado em</option>
                 <option value="deleted_at">Deletado em</option>
             </select>
-            <input type="date" name="betweenBegin" id="" value="<?php echo $betweenBegin ?>" required>
-            <input type="date" name="betweenFinal" id="" value="<?php echo $betweenFinal ?>" required>
-            <button type="submit" name="action">Gerar</button>
+            <input type="date" name="betweenBegin" id="" value="<?php echo $betweenBegin ?>" class="form-control" required>
+            <input type="date" name="betweenFinal" id="" value="<?php echo $betweenFinal ?>" class="form-control" required>
+            <button type="submit" name="action" class="form-control btn btn-primary">Gerar relatório</button>
         </form>
         <?php 
 

@@ -72,6 +72,10 @@ use App\services\Session;
           </tbody>
         </table>
       </div>
-<h5>Total de resultados <?php echo count($reports) ?></h5> <button>Imprmir | PDF</button>
+<div class="col p-2">
+  <h5>Total de resultados <?php echo count($reports) ?></h5> 
+  <a onclick="window.print()"><div class="btn btn-dark d-print-none">Imprmir | PDF</div></a>
+</div>
+</div>
 </body>
 </html>
