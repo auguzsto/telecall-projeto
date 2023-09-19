@@ -2,7 +2,6 @@
 
 use App\controllers\ReportController;
 use App\services\Session;
-use App\services\Database;
     
     Session::check();
     $user = $_SESSION['session'];
@@ -22,7 +21,7 @@ use App\services\Database;
         <h1 class="h2">Relatórios</h1>  
     </div>
     <div>
-        <form method="post">
+        <form action="/dashboard/reports/gen" method="post" target="_blank">
             <select name="table" id="report">
                 <option value="users">Usuários</option>
             </select>
@@ -32,21 +31,16 @@ use App\services\Database;
                 <option value="deleted_at">Deletado em</option>
             </select>
             <input type="date" name="betweenBegin" id="" value="<?php echo $betweenBegin ?>" required>
-            <input type="date" name="betweenFinal" id="" required>
+            <input type="date" name="betweenFinal" id="" value="<?php echo $betweenFinal ?>" required>
             <button type="submit" name="action">Gerar</button>
         </form>
         <?php 
 
         if(isset($_POST['action'])) {
 
-            $report = [
-                "table" => $_POST['table'],
-                "where" => $_POST['where'],
-                "betweenBegin" => $_POST['betweenBegin'],
-                "betweenFinal" => $_POST['betweenFinal'],
-            ];
+            $reports = $reportController->byTableBetweenDateCreated("*", $_POST['table'], $_POST['where'], $_POST['betweenBegin'], $_POST['betweenFinal']);
 
-            print_r($reportController->byTableBetweenDateCreated("*", $report['table'], $_POST['where'], $report['betweenBegin'], $report['betweenFinal']));
+            $_SESSION['reports'] = $reports;
         } 
 
         ?>
