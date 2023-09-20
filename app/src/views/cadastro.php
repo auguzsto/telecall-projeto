@@ -29,7 +29,7 @@
                                  <form method="POST" name="action">
 
                                      <h5>CPF: *</h5>
-                                     <input type="text" name="cpf" id="cpf" placeholder="Apenas números são permitidos." class="form-control" maxlength="14" autocomplete="off" value="<?php echo $_POST['cpf']; ?>">
+                                     <input type="text" name="cpf" id="cpf" placeholder="Apenas números são permitidos." class="form-control" maxlength="14" autocomplete="off" value="<?php echo $_POST['cpf']; ?>" required minlength="14">
 
                                      <h5>Senha: *</h5>
                                      <input type="password" name="password" id="password" placeholder="Digite sua senha." class="form-control">
@@ -38,16 +38,16 @@
                                      <input type="password" name="rePassword" id="rePassword" placeholder="Digite sua senha novamente." class="form-control">
 
                                      <h5>Nome: *</h5>
-                                     <input type="text" name="first_name" id="first_name" placeholder="Seu primeiro nome" class="form-control" value="<?php echo $_POST['first_name']; ?>">
+                                     <input type="text" name="first_name" id="first_name" placeholder="Seu primeiro nome" class="form-control" value="<?php echo $_POST['first_name']; ?>" required minlength="3">
 
                                      <h5>Último nome: *</h5>
-                                     <input type="text" name="last_name" id="last_name" placeholder="Seu último nome" class="form-control" value="<?php echo $_POST['last_name']; ?>">
+                                     <input type="text" name="last_name" id="last_name" placeholder="Seu último nome" class="form-control" value="<?php echo $_POST['last_name']; ?>" required minlength="3">
 
                                      <h5>Email: *</h5>
                                      <input type="email" name="email" id="email" placeholder="Seu email" class="form-control" value="<?php echo $_POST['email']; ?>" required>
                                      
                                      <h5>Nome materno: *</h5>
-                                     <input type="text" name="mother_name" id="maternoCompleto" placeholder="Digite o nome materno completo." class="form-control" value="<?php echo $_POST['mother_name']; ?>" required>
+                                     <input type="text" name="mother_name" id="maternoCompleto" placeholder="Digite o nome materno completo." class="form-control" value="<?php echo $_POST['mother_name']; ?>" required minlength="6">
 
                                      <h5>Data de nascimento: *</h5>
                                      <input type="date" name="birth" id="dataNascimento" placeholder="Insira sua data de nascimento." class="form-control" value="<?php echo $_POST['birth']; ?>" required>    
@@ -64,16 +64,19 @@
                                  <h6 class="text-danger" id="generoError"></h6>   
                                  
                                  <h5>Celular: *</h5>
-                                 <input type="text" maxlength="14" name="phone" id="celular" placeholder="Digite seu número de celular com DDD." class="form-control" autocomplete="off" value="<?php echo $_POST['phone']; ?>" required>
+                                 <input type="text" maxlength="14" name="phone" id="celular" placeholder="Digite seu número de celular com DDD." class="form-control" autocomplete="off" value="<?php echo $_POST['phone']; ?>" required minlength="16">
 
                                  <h5>Telefone fixo: </h5>
                                  <input type="text" name="telefoneFixo" placeholder="Digite seu telefone fixo." class="form-control">
 
-                                 <h5>Endereço completo: *</h5>
-                                 <input type="text" id="enderecoCompleto" name="address" placeholder="Digite seu endereço completo." class="form-control" autocomplete="off" value="<?php echo $_POST['address']; ?>" required>
-
                                  <h5>CEP: *</h5>
-                                 <input type="text" maxlength="8" name="cep" id="cep" placeholder="Digite seu CEP." class="form-control" value="<?php echo $_POST['cep']; ?>" required>
+                                 <input type="text" maxlength="8" name="cep" id="cep" placeholder="Digite seu CEP." class="form-control" value="<?php echo $_POST['cep']; ?>" required minlength="8">
+
+                                 <h5>Endereço completo: *</h5>
+                                 <input type="text" id="address" name="address" placeholder="Campo preenchido automático pelo CEP" class="form-control" autocomplete="off" value="<?php echo $_POST['address']; ?>" required minlength="8">
+
+                                 <h5>Número: *</h5>
+                                 <input type="text" id="address-number" name="address-number" placeholder="Digite o número da residência" class="form-control" autocomplete="off" value="<?php echo $_POST['address-number']; ?>" required>
 
                                  <label for=""></label>
                                  <input type="submit" class="form-control btn-primary border" id="enviarCadastro" name="action" onclick="" value="Registrar"></input>
@@ -112,7 +115,7 @@ use App\controllers\UserController;
             "phone" => $_POST['phone'],
             "cpf" => $_POST['cpf'],
             "cep" => $_POST['cep'],
-            "address" => $_POST['address'],
+            "address" => $_POST['address'].", Número ".$_POST['address-number'],
             "birth" => $_POST['birth'],
             "created_at" => date('Y-m-d H:i:s'),
         ];
