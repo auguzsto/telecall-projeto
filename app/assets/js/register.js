@@ -4,8 +4,6 @@ $(document).ready(function() {
     $("#cep").mask('00000-000', {reverse: false});
 });
 
-
-
 let cep = document.getElementById('cep');
 let address = document.getElementById('address');
 
