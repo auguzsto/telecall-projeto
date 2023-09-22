@@ -2,7 +2,9 @@
 
 namespace App\services;
 use App\config\Config;
+use App\handlers\Handlers;
 use App\services\Database;
+use PDOException;
 
 require __DIR__ . "/../../../config.php";
 
@@ -15,16 +17,21 @@ require __DIR__ . "/../../../config.php";
             switch($type) {
 
                 case "default":
-                    $query = file_get_contents("app/src/db/$fileSQL");
-                    $migration = str_replace("CREATE TABLE", "CREATE TABLE IF NOT EXISTS", $query);
-                    $db->query($migration);
-                    break;
+                    try {
+                        $query = file_get_contents("app/src/db/$fileSQL");
+                        $migration = str_replace(["CREATE TABLE", "INSERT INTO"], ["CREATE TABLE IF NOT EXISTS", "REPLACE INTO"], $query);
+                        $db->query($migration);
+                        break;
+                        
+                    } catch (PDOException $e) {
+                        throw $e;
+                    }
                 
                 case "rework":
                     $db->query("DROP DATABASE ". $config['database']);
                     
                     $query = file_get_contents("app/src/db/$fileSQL");
-                    $migration = str_replace("CREATE TABLE", "CREATE OR REPLACE TABLE", $query);
+                    $migration = str_replace(["CREATE TABLE", "INSERT INTO"], ["CREATE TABLE IF NOT EXISTS", "REPLACE INTO"], $query);
                     $db->query($migration);
                     break;
             }
