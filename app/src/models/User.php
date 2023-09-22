@@ -1,6 +1,8 @@
 <?php
 
 namespace App\models;
+use App\controllers\GroupsPermissionsAclController;
+use App\services\Database;
 
     class User {
         
@@ -25,7 +27,7 @@ namespace App\models;
             $user = new self();
             isset($map['id']) ? $user->setId($map['id']) : null;
             isset($map['isadmin']) ? $user->setIsAdmin($map['isadmin']) : $user->setIsAdmin(0);
-            $user->setGroupsPermissionsAcl(GroupsPermissionsAcl::fromMap($map['groups_permissions_acl']));
+            $user->setGroupsPermissionsAcl(GroupsPermissionsAcl::fromMap($user->getGroupsPermissionsAclById($map['id_groups_permissions_acl'])));
             $user->setFirstName($map['first_name']);
             $user->setLastName($map['last_name']);
             $user->setMotherName($map['mother_name']);
@@ -39,7 +41,12 @@ namespace App\models;
             $user->setCreated_at($map['created_at']);
 
             return $user;
-    }
+        }
+
+        private function getGroupsPermissionsAclById(int $id): array {
+            $groupsPermissionsAclController = new GroupsPermissionsAclController();
+            return $groupsPermissionsAclController->findById($id)[0];
+        }
 
         public function setId(int $id): void {
             $this->id = $id;
@@ -167,4 +174,4 @@ namespace App\models;
         public function getDeleted_at(): string {
             return $this->deleted_at;
         }
-    }
+}

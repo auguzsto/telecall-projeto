@@ -1,6 +1,10 @@
 <?php
 
 namespace App\models;
+use App\controllers\GroupsPermissionsAclController;
+use App\controllers\UserController;
+use App\handlers\Handlers;
+use PDOException;
 
     class GroupsPermissionsAcl {
 

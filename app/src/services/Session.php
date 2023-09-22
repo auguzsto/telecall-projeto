@@ -16,7 +16,7 @@ use App\models\User;
 
         public static function twoFactorAuthentication(User $user) {
             session_start();
-            
+
             $_SESSION['2fa'] = $user;
             header("Location: /2FA");
         }
@@ -38,8 +38,8 @@ use App\models\User;
             
         }
 
-        public static function isAdmin(User $user) {
-            if($user->getIsAdmin() == 0) {
+        public static function isGroupAdministrator(User $user) {
+            if($user->getGroupsPermissionsAcl()->getId() != 1) {
                 return header('Location: /dashboard/profile');
               }
         }
