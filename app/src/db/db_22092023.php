@@ -12,6 +12,7 @@ CREATE TABLE groups_permissions_acl(
 
 INSERT INTO groups_permissions_acl (id, description, permission_create, permission_read, permission_update, permission_delete) VALUES (1, 'Administrator', 'Y', 'Y', 'Y', 'Y');
 INSERT INTO groups_permissions_acl (id, description, permission_create, permission_read, permission_update, permission_delete) VALUES (2, 'Common',        'N', 'Y', 'N', 'N');
+INSERT INTO groups_permissions_acl (id, description, permission_create, permission_read, permission_update, permission_delete) VALUES (3, 'Moderator',     'Y', 'Y', 'N', 'N');
 
 CREATE TABLE users(
         id BIGINT AUTO_INCREMENT,

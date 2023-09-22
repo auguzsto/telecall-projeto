@@ -88,6 +88,13 @@ use App\models\GroupsPermissionsAcl;
               Relatórios
             </a>
           </li>');?>
+          <?php showTools($user->getGroupsPermissionsAcl(), 
+          '<li class="nav-item">
+            <a class="nav-link" href="/dashboard/acl">
+              <span data-feather="bar-chart-2"></span>
+              Permissões de acessos
+            </a>
+          </li>');?>
         </ul>
       </div>
     </nav>
