@@ -8,6 +8,16 @@ use App\handlers\Handlers;
 use App\services\Database;
 
     class GroupsPermissionsAclController {
+
+        public function findAll(): array {
+            try {
+                $db = new Database();
+                return $db->select("*", "groups_permissions_acl");
+
+            } catch (PDOException $e) {
+                throw $e;
+            }
+        }
         
         public function findById(int $id): array {
             try {

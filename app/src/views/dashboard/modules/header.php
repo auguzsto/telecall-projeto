@@ -90,7 +90,7 @@ use App\models\GroupsPermissionsAcl;
           </li>');?>
           <?php showTools($user->getGroupsPermissionsAcl(), 
           '<li class="nav-item">
-            <a class="nav-link" href="/dashboard/acl">
+            <a class="nav-link" href="/dashboard/permissions">
               <span data-feather="bar-chart-2"></span>
               Permissões de acessos
             </a>
