@@ -26,33 +26,81 @@ use App\controllers\GroupsPermissionsAclController;
                 switch($groupsPermissionsAcl->getPermission_read()) {
                     case "Y":
                         echo "
-                        <option value='N'>Não</option>
-                        <option value='Y' selected>Sim</option>
+                            <option value='N'>Não</option>
+                            <option value='Y' selected>Sim</option>
                         ";
-                    case "N":
-                        echo "
-                        <option value='N' selected>Não</option>
-                        <option value='Y'>Sim</option>
+                        break;
+    
+                        case "N":
+                            echo "
+                            <option value='N' select>Não</option>
+                            <option value='Y'>Sim</option>
                         ";
+                        break;
                 }
             ?>
         </select>
         <h5>Este grupo poder criar dados?</h5>
-        <select name="permission_create" id="" class="form-control">
-            <option value="N">Não</option>
-            <option value="Y">Sim</option>
+        <select name="permission_read" id="" class="form-control">
+            <?php 
+                switch($groupsPermissionsAcl->getPermission_create()) {
+                    case "Y":
+                        echo "
+                            <option value='N'>Não</option>
+                            <option value='Y' selected>Sim</option>
+                        ";
+                        break;
+    
+                        case "N":
+                            echo "
+                            <option value='N' select>Não</option>
+                            <option value='Y'>Sim</option>
+                        ";
+                        break;
+                }
+            ?>
         </select>
         <h5>Este grupo poder atualizar dados?</h5>
-        <select name="permission_update" id="" class="form-control">
-            <option value="N">Não</option>
-            <option value="Y">Sim</option>
+        <select name="permission_read" id="" class="form-control">
+            <?php 
+                switch($groupsPermissionsAcl->getPermission_update()) {
+                    case "Y":
+                        echo "
+                            <option value='N'>Não</option>
+                            <option value='Y' selected>Sim</option>
+                        ";
+                        break;
+    
+                        case "N":
+                            echo "
+                            <option value='N' select>Não</option>
+                            <option value='Y'>Sim</option>
+                        ";
+                        break;
+                }
+            ?>
         </select>
         <h5>Este grupo poder deletar dados?</h5>
-        <select name="permission_delete" id="" class="form-control">
-            <option value="N">Não</option>
-            <option value="Y">Sim</option>
+        <select name="permission_read" id="" class="form-control">
+            <?php 
+                switch($groupsPermissionsAcl->getPermission_delete()) {
+                    case "Y":
+                        echo "
+                            <option value='N'>Não</option>
+                            <option value='Y' selected>Sim</option>
+                        ";
+                    break;
+
+                    case "N":
+                        echo "
+                        <option value='N' select>Não</option>
+                        <option value='Y'>Sim</option>
+                    ";
+                    break;
+
+                }
+            ?>
         </select>
-        
         <button class="form-control btn btn-dark mt-2 mb-2" name="action">Atualizar</button>
     </form>
 </main>
