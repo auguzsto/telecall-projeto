@@ -13,3 +13,7 @@ use App\services\Session;
     if(isset($r['add_group_acl'])) {
         return require __DIR__ ."/add.php";
     }
+
+    if(isset($r['id_group_acl'])) {
+        return require __DIR__ ."/edit.php";
+    }
