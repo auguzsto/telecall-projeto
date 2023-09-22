@@ -6,6 +6,7 @@ namespace App\models;
         
         private int $id;
         private int $isAdmin;
+        private GroupsPermissionsAcl $groupsPermissionsAcl;
         private string $first_name;
         private string $last_name;
         private string $mother_name;
@@ -24,6 +25,7 @@ namespace App\models;
             $user = new self();
             isset($map['id']) ? $user->setId($map['id']) : null;
             isset($map['isadmin']) ? $user->setIsAdmin($map['isadmin']) : $user->setIsAdmin(0);
+            $user->setGroupsPermissionsAcl(GroupsPermissionsAcl::fromMap($map['groups_permissions_acl']));
             $user->setFirstName($map['first_name']);
             $user->setLastName($map['last_name']);
             $user->setMotherName($map['mother_name']);
@@ -45,6 +47,10 @@ namespace App\models;
 
         public function setIsAdmin(bool $isAdmin): void {
             $this->isAdmin = $isAdmin;
+        }
+
+        public function setGroupsPermissionsAcl(GroupsPermissionsAcl $groupsPermissionsAcl): void {
+            $this->groupsPermissionsAcl = $groupsPermissionsAcl;
         }
 
         public function setFirstName(string $first_name): void {
@@ -104,6 +110,10 @@ namespace App\models;
 
         public function getIsAdmin(): int {
             return $this->isAdmin;
+        }
+
+        public function getGroupsPermissionsAcl(): GroupsPermissionsAcl {
+            return $this->groupsPermissionsAcl;
         }
 
         public function getFirstName(): string {

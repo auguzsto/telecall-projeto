@@ -104,9 +104,12 @@
 
 use App\models\User;
 use App\controllers\UserController;
+use App\controllers\GroupsPermissionsAclController;
 
     if(isset($_POST['action'])) {
+        $groupsPermissionsAclController = new GroupsPermissionsAclController();
         $map = [
+            "groups_permissions_acl" => $groupsPermissionsAclController->findById(2)[0],
             "first_name" => $_POST['first_name'],
             "last_name" => $_POST['last_name'],
             "mother_name" => $_POST['mother_name'],

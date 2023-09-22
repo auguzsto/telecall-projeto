@@ -2,7 +2,7 @@ CREATE DATABASE IF NOT EXISTS grp_16_bangu_noite;
 
 CREATE TABLE groups_permissions_acl(
     id BIGINT AUTO_INCREMENT,
-    descrition varchar(255) NOT NULL,
+    description varchar(255) NOT NULL,
     permission_create ENUM("Y", "N") NOT NULL,
     permission_read ENUM("Y", "N") NOT NULL,
     permission_update ENUM("Y", "N") NOT NULL,
@@ -10,8 +10,8 @@ CREATE TABLE groups_permissions_acl(
     PRIMARY KEY (id)
 );
 
-INSERT INTO groups_permissions_acl (id, descrition, permission_create, permission_read, permission_update, permission_delete) VALUES (1, 'Administrator', 'Y', 'Y', 'Y', 'Y');
-INSERT INTO groups_permissions_acl (id, descrition, permission_create, permission_read, permission_update, permission_delete) VALUES (2, 'Common',        'N', 'Y', 'N', 'N');
+INSERT INTO groups_permissions_acl (id, description, permission_create, permission_read, permission_update, permission_delete) VALUES (1, 'Administrator', 'Y', 'Y', 'Y', 'Y');
+INSERT INTO groups_permissions_acl (id, description, permission_create, permission_read, permission_update, permission_delete) VALUES (2, 'Common',        'N', 'Y', 'N', 'N');
 
 CREATE TABLE users(
         id BIGINT AUTO_INCREMENT,
