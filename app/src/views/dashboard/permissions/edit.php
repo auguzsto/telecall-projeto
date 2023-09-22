@@ -41,7 +41,7 @@ use App\controllers\GroupsPermissionsAclController;
             ?>
         </select>
         <h5>Este grupo poder criar dados?</h5>
-        <select name="permission_read" id="" class="form-control">
+        <select name="permission_create" id="" class="form-control">
             <?php 
                 switch($groupsPermissionsAcl->getPermission_create()) {
                     case "Y":
@@ -61,7 +61,7 @@ use App\controllers\GroupsPermissionsAclController;
             ?>
         </select>
         <h5>Este grupo poder atualizar dados?</h5>
-        <select name="permission_read" id="" class="form-control">
+        <select name="permission_update" id="" class="form-control">
             <?php 
                 switch($groupsPermissionsAcl->getPermission_update()) {
                     case "Y":
@@ -81,7 +81,7 @@ use App\controllers\GroupsPermissionsAclController;
             ?>
         </select>
         <h5>Este grupo poder deletar dados?</h5>
-        <select name="permission_read" id="" class="form-control">
+        <select name="permission_delete" id="" class="form-control">
             <?php 
                 switch($groupsPermissionsAcl->getPermission_delete()) {
                     case "Y":
@@ -116,5 +116,13 @@ use App\controllers\GroupsPermissionsAclController;
 
     if(isset($_POST['action'])) {
 
+        GroupsPermissionsAclController::checkIfUserThenPermissionToUpdate($user);
+
+        $groupsPermissionsAcl->setPermission_create($_POST['permission_create']);
+        $groupsPermissionsAcl->setPermission_delete($_POST['permission_delete']);
+        $groupsPermissionsAcl->setPermission_read($_POST['permission_read']);
+        $groupsPermissionsAcl->setPermission_update($_POST['permission_update']);
+
+        $groupsPermissionsAclController->update($groupsPermissionsAcl);
         
     }

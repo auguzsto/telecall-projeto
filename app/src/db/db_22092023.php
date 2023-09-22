@@ -7,6 +7,9 @@ CREATE TABLE groups_permissions_acl(
     permission_read ENUM("Y", "N") NOT NULL,
     permission_update ENUM("Y", "N") NOT NULL,
     permission_delete ENUM("Y", "N") NOT NULL,
+    created_at DATETIME,
+    updated_at DATETIME,
+    deleted_at DATETIME,
     PRIMARY KEY (id)
 );
 

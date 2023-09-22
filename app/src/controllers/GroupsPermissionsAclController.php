@@ -51,6 +51,27 @@ use App\services\Database;
             }
         }
 
+        public function update(GroupsPermissionsAcl $groupsPermissionsAcl): void {
+            try {
+                $db = new Database();
+
+                $columnsAndValues = [
+                    "description" => $groupsPermissionsAcl->getDescrition(),
+                    "permission_create" => $groupsPermissionsAcl->getPermission_create(),
+                    "permission_read" => $groupsPermissionsAcl->getPermission_read(),
+                    "permission_update" => $groupsPermissionsAcl->getPermission_update(),
+                    "permission_delete" => $groupsPermissionsAcl->getPermission_delete(),
+                ];
+
+                $db->update($columnsAndValues, "groups_permissions_acl", "id = ".$groupsPermissionsAcl->getId());
+
+                Handlers::success("Feito", "As permissões do grupo foram atualizadas");
+            } catch (PDOException $e) {
+                Handlers::error("Error", "Ocorrue uma falha inesperada", $e->getMessage());
+                throw $e;
+            }
+        }
+
         public static function checkIfUserThenPermissionToInsert(User $user): void {
             try {
 
