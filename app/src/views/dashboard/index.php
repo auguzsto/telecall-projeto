@@ -4,7 +4,6 @@ use App\services\Session;
     
     Session::check();
     $user = $_SESSION['session'];
-    Session::isAdmin($user);
 
 ?>
 
@@ -20,4 +19,6 @@ use App\services\Session;
 </main>
 
 <?php include __DIR__ . "/modules/footer.php"; ?>
+
+<?php Session::checkPermissions($user); ?>
 

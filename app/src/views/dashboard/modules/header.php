@@ -1,7 +1,8 @@
 <?php 
+use App\models\GroupsPermissionsAcl;
 
-    function showToolsAdmin(int $isadmin, string $tool): string {
-        return $isadmin != 0 ? print $tool : ''; 
+    function showTools(GroupsPermissionsAcl $permissions, string $tool): string {
+        return $permissions->getPermission_create() == "Y" && $permissions->getPermission_read() == "Y" ? print $tool : '';
     }
 
 ?>
@@ -66,25 +67,32 @@
               Meu perfil
             </a>
           </li>
-          <?php showToolsAdmin($user->getIsAdmin(), 
+          <?php showTools($user->getGroupsPermissionsAcl(), 
           '<li class="nav-item">
             <a class="nav-link" href="/dashboard/user/?all">
               <span data-feather="bar-chart-2"></span>
               Usuários
             </a>
           </li>');?>
-          <?php showToolsAdmin($user->getIsAdmin(), 
+          <?php showTools($user->getGroupsPermissionsAcl(), 
           '<li class="nav-item">
             <a class="nav-link" href="/dashboard/log">
               <span data-feather="bar-chart-2"></span>
               Log de alterações
             </a>
           </li>');?>
-          <?php showToolsAdmin($user->getIsAdmin(), 
+          <?php showTools($user->getGroupsPermissionsAcl(), 
           '<li class="nav-item">
             <a class="nav-link" href="/dashboard/reports">
               <span data-feather="bar-chart-2"></span>
               Relatórios
+            </a>
+          </li>');?>
+          <?php showTools($user->getGroupsPermissionsAcl(), 
+          '<li class="nav-item">
+            <a class="nav-link" href="/dashboard/permissions">
+              <span data-feather="bar-chart-2"></span>
+              Permissões
             </a>
           </li>');?>
         </ul>

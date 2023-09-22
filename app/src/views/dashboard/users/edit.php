@@ -1,9 +1,9 @@
 <?php
 
 use App\models\User;
-use App\services\Logger;
 use App\services\Session;
 use App\controllers\UserController;
+use App\controllers\GroupsPermissionsAclController;
     
     Session::check();
     $user = $_SESSION['session'];
@@ -45,11 +45,15 @@ use App\controllers\UserController;
 
     if(isset($_POST['action_delete'])) {
 
+        GroupsPermissionsAclController::checkIfUserThenPermissionToDelete($user);
+
         $userController = new UserController();
         $userController->delete($userById);
     }
 
     if(isset($_POST['action'])) {
+
+        GroupsPermissionsAclController::checkIfUserThenPermissionToUpdate($user);
 
         $userController = new UserController();
 

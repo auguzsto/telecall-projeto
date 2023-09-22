@@ -106,7 +106,9 @@ use App\models\User;
 use App\controllers\UserController;
 
     if(isset($_POST['action'])) {
+
         $map = [
+            "id_groups_permissions_acl" => 2, // SET GROUP COMMON IN USER CREATE
             "first_name" => $_POST['first_name'],
             "last_name" => $_POST['last_name'],
             "mother_name" => $_POST['mother_name'],

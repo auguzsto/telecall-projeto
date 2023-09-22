@@ -2,6 +2,7 @@
 
 namespace App\services;
 
+use App\handlers\Handlers;
 use App\models\User;
 
     class Session {
@@ -16,7 +17,7 @@ use App\models\User;
 
         public static function twoFactorAuthentication(User $user) {
             session_start();
-            
+
             $_SESSION['2fa'] = $user;
             header("Location: /2FA");
         }
@@ -38,10 +39,14 @@ use App\models\User;
             
         }
 
-        public static function isAdmin(User $user) {
-            if($user->getIsAdmin() == 0) {
+        public static function checkPermissions(User $user) {
+            if($user->getGroupsPermissionsAcl()->getPermission_create() != "Y") {
                 return header('Location: /dashboard/profile');
               }
+
+            if($user->getGroupsPermissionsAcl()->getPermission_read() != "Y") {
+                return header('Location: /dashboard/signout');
+            }
         }
 
         public static function destroy() {

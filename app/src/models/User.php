@@ -1,11 +1,14 @@
 <?php
 
 namespace App\models;
+use App\controllers\GroupsPermissionsAclController;
+use App\services\Database;
 
     class User {
         
         private int $id;
         private int $isAdmin;
+        private GroupsPermissionsAcl $groupsPermissionsAcl;
         private string $first_name;
         private string $last_name;
         private string $mother_name;
@@ -24,6 +27,7 @@ namespace App\models;
             $user = new self();
             isset($map['id']) ? $user->setId($map['id']) : null;
             isset($map['isadmin']) ? $user->setIsAdmin($map['isadmin']) : $user->setIsAdmin(0);
+            $user->setGroupsPermissionsAcl(GroupsPermissionsAcl::fromMap($user->getGroupsPermissionsAclById($map['id_groups_permissions_acl'])));
             $user->setFirstName($map['first_name']);
             $user->setLastName($map['last_name']);
             $user->setMotherName($map['mother_name']);
@@ -37,7 +41,12 @@ namespace App\models;
             $user->setCreated_at($map['created_at']);
 
             return $user;
-    }
+        }
+
+        private function getGroupsPermissionsAclById(int $id): array {
+            $groupsPermissionsAclController = new GroupsPermissionsAclController();
+            return $groupsPermissionsAclController->findById($id)[0];
+        }
 
         public function setId(int $id): void {
             $this->id = $id;
@@ -45,6 +54,10 @@ namespace App\models;
 
         public function setIsAdmin(bool $isAdmin): void {
             $this->isAdmin = $isAdmin;
+        }
+
+        public function setGroupsPermissionsAcl(GroupsPermissionsAcl $groupsPermissionsAcl): void {
+            $this->groupsPermissionsAcl = $groupsPermissionsAcl;
         }
 
         public function setFirstName(string $first_name): void {
@@ -106,6 +119,10 @@ namespace App\models;
             return $this->isAdmin;
         }
 
+        public function getGroupsPermissionsAcl(): GroupsPermissionsAcl {
+            return $this->groupsPermissionsAcl;
+        }
+
         public function getFirstName(): string {
             return $this->first_name;
         }
@@ -157,4 +174,4 @@ namespace App\models;
         public function getDeleted_at(): string {
             return $this->deleted_at;
         }
-    }
+}

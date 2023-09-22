@@ -44,7 +44,7 @@ use App\services\Session;
                     $id = $user['id'];
                     echo "
                     <tr>
-                        <td>".$user['id']."</td>
+                        <td>".$id."</td>
                         <td><a href='/dashboad/user/?id=$id'>".$user['first_name']." ".$user['last_name']."</a></td>
                         <td>".$user['mother_name']."</td>
                         <td>".$user['cpf']."</td>

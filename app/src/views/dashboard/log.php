@@ -7,7 +7,7 @@ use App\controllers\UserController;
     
     Session::check();
     $user = $_SESSION['session'];
-    Session::isAdmin($user);
+    Session::checkPermissions($user);
 
     $db = new Database();
 
