@@ -4,7 +4,7 @@ use App\services\Session;
     
     Session::check();
     $user = $_SESSION['session'];
-    Session::isAdmin($user);
+    Session::checkPermissions($user);
 
     if(isset($r['id'])) {
         return require __DIR__ ."/edit.php";
