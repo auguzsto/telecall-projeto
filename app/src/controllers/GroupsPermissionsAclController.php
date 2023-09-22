@@ -1,6 +1,7 @@
 <?php
 
 namespace App\controllers;
+use App\models\GroupsPermissionsAcl;
 use Exception;
 use PDOException;
 use App\models\User;
@@ -26,6 +27,27 @@ use App\services\Database;
 
             } catch (PDOException $e) {
                 throw $e;
+            }
+        }
+
+        public function create(GroupsPermissionsAcl $groupsPermissionsAcl): void {
+            try {
+                $db = new Database();
+
+                $columnsAndValues = [
+                    "description" => $groupsPermissionsAcl->getDescrition(),
+                    "permission_create" => $groupsPermissionsAcl->getPermission_create(),
+                    "permission_read" => $groupsPermissionsAcl->getPermission_read(),
+                    "permission_update" => $groupsPermissionsAcl->getPermission_update(),
+                    "permission_delete" => $groupsPermissionsAcl->getPermission_create(),
+                ];
+
+                $db->insert($columnsAndValues, "groups_permissions_acl");
+
+                Handlers::success("Feito", "Operação realizada com sucesso");
+
+            } catch (PDOException $e) {
+                Handlers::error("Falha", "Ocorreu um erro inesperado", $e->getMessage());
             }
         }
 

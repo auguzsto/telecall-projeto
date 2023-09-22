@@ -19,6 +19,9 @@ use App\services\Session;
         <div class="col">
           <h1 class="h2">Grupos de acessos</h1>
         </div>
+        <div>
+          <a href="/dashboard/permissions/?add_group_acl"><div class="btn btn-dark">Adicionar</div></a>
+        </div>
       </div>
       <div class="table-responsive">
         <table class="table table-striped table-sm">

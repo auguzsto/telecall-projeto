@@ -15,7 +15,7 @@ use PDOException;
         private string $permission_update;
         private string $permission_delete;
 
-        private function __construct(int $id, string $description, string $permission_create, string $permission_read, string $permission_update, string $permission_delete) {
+        public function __construct(int $id, string $description, string $permission_create, string $permission_read, string $permission_update, string $permission_delete) {
             $this->setId($id);
             $this->setDescription($description);
             $this->setPermission_create($permission_create);
