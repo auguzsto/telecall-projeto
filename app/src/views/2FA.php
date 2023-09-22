@@ -9,6 +9,7 @@ use App\services\Database;
     $db = new Database();
     $asks = $db->select("ask_1, ask_2, ask_3", "asks_2fa")[0];
     $rand = rand(0, 2);
+    $tagIdByRand = $rand == 2 ? "cep" : null;
 
 ?>
 
@@ -34,8 +35,8 @@ use App\services\Database;
                     echo "
                     <h1>$asks[$rand]?</h1>
                     <form method='POST'>
-                        <input type='text' name='$rand'>
-                        <input type='submit' name='action'>
+                        <input type='text' class='form-control' name='$rand' id='$tagIdByRand'>
+                        <input type='submit' class='form-control btn btn-primary mt-2' value='Confirmar' name='action'>
                     </form>
                     ";
                 break;
@@ -44,8 +45,8 @@ use App\services\Database;
                     echo "
                     <h1>$asks[$rand]?</h1>
                     <form method='POST'>
-                        <input type='date' name='$rand'>
-                        <input type='submit' name='action'>
+                        <input type='date' class='form-control' name='$rand'>
+                        <input type='submit' class='form-control btn btn-primary mt-2' value='Confirmar' name='action'>
                     </form>
                     ";
             }
@@ -54,6 +55,13 @@ use App\services\Database;
        
 </body>
 </html>
+<script src="/app/assets/js/jquery.slim.min.js"></script>
+<script src="/app/assets/js/jquery.mask.min.js"></script>
+<script>
+    $(document).ready(function() {
+    $("#cep").mask('00000-000', {reverse: false});
+});
+</script>
 <?php
 
     if(isset($_POST['action'])) {
