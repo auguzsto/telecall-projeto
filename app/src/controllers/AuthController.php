@@ -19,7 +19,7 @@ use App\services\Database;
                 $auth = $db->selectWhere("*", "auth", "deleted_at IS NULL and basic_token = '$encode'")[0];
 
                 if($auth['basic_token'] != $encode) {
-                    Handlers::warning("Falha!", "Usuário ou senha inválidos.");
+                    throw new PDOException("Usuário ou senha inválidos.");
 
                 } else {
                     $user_id = $auth['user_id'];
@@ -28,9 +28,10 @@ use App\services\Database;
                     
                 }
 
+                throw new PDOException("Ocorreu um erro inesperado");
+
             } catch (PDOException $e) {
-                Handlers::error("Error", "Ocorreu um erro inesperado", $e->getMessage());
-                throw $e;
+                Handlers::warning("Falha",  $e->getMessage());
             }
         }
 
