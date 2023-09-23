@@ -26,6 +26,11 @@ use App\services\Session;
             <option value="Y">Sim</option>
             <option value="N">Não</option>
         </select>
+        <h5>Este grupo poder executar dados?</h5>
+        <select name="permission_execute" id="" class="form-control">
+            <option value="Y">Sim</option>
+            <option value="N">Não</option>
+        </select>
         <h5>Este grupo poder criar dados?</h5>
         <select name="permission_create" id="" class="form-control">
             <option value="N">Não</option>
@@ -51,13 +56,13 @@ use App\services\Session;
         if(isset($_POST['action'])) {
 
             AccessControlController::checkIfUserThenPermissionToInsert($user);
-            AccessControlController::checkIfUserThenPermissionToUpdate($user);
 
             $accessControlController = new AccessControlController();
             $accessControl = new AccessControl(
                 0, 
                 $_POST['description'], 
                 $_POST['permission_create'],
+                $_POST['permission_execute'],
                 $_POST['permission_read'],
                 $_POST['permission_update'],
                 $_POST['permission_delete'],

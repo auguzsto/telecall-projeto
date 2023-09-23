@@ -3,7 +3,7 @@
 use App\models\AccessControl;
 
     function showTools(AccessControl $accessControl, string $tool): string {
-        return $accessControl->getPermission_create() == "Y" && $accessControl->getPermission_read() == "Y" ? print $tool : '';
+        return $accessControl->getPermission_execute() == "Y" && $accessControl->getPermission_read() == "Y" ? print $tool : '';
     }
 
 ?>
