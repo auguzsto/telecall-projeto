@@ -135,7 +135,7 @@ use App\services\Database;
         public static function checkIfUserThenPermissionToDelete(User $user): void {
             try {
 
-                if($user->getAccessControl()->getPermission_update() != "Y") {
+                if($user->getAccessControl()->getPermission_delete() != "Y") {
                     throw new Exception("Você não possui permissão para exclusão");
                 }
 
