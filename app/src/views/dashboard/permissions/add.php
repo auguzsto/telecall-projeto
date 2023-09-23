@@ -51,6 +51,7 @@ use App\services\Session;
         if(isset($_POST['action'])) {
 
             AccessControlController::checkIfUserThenPermissionToInsert($user);
+            AccessControlController::checkIfUserThenPermissionToUpdate($user);
 
             $accessControlController = new AccessControlController();
             $accessControl = new AccessControl(
