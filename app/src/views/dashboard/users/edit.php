@@ -10,6 +10,8 @@ use App\controllers\UserController;
 
     $userController = new UserController();
     $userById = User::fromMap($userController->findById($r['id'])[0]);
+    $accessControlController = new AccessControlController();
+    $accessControlList = $accessControlController->findAll();
 
 ?>
 
@@ -30,6 +32,21 @@ use App\controllers\UserController;
         <div class="input-group"><input class="form-control" type="password" value="<?php echo $user->getPassword(); ?>" disabled><a href="/dashboard/user/?changepassword=<?php echo $r['id']; ?>"><div class="btn btn-dark">Alterar senha</div></a></div>
         <h5>E-mail</h5>
         <input class="form-control" type="text" name="email" value="<?php echo $userById->getEmail(); ?>">
+        <h5>Permissões</h5>
+        <select name="id_access_control" id="" class="form-control">
+            <?php 
+
+                foreach($accessControlList as $permissions) {
+                    $id = $permissions['id'];
+                    $description = $permissions['description'];
+                    $selected = $userById->getAccessControl()->getId() == $id ? "selected" : "";
+                    echo "
+                        <option value='$id' $selected>$description</option>
+                    ";
+                }
+
+            ?>
+        </select>
         <h5>CEP</h5>
         <input class="form-control" id="cep" name="cep" type="text" value="<?php echo $userById->getCep(); ?>">
         <h5>Celular</h5>
@@ -57,6 +74,7 @@ use App\controllers\UserController;
 
         $userController = new UserController();
 
+        $userById->getAccessControl()->setId($_POST['id_access_control']);
         $userById->setEmail($_POST['email']);
         $userById->setPhone($_POST['phone']);
         $userById->setCep($_POST['cep']);

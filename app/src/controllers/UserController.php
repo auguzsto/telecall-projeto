@@ -53,6 +53,7 @@ use App\services\Database;
                 $db = new Database();
 
                 $columnsAndValues = [
+                    "id_access_control" => $user->getAccessControl()->getId(),
                     "email" => $user->getEmail(),
                     "cep" => $user->getCep(),
                     "address" => $user->getAddress(),
