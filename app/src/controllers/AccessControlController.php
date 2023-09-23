@@ -130,7 +130,7 @@ use App\services\Database;
             }
         }
 
-        public function translateYandN(string $permission): string {
+        public function translateValues(string $permission): string {
             return $permission != "Y" ? "Não" : "Sim";
         }
     }
