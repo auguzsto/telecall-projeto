@@ -129,4 +129,8 @@ use App\services\Database;
                 throw $e;
             }
         }
+
+        public function translateValue(string $permission): string {
+            return $permission != "Y" ? "Não" : "Sim";
+        }
     }
