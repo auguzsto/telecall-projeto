@@ -1,7 +1,7 @@
 <?php
 
+use App\controllers\AccessControlController;
 use App\models\User;
-use App\services\Logger;
 use App\services\Session;
 use App\handlers\Handlers;
 use App\controllers\UserController;
@@ -31,6 +31,8 @@ use App\controllers\UserController;
 <?php
 
     if(isset($_POST['action'])) {
+
+        AccessControlController::checkIfUserThenPermissionToUpdate($user);
 
         $userController = new UserController();
         $password = $_POST['new-password'];
