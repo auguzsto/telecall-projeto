@@ -1,6 +1,7 @@
 <?php
 
 namespace App\models;
+use App\controllers\AccessControlController;
 use App\controllers\GroupsPermissionsAclController;
 use App\services\Database;
 
@@ -8,7 +9,7 @@ use App\services\Database;
         
         private int $id;
         private int $isAdmin;
-        private GroupsPermissionsAcl $groupsPermissionsAcl;
+        private AccessControl $accessControl;
         private string $first_name;
         private string $last_name;
         private string $mother_name;
@@ -27,7 +28,7 @@ use App\services\Database;
             $user = new self();
             isset($map['id']) ? $user->setId($map['id']) : null;
             isset($map['isadmin']) ? $user->setIsAdmin($map['isadmin']) : $user->setIsAdmin(0);
-            $user->setGroupsPermissionsAcl(GroupsPermissionsAcl::fromMap($user->getGroupsPermissionsAclById($map['id_groups_permissions_acl'])));
+            $user->setAccessControl(AccessControl::fromMap($user->getAccessControlById($map['id_access_control'])));
             $user->setFirstName($map['first_name']);
             $user->setLastName($map['last_name']);
             $user->setMotherName($map['mother_name']);
@@ -43,9 +44,9 @@ use App\services\Database;
             return $user;
         }
 
-        private function getGroupsPermissionsAclById(int $id): array {
-            $groupsPermissionsAclController = new GroupsPermissionsAclController();
-            return $groupsPermissionsAclController->findById($id)[0];
+        private function getAccessControlById(int $id): array {
+            $accessControlController = new AccessControlController();
+            return $accessControlController->findById($id)[0];
         }
 
         public function setId(int $id): void {
@@ -56,8 +57,8 @@ use App\services\Database;
             $this->isAdmin = $isAdmin;
         }
 
-        public function setGroupsPermissionsAcl(GroupsPermissionsAcl $groupsPermissionsAcl): void {
-            $this->groupsPermissionsAcl = $groupsPermissionsAcl;
+        public function setAccessControl(AccessControl $accessControl): void {
+            $this->accessControl = $accessControl;
         }
 
         public function setFirstName(string $first_name): void {
@@ -119,8 +120,8 @@ use App\services\Database;
             return $this->isAdmin;
         }
 
-        public function getGroupsPermissionsAcl(): GroupsPermissionsAcl {
-            return $this->groupsPermissionsAcl;
+        public function getAccessControl(): AccessControl {
+            return $this->accessControl;
         }
 
         public function getFirstName(): string {

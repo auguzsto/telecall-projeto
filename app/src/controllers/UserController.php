@@ -16,7 +16,7 @@ use App\services\Database;
 
                 $columnsAndValues = [
                     "isadmin" => $user->getIsAdmin(),
-                    "id_groups_permissions_acl" => $user->getGroupsPermissionsAcl()->getId(),
+                    "id_access_control" => $user->getAccessControl()->getId(),
                     "first_name" =>$user->getFirstName(), 
                     "last_name" => $user->getLastName(),
                     "mother_name" => $user->getMotherName(),

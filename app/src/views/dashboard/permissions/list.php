@@ -1,14 +1,14 @@
 <?php
 
-use App\controllers\GroupsPermissionsAclController;
+use App\controllers\AccessControlController;
 use App\services\Session;
 
     Session::check();
     $user = $_SESSION['session'];
     Session::checkPermissions($user);
 
-    $groupsPermissionsAcl = new GroupsPermissionsAclController();
-    $groups = $groupsPermissionsAcl->findAll();
+    $accessControlController = new AccessControlController();
+    $accessControlList = $accessControlController->findAll();
 
 ?>
 
@@ -17,10 +17,10 @@ use App\services\Session;
 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <div class="col">
-          <h1 class="h2">Grupos de acessos</h1>
+          <h1 class="h2">List de controle de acesso</h1>
         </div>
         <div>
-          <a href="/dashboard/permissions/?add_group_acl"><div class="btn btn-dark">Adicionar</div></a>
+          <a href="/dashboard/permissions/?add_acl"><div class="btn btn-dark">Adicionar</div></a>
         </div>
       </div>
       <div class="table-responsive">
@@ -38,16 +38,16 @@ use App\services\Session;
           <tbody>
             <?php
 
-                foreach($groups as $group) {
-                    $id = $group['id'];
+                foreach($accessControlList as $accessControl) {
+                    $id = $accessControl['id'];
                     echo "
                     <tr>
                         <td>".$id."</td>
-                        <td><a href='/dashboad/permissions/?id_group_acl=$id'>".$group['description']."</a></td>
-                        <td>".$group['permission_read']."</td>
-                        <td>".$group['permission_create']."</td>
-                        <td>".$group['permission_update']."</td>
-                        <td>".$group['permission_delete']."</td>
+                        <td><a href='/dashboad/permissions/?id_acl=$id'>".$accessControl['description']."</a></td>
+                        <td>".$accessControl['permission_read']."</td>
+                        <td>".$accessControl['permission_create']."</td>
+                        <td>".$accessControl['permission_update']."</td>
+                        <td>".$accessControl['permission_delete']."</td>
                     </tr>
             ";
                 }

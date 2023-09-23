@@ -1,8 +1,8 @@
 <?php
 
-use App\models\GroupsPermissionsAcl;
+use App\controllers\AccessControlController;
+use App\models\AccessControl;
 use App\services\Session;
-use App\controllers\GroupsPermissionsAclController;
     
     Session::check();
     $user = $_SESSION['session'];
@@ -14,7 +14,7 @@ use App\controllers\GroupsPermissionsAclController;
 
 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Criar grupo de permissões</h1>
+        <h1 class="h2">Criar controle de acesso</h1>
     </div>
     <form method="POST">
         <h5>Nome</h5>
@@ -50,10 +50,10 @@ use App\controllers\GroupsPermissionsAclController;
 
         if(isset($_POST['action'])) {
 
-            GroupsPermissionsAclController::checkIfUserThenPermissionToInsert($user);
+            AccessControlController::checkIfUserThenPermissionToInsert($user);
 
-            $groupsPermissionsAclController = new GroupsPermissionsAclController();
-            $groupsPermissionsAcl = new GroupsPermissionsAcl(
+            $accessControlController = new AccessControlController();
+            $accessControl = new AccessControl(
                 0, 
                 $_POST['description'], 
                 $_POST['permission_create'],
@@ -62,7 +62,7 @@ use App\controllers\GroupsPermissionsAclController;
                 $_POST['permission_delete'],
             );
 
-            $groupsPermissionsAclController->create($groupsPermissionsAcl);
+            $accessControlController->create($accessControl);
         }
 
 ?>
