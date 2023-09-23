@@ -30,6 +30,7 @@ use App\services\Session;
               <th>ID</th>
               <th>Descrição</th>
               <th>Ler</th>
+              <th>Executar</th>
               <th>Criar</th>
               <th>Atualizar</th>
               <th>Deletar</th>
@@ -45,6 +46,7 @@ use App\services\Session;
                         <td>".$id."</td>
                         <td><a href='/dashboad/permissions/?id_acl=$id'>".$accessControl['description']."</a></td>
                         <td>".$accessControlController->translateValue($accessControl['permission_read'])."</td>
+                        <td>".$accessControlController->translateValue($accessControl['permission_execute'])."</td>
                         <td>".$accessControlController->translateValue($accessControl['permission_create'])."</td>
                         <td>".$accessControlController->translateValue($accessControl['permission_update'])."</td>
                         <td>".$accessControlController->translateValue($accessControl['permission_delete'])."</td>

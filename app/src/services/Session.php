@@ -40,7 +40,7 @@ use App\models\User;
         }
 
         public static function checkPermissions(User $user) {
-            if($user->getAccessControl()->getPermission_create() != "Y") {
+            if($user->getAccessControl()->getPermission_execute() != "Y") {
                 return header('Location: /dashboard/profile');
               }
 

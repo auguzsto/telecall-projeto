@@ -40,6 +40,26 @@ use App\services\Session;
                 }
             ?>
         </select>
+        <h5>Este grupo poder executar dados?</h5>
+        <select name="permission_execute" id="" class="form-control">
+            <?php 
+                switch($accessControl->getPermission_execute()) {
+                    case "Y":
+                        echo "
+                            <option value='N'>Não</option>
+                            <option value='Y' selected>Sim</option>
+                        ";
+                        break;
+    
+                        case "N":
+                            echo "
+                            <option value='N' select>Não</option>
+                            <option value='Y'>Sim</option>
+                        ";
+                        break;
+                }
+            ?>
+        </select>
         <h5>Este grupo poder criar dados?</h5>
         <select name="permission_create" id="" class="form-control">
             <?php 
@@ -120,6 +140,7 @@ use App\services\Session;
         AccessControlController::checkIfUserThenPermissionToUpdate($user);
 
         $accessControl->setPermission_create($_POST['permission_create']);
+        $accessControl->setPermission_execute($_POST['permission_execute']);
         $accessControl->setPermission_delete($_POST['permission_delete']);
         $accessControl->setPermission_read($_POST['permission_read']);
         $accessControl->setPermission_update($_POST['permission_update']);

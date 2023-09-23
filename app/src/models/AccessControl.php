@@ -7,14 +7,16 @@ namespace App\models;
         private int $id;
         private string $description;
         private string $permission_create;
+        private string $permission_execute;
         private string $permission_read;
         private string $permission_update;
         private string $permission_delete;
 
-        public function __construct(int $id, string $description, string $permission_create, string $permission_read, string $permission_update, string $permission_delete) {
+        public function __construct(int $id, string $description, string $permission_create, string $permission_execute, string $permission_read, string $permission_update, string $permission_delete) {
             $this->setId($id);
             $this->setDescription($description);
             $this->setPermission_create($permission_create);
+            $this->setPermission_execute($permission_execute);
             $this->setPermission_read($permission_read);
             $this->setPermission_update($permission_update);
             $this->setPermission_delete($permission_delete);
@@ -25,6 +27,7 @@ namespace App\models;
                 $map['id'], 
                 $map['description'],
                 $map['permission_create'],
+                $map['permission_execute'],
                 $map['permission_read'],
                 $map['permission_update'],
                 $map['permission_delete'],
@@ -43,6 +46,10 @@ namespace App\models;
 
         public function getPermission_create(): string {
             return $this->permission_create;
+        }
+
+        public function getPermission_execute(): string {
+            return $this->permission_execute;
         }
 
         public function getPermission_read(): string {
@@ -67,6 +74,10 @@ namespace App\models;
 
         public function setPermission_create($permission_create): void {
             $this->permission_create = $permission_create;
+        }
+
+        public function setPermission_execute($permission_execute): void {
+            $this->permission_execute = $permission_execute;
         }
 
         public function setPermission_read($permission_read): void {

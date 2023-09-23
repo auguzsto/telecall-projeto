@@ -37,6 +37,7 @@ use App\services\Database;
                 $columnsAndValues = [
                     "description" => $accessControl->getDescrition(),
                     "permission_create" => $accessControl->getPermission_create(),
+                    "permission_execute" => $accessControl->getPermission_execute(),
                     "permission_read" => $accessControl->getPermission_read(),
                     "permission_update" => $accessControl->getPermission_update(),
                     "permission_delete" => $accessControl->getPermission_create(),
@@ -58,6 +59,7 @@ use App\services\Database;
                 $columnsAndValues = [
                     "description" => $accessControl->getDescrition(),
                     "permission_create" => $accessControl->getPermission_create(),
+                    "permission_execute" => $accessControl->getPermission_execute(),
                     "permission_read" => $accessControl->getPermission_read(),
                     "permission_update" => $accessControl->getPermission_update(),
                     "permission_delete" => $accessControl->getPermission_delete(),
@@ -94,6 +96,19 @@ use App\services\Database;
             try {
 
                 if($user->getAccessControl()->getPermission_create() != "Y") {
+                    throw new Exception("Você não possui permissão para inserção");
+                }
+
+            } catch (Exception $e) {
+                Handlers::warning("Negado", $e->getMessage());
+                throw $e;
+            }
+        }
+
+        public static function checkIfUserThenPermissionToExecute(User $user): void {
+            try {
+
+                if($user->getAccessControl()->getPermission_execute() != "Y") {
                     throw new Exception("Você não possui permissão para inserção");
                 }
 
