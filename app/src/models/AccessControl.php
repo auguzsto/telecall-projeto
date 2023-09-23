@@ -1,12 +1,8 @@
 <?php
 
 namespace App\models;
-use App\controllers\GroupsPermissionsAclController;
-use App\controllers\UserController;
-use App\handlers\Handlers;
-use PDOException;
 
-    class GroupsPermissionsAcl {
+    class AccessControl {
 
         private int $id;
         private string $description;
@@ -24,8 +20,8 @@ use PDOException;
             $this->setPermission_delete($permission_delete);
         }
 
-        public static function fromMap(array $map): GroupsPermissionsAcl {
-            $groupsPermissionsAcl = new self(
+        public static function fromMap(array $map): AccessControl {
+            $access_control = new self(
                 $map['id'], 
                 $map['description'],
                 $map['permission_create'],
@@ -34,7 +30,7 @@ use PDOException;
                 $map['permission_delete'],
             );
 
-            return $groupsPermissionsAcl;
+            return $access_control;
         }
 
         public function getId(): int {

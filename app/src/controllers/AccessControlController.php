@@ -1,19 +1,19 @@
 <?php
 
 namespace App\controllers;
-use App\models\GroupsPermissionsAcl;
+use App\models\AccessControl;
 use Exception;
 use PDOException;
 use App\models\User;
 use App\handlers\Handlers;
 use App\services\Database;
 
-    class GroupsPermissionsAclController {
+    class AccessControlController {
 
         public function findAll(): array {
             try {
                 $db = new Database();
-                return $db->select("*", "groups_permissions_acl");
+                return $db->selectWhere("*", "access_control", "deleted_at IS NULL");
 
             } catch (PDOException $e) {
                 throw $e;
@@ -23,26 +23,26 @@ use App\services\Database;
         public function findById(int $id): array {
             try {
                 $db = new Database();
-                return $db->selectWhere("*", "groups_permissions_acl", "id = $id");
+                return $db->selectWhere("*", "access_control", "id = $id");
 
             } catch (PDOException $e) {
                 throw $e;
             }
         }
 
-        public function create(GroupsPermissionsAcl $groupsPermissionsAcl): void {
+        public function create(AccessControl $accessControl): void {
             try {
                 $db = new Database();
 
                 $columnsAndValues = [
-                    "description" => $groupsPermissionsAcl->getDescrition(),
-                    "permission_create" => $groupsPermissionsAcl->getPermission_create(),
-                    "permission_read" => $groupsPermissionsAcl->getPermission_read(),
-                    "permission_update" => $groupsPermissionsAcl->getPermission_update(),
-                    "permission_delete" => $groupsPermissionsAcl->getPermission_create(),
+                    "description" => $accessControl->getDescrition(),
+                    "permission_create" => $accessControl->getPermission_create(),
+                    "permission_read" => $accessControl->getPermission_read(),
+                    "permission_update" => $accessControl->getPermission_update(),
+                    "permission_delete" => $accessControl->getPermission_create(),
                 ];
 
-                $db->insert($columnsAndValues, "groups_permissions_acl");
+                $db->insert($columnsAndValues, "access_control");
 
                 Handlers::success("Feito", "Operação realizada com sucesso");
 
@@ -51,21 +51,39 @@ use App\services\Database;
             }
         }
 
-        public function update(GroupsPermissionsAcl $groupsPermissionsAcl): void {
+        public function update(AccessControl $accessControl): void {
             try {
                 $db = new Database();
 
                 $columnsAndValues = [
-                    "description" => $groupsPermissionsAcl->getDescrition(),
-                    "permission_create" => $groupsPermissionsAcl->getPermission_create(),
-                    "permission_read" => $groupsPermissionsAcl->getPermission_read(),
-                    "permission_update" => $groupsPermissionsAcl->getPermission_update(),
-                    "permission_delete" => $groupsPermissionsAcl->getPermission_delete(),
+                    "description" => $accessControl->getDescrition(),
+                    "permission_create" => $accessControl->getPermission_create(),
+                    "permission_read" => $accessControl->getPermission_read(),
+                    "permission_update" => $accessControl->getPermission_update(),
+                    "permission_delete" => $accessControl->getPermission_delete(),
                 ];
 
-                $db->update($columnsAndValues, "groups_permissions_acl", "id = ".$groupsPermissionsAcl->getId());
+                $db->update($columnsAndValues, "access_control", "id = ".$accessControl->getId());
 
                 Handlers::success("Feito", "As permissões do grupo foram atualizadas");
+            } catch (PDOException $e) {
+                Handlers::error("Error", "Ocorrue uma falha inesperada", $e->getMessage());
+                throw $e;
+            }
+        }
+
+        public function delete(AccessControl $accessControl): void {
+            try {
+                $db = new Database();
+
+                $columnsAndValues = [
+                    "deleted_at" => date("Y-m-d H:i:s")
+                ];
+
+                $db->update($columnsAndValues, "access_control", "id = ".$accessControl->getId());
+
+                Handlers::success("Feito", "A permissão foi deletada");
+
             } catch (PDOException $e) {
                 Handlers::error("Error", "Ocorrue uma falha inesperada", $e->getMessage());
                 throw $e;
@@ -75,7 +93,7 @@ use App\services\Database;
         public static function checkIfUserThenPermissionToInsert(User $user): void {
             try {
 
-                if($user->getGroupsPermissionsAcl()->getPermission_create() != "Y") {
+                if($user->getAccessControl()->getPermission_create() != "Y") {
                     throw new Exception("Você não possui permissão para inserção");
                 }
 
@@ -89,7 +107,7 @@ use App\services\Database;
         public static function checkIfUserThenPermissionToUpdate(User $user): void {
             try {
 
-                if($user->getGroupsPermissionsAcl()->getPermission_update() != "Y") {
+                if($user->getAccessControl()->getPermission_update() != "Y") {
                     throw new Exception("Você não possui permissão para atualização");
                 }
 
@@ -102,7 +120,7 @@ use App\services\Database;
         public static function checkIfUserThenPermissionToDelete(User $user): void {
             try {
 
-                if($user->getGroupsPermissionsAcl()->getPermission_update() != "Y") {
+                if($user->getAccessControl()->getPermission_update() != "Y") {
                     throw new Exception("Você não possui permissão para exclusão");
                 }
 

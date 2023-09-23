@@ -40,11 +40,11 @@ use App\models\User;
         }
 
         public static function checkPermissions(User $user) {
-            if($user->getGroupsPermissionsAcl()->getPermission_create() != "Y") {
+            if($user->getAccessControl()->getPermission_create() != "Y") {
                 return header('Location: /dashboard/profile');
               }
 
-            if($user->getGroupsPermissionsAcl()->getPermission_read() != "Y") {
+            if($user->getAccessControl()->getPermission_read() != "Y") {
                 return header('Location: /dashboard/signout');
             }
         }

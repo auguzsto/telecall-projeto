@@ -1,8 +1,9 @@
-<?php 
-use App\models\GroupsPermissionsAcl;
+<?php
 
-    function showTools(GroupsPermissionsAcl $permissions, string $tool): string {
-        return $permissions->getPermission_create() == "Y" && $permissions->getPermission_read() == "Y" ? print $tool : '';
+use App\models\AccessControl;
+
+    function showTools(AccessControl $accessControl, string $tool): string {
+        return $accessControl->getPermission_create() == "Y" && $accessControl->getPermission_read() == "Y" ? print $tool : '';
     }
 
 ?>
@@ -67,28 +68,28 @@ use App\models\GroupsPermissionsAcl;
               Meu perfil
             </a>
           </li>
-          <?php showTools($user->getGroupsPermissionsAcl(), 
+          <?php showTools($user->getAccessControl(), 
           '<li class="nav-item">
             <a class="nav-link" href="/dashboard/user/?all">
               <span data-feather="bar-chart-2"></span>
               Usuários
             </a>
           </li>');?>
-          <?php showTools($user->getGroupsPermissionsAcl(), 
+          <?php showTools($user->getAccessControl(), 
           '<li class="nav-item">
             <a class="nav-link" href="/dashboard/log">
               <span data-feather="bar-chart-2"></span>
               Log de alterações
             </a>
           </li>');?>
-          <?php showTools($user->getGroupsPermissionsAcl(), 
+          <?php showTools($user->getAccessControl(), 
           '<li class="nav-item">
             <a class="nav-link" href="/dashboard/reports">
               <span data-feather="bar-chart-2"></span>
               Relatórios
             </a>
           </li>');?>
-          <?php showTools($user->getGroupsPermissionsAcl(), 
+          <?php showTools($user->getAccessControl(), 
           '<li class="nav-item">
             <a class="nav-link" href="/dashboard/permissions">
               <span data-feather="bar-chart-2"></span>
