@@ -44,10 +44,10 @@ use App\services\Session;
                     <tr>
                         <td>".$id."</td>
                         <td><a href='/dashboad/permissions/?id_acl=$id'>".$accessControl['description']."</a></td>
-                        <td>".$accessControl['permission_read']."</td>
-                        <td>".$accessControl['permission_create']."</td>
-                        <td>".$accessControl['permission_update']."</td>
-                        <td>".$accessControl['permission_delete']."</td>
+                        <td>".$accessControlController->translateYandN($accessControl['permission_read'])."</td>
+                        <td>".$accessControlController->translateYandN($accessControl['permission_create'])."</td>
+                        <td>".$accessControlController->translateYandN($accessControl['permission_update'])."</td>
+                        <td>".$accessControlController->translateYandN($accessControl['permission_delete'])."</td>
                     </tr>
             ";
                 }
