@@ -25,7 +25,7 @@ use App\services\Database;
 </head>
 <body>
 <nav class="navbar navbar-extand-lg light bg-light shadow p-3 mb-5 bg-white rounded">
-    <a href="/"><img src="app/assets/images/navbar.png" class="navbar brand img-fluid"></a>
+    <a href="/"><img src="/app/assets/images/navbar.png" class="navbar brand img-fluid"></a>
 </nav>
     <div class="container">
         <?php 

@@ -2,19 +2,19 @@
 use App\services\Router;
 
     Router::get("/", "app/src/views/index.php");
-    Router::get("/login", "app/src/views/login.php");
-    Router::get("/cadastro", "app/src/views/cadastro.php");
+    Router::get("/login", "app/src/views/modules/auth/login.php");
+    Router::get("/cadastro", "app/src/views/modules/auth/cadastro.php");
 
     //Services
-    Router::get("/servicos/cpaas", "app/src/views/servicos/cpaas.php");
-    Router::get("/servicos/eventos", "app/src/views/servicos/eventos.php");
-    Router::get("/servicos/infra", "app/src/views/servicos/infra.php");
-    Router::get("/servicos/internet", "app/src/views/servicos/internet.php");
-    Router::get("/servicos/telefonia", "app/src/views/servicos/telefonia.php");
-    Router::get("/servicos/mobilidade", "app/src/views/servicos/mobilidade.php");
+    Router::get("/services/cpaas", "app/src/views/modules/services/cpaas.php");
+    Router::get("/services/eventos", "app/src/views/modules/services/eventos.php");
+    Router::get("/services/infra", "app/src/views/modules/services/infra.php");
+    Router::get("/services/internet", "app/src/views/modules/services/internet.php");
+    Router::get("/services/telefonia", "app/src/views/modules/services/telefonia.php");
+    Router::get("/services/mobilidade", "app/src/views/modules/services/mobilidade.php");
 
     //2FA
-    Router::get("/2FA", "app/src/views/2FA.php");
+    Router::get("/2FA", "app/src/views/modules/auth/2FA.php");
 
     //Dashboard
     Router::get("/dashboard/", "app/src/views/dashboard/index.php");
