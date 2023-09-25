@@ -29,57 +29,57 @@
       <div class="collapse navbar-collapse" id="navbarScroll">
         <ul class="navbar-nav mr-auto my-2 my-lg-0 navbar-nav-scroll" style="max-height: 100vh">
           <li class="nav-item">
-            <a class="nav-link text-primary bg-primary rounded text-light p-2" href="/servicos/cpaas">
+            <a class="nav-link text-primary bg-primary rounded text-light p-2" href="/services/cpaas">
             <i class="fas fa-cloud-arrow-up"></i> CPaaS
             </a>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle text-primary" href="/servicos/internet" id="navbarScrollingDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle text-primary" href="/services/internet" id="navbarScrollingDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
               Internet
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-              <li><a class="dropdown-item" href="/servicos/internet">Internet Dedicada</a></li>
-              <li><a class="dropdown-item" href="/servicos/internet">Banda Larga</a></li>
-              <li><a href="/servicos/internet" class="dropdown-item">Wifi</a></li>
+              <li><a class="dropdown-item" href="/services/internet">Internet Dedicada</a></li>
+              <li><a class="dropdown-item" href="/services/internet">Banda Larga</a></li>
+              <li><a href="/services/internet" class="dropdown-item">Wifi</a></li>
             </ul>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle text-primary" href="/servicos/telefonia" id="navbarScrollingDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle text-primary" href="/services/telefonia" id="navbarScrollingDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
               Telefonia
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-              <li><a class="dropdown-item" href="/servicos/telefonia">PABX IP Virtual</a></li>
-              <li><a class="dropdown-item" href="/servicos/telefonia">E1</a></li>
-              <li><a href="/servicos/telefonia" class="dropdown-item">SIP TRUNK</a></li>
-              <li><a href="/servicos/telefonia" class="dropdown-item">Números 0800 e 40XX</a></li>
+              <li><a class="dropdown-item" href="/services/telefonia">PABX IP Virtual</a></li>
+              <li><a class="dropdown-item" href="/services/telefonia">E1</a></li>
+              <li><a href="/services/telefonia" class="dropdown-item">SIP TRUNK</a></li>
+              <li><a href="/services/telefonia" class="dropdown-item">Números 0800 e 40XX</a></li>
             </ul>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle text-primary" href="/servicos/infra" id="navbarScrollingDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle text-primary" href="/services/infra" id="navbarScrollingDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
               Rede e Infraestrutura
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-              <li><a class="dropdown-item" href="/servicos/infra">Ponto-a-Ponto</a></li>
-              <li><a class="dropdown-item" href="/servicos/infra">MPLS</a></li>
-              <li><a href="/servicos/infra" class="dropdown-item">Fibra Apagada e Dutos</a></li>
-              <li><a href="/servicos/infra" class="dropdown-item">Co-location</a></li>
+              <li><a class="dropdown-item" href="/services/infra">Ponto-a-Ponto</a></li>
+              <li><a class="dropdown-item" href="/services/infra">MPLS</a></li>
+              <li><a href="/services/infra" class="dropdown-item">Fibra Apagada e Dutos</a></li>
+              <li><a href="/services/infra" class="dropdown-item">Co-location</a></li>
             </ul>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle text-primary" href="/servicos/mobilidade" id="navbarScrollingDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle text-primary" href="/services/mobilidade" id="navbarScrollingDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
               Mobilidade
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-              <li><a class="dropdown-item" href="/servicos/mobilidade">Celular empresarial</a></li>
-              <li><a class="dropdown-item" href="/servicos/mobilidade">MVNA/E</a></li>
+              <li><a class="dropdown-item" href="/services/mobilidade">Celular empresarial</a></li>
+              <li><a class="dropdown-item" href="/services/mobilidade">MVNA/E</a></li>
             </ul>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle text-primary" href="/servicos/eventos" id="navbarScrollingDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle text-primary" href="/services/eventos" id="navbarScrollingDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
               Eventos
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-              <li><a class="dropdown-item" href="/servicos/eventos">Serviços para Eventos</a></li>
-              <li><a class="dropdown-item" href="/servicos/eventos">Eventos Telecall</a></li>
+              <li><a class="dropdown-item" href="/services/eventos">Serviços para Eventos</a></li>
+              <li><a class="dropdown-item" href="/services/eventos">Eventos Telecall</a></li>
             </ul>
           </li>
           <li class="nav-item dropdown">

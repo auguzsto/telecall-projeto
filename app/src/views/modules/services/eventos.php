@@ -1,4 +1,4 @@
-<?php include "app/src/views/modules/header.php"; ?>
+<?php require __DIR__ ."/../../header.php"; ?>
 
 <div class="row no-gutters" id="rowFront">
   <div class="container col-xl-11 default text-center mb-3">
@@ -72,4 +72,4 @@
     </div>
 </div>
 
-<?php include "app/src/views/modules/footer.php"; ?>
+<?php require __DIR__ ."/../../footer.php"; ?>

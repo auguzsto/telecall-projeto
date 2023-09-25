@@ -11,7 +11,7 @@ use App\services\Session;
 
 ?>
 
-<?php require __DIR__ . "/../modules/header.php" ?>
+<?php require __DIR__ . "/../../header.php"; ?>
 
 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
@@ -19,7 +19,7 @@ use App\services\Session;
           <h1 class="h2">Usuário por nome</h1>
         </div>
         <div class="col d-flex justify-content-end">
-          <?php include __DIR__ . "/../modules/input_search.php"; ?>
+        <?php require __DIR__ . "/../../components/input_search.php"; ?>
         </div>
       </div>
       <div class="table-responsive">
@@ -63,4 +63,4 @@ use App\services\Session;
 </main>
 
 
-<?php require __DIR__ . "/../modules/footer.php" ?>
+<?php require __DIR__ . "/../../footer.php"; ?>

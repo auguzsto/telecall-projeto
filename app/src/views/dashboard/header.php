@@ -70,7 +70,7 @@ use App\models\AccessControl;
           </li>
           <?php showTools($user->getAccessControl(), 
           '<li class="nav-item">
-            <a class="nav-link" href="/dashboard/user/?all">
+            <a class="nav-link" href="/dashboard/users">
               <span data-feather="bar-chart-2"></span>
               Usuários
             </a>

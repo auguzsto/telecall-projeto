@@ -1,4 +1,4 @@
-<?php include "modules/header.php"; ?>
+<?php include "header.php"; ?>
 
     <div class="row no-gutters" id="rowFront">
         <div class="container col-xl-11 default text-center p-2" id="logoFront">
@@ -82,4 +82,4 @@
         </div>
     </div>
 
-<?php include "modules/footer.php"; ?>
+<?php include "footer.php"; ?>
