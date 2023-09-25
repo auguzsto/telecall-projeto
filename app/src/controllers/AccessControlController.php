@@ -2,6 +2,7 @@
 
 namespace App\controllers;
 use App\models\AccessControl;
+use App\services\AccessUserModule;
 use Exception;
 use PDOException;
 use App\models\User;
@@ -88,6 +89,19 @@ use App\services\Database;
 
             } catch (PDOException $e) {
                 Handlers::error("Error", "Ocorrue uma falha inesperada", $e->getMessage());
+                throw $e;
+            }
+        }
+
+        public static function checkIfUserThenPermissionToRead(User $user): void {
+            try {
+
+                if($user->getAccessControl()->getPermission_read() != "Y") {
+                    throw new Exception("Você não possui permissão para leitura");
+                }
+
+            } catch (Exception $e) {
+                Handlers::warning("Negado", $e->getMessage());
                 throw $e;
             }
         }

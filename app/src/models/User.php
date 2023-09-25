@@ -27,7 +27,6 @@ use App\services\Database;
         public static function fromMap(array $map): User {
             $user = new self();
             isset($map['id']) ? $user->setId($map['id']) : null;
-            isset($map['isadmin']) ? $user->setIsAdmin($map['isadmin']) : $user->setIsAdmin(0);
             $user->setAccessControl(AccessControl::fromMap($user->getAccessControlById($map['id_access_control'])));
             $user->setFirstName($map['first_name']);
             $user->setLastName($map['last_name']);

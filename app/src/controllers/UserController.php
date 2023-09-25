@@ -15,7 +15,6 @@ use App\services\Database;
                 $db = new Database();
 
                 $columnsAndValues = [
-                    "isadmin" => $user->getIsAdmin(),
                     "id_access_control" => $user->getAccessControl()->getId(),
                     "first_name" =>$user->getFirstName(), 
                     "last_name" => $user->getLastName(),
