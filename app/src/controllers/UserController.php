@@ -4,9 +4,13 @@ namespace App\controllers;
 
 use PDOException;
 use App\models\User;
+use App\models\Module;
 use App\services\Logger;
 use App\handlers\Handlers;
 use App\services\Database;
+use App\models\AccessControl;
+use App\models\UserAccessModule;
+use App\controllers\UserAccessModuleController;
 
     class UserController {
         
@@ -15,7 +19,6 @@ use App\services\Database;
                 $db = new Database();
 
                 $columnsAndValues = [
-                    "id_access_control" => $user->getAccessControl()->getId(),
                     "first_name" =>$user->getFirstName(), 
                     "last_name" => $user->getLastName(),
                     "mother_name" => $user->getMotherName(),
@@ -35,6 +38,18 @@ use App\services\Database;
                 $authController = new AuthController();
                 $authController->basicToken($user);
 
+                $userAccessModuleController = new UserAccessModuleController();
+                $accessControlControler = new AccessControlController();
+                $userAccessModule = new UserAccessModule();
+                $accessControl = AccessControl::fromMap($accessControlControler->findById(2)[0]);
+                $module = new Module();
+                $module->setId(1);
+
+                $userAccessModule->setUser($user);
+                $userAccessModule->setAccessControl($accessControl);
+                $userAccessModule->setModule($module);
+                $userAccessModuleController->create($userAccessModule);
+
                 Handlers::success("Sucesso", "Cadastro realizado");
 
             } catch (PDOException $e) {
@@ -52,7 +67,6 @@ use App\services\Database;
                 $db = new Database();
 
                 $columnsAndValues = [
-                    "id_access_control" => $user->getAccessControl()->getId(),
                     "email" => $user->getEmail(),
                     "cep" => $user->getCep(),
                     "address" => $user->getAddress(),

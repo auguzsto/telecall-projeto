@@ -1,15 +1,10 @@
 <?php
 
 namespace App\models;
-use App\controllers\AccessControlController;
-use App\controllers\GroupsPermissionsAclController;
-use App\services\Database;
 
     class User {
         
         private int $id;
-        private int $isAdmin;
-        private AccessControl $accessControl;
         private string $first_name;
         private string $last_name;
         private string $mother_name;
@@ -27,7 +22,6 @@ use App\services\Database;
         public static function fromMap(array $map): User {
             $user = new self();
             isset($map['id']) ? $user->setId($map['id']) : null;
-            $user->setAccessControl(AccessControl::fromMap($user->getAccessControlById($map['id_access_control'])));
             $user->setFirstName($map['first_name']);
             $user->setLastName($map['last_name']);
             $user->setMotherName($map['mother_name']);
@@ -42,22 +36,9 @@ use App\services\Database;
 
             return $user;
         }
-
-        private function getAccessControlById(int $id): array {
-            $accessControlController = new AccessControlController();
-            return $accessControlController->findById($id)[0];
-        }
-
+        
         public function setId(int $id): void {
             $this->id = $id;
-        }
-
-        public function setIsAdmin(bool $isAdmin): void {
-            $this->isAdmin = $isAdmin;
-        }
-
-        public function setAccessControl(AccessControl $accessControl): void {
-            $this->accessControl = $accessControl;
         }
 
         public function setFirstName(string $first_name): void {
@@ -113,14 +94,6 @@ use App\services\Database;
 
         public function getId(): int {
             return $this->id;
-        }
-
-        public function getIsAdmin(): int {
-            return $this->isAdmin;
-        }
-
-        public function getAccessControl(): AccessControl {
-            return $this->accessControl;
         }
 
         public function getFirstName(): string {

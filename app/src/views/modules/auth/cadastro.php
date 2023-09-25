@@ -108,7 +108,6 @@ use App\controllers\UserController;
     if(isset($_POST['action'])) {
 
         $map = [
-            "id_access_control" => 2, // SET GROUP COMMON IN USER CREATE
             "first_name" => $_POST['first_name'],
             "last_name" => $_POST['last_name'],
             "mother_name" => $_POST['mother_name'],
