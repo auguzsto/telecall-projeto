@@ -2,6 +2,7 @@
 
 use App\controllers\AccessControlController;
 use App\models\User;
+use App\services\ACL;
 use App\services\Session;
 use App\handlers\Handlers;
 use App\controllers\UserController;
@@ -32,7 +33,7 @@ use App\controllers\UserController;
 
     if(isset($_POST['action'])) {
 
-        AccessControlController::checkIfUserThenPermissionToUpdate($user);
+        ACL::checkIfUserThenPermissionToUpdate($user);
 
         $userController = new UserController();
         $password = $_POST['new-password'];

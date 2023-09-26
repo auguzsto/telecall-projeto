@@ -2,6 +2,7 @@
 
 use App\controllers\AccessControlController;
 use App\models\AccessControl;
+use App\services\ACL;
 use App\services\Session;
     
     Session::check();
@@ -55,7 +56,7 @@ use App\services\Session;
 
         if(isset($_POST['action'])) {
 
-            AccessControlController::checkIfUserThenPermissionToInsert($user);
+            ACL::checkIfUserThenPermissionToInsert($user);
 
             $accessControlController = new AccessControlController();
             $accessControl = new AccessControl(

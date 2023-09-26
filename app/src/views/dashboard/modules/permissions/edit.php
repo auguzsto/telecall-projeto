@@ -2,6 +2,7 @@
 
 use App\controllers\AccessControlController;
 use App\models\AccessControl;
+use App\services\ACL;
 use App\services\Session;
     
     Session::check();
@@ -130,14 +131,14 @@ use App\services\Session;
 
     if(isset($_POST['action_delete'])) {
 
-        AccessControlController::checkIfUserThenPermissionToDelete($user);
+        ACL::checkIfUserThenPermissionToDelete($user);
         $accessControlController->delete($accessControl);
 
     }
 
     if(isset($_POST['action'])) {
 
-        AccessControlController::checkIfUserThenPermissionToUpdate($user);
+        ACL::checkIfUserThenPermissionToUpdate($user);
 
         $accessControl->setPermission_create($_POST['permission_create']);
         $accessControl->setPermission_execute($_POST['permission_execute']);
