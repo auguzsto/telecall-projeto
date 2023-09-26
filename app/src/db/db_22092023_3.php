@@ -20,7 +20,6 @@ INSERT INTO access_control (id, description, permission_create, permission_execu
 
 CREATE TABLE users(
         id BIGINT AUTO_INCREMENT,
-        isadmin BOOLEAN DEFAULT 0,
         id_access_control BIGINT,
         first_name VARCHAR(255) NOT NULL,
         last_name VARCHAR(255) NOT NULL,

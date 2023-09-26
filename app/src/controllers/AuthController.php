@@ -4,7 +4,6 @@ namespace App\controllers;
 use PDOException;
 use App\models\Auth;
 use App\models\User;
-use App\services\Logger;
 use App\services\Session;
 use App\handlers\Handlers;
 use App\services\Database;
