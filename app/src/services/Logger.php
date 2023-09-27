@@ -5,7 +5,6 @@ namespace App\services;
 use App\handlers\Handlers;
 use App\models\User;
 use Exception;
-use PDOException;
 
     class Logger {
 
@@ -23,7 +22,7 @@ use PDOException;
 
                 $db->insert($columnsAndValues, "log");
 
-            } catch (PDOException $e) {
+            } catch (Exception $e) {
                 Handlers::error("Error", "Erro ao tentar gerar log", $e->getMessage());
                 throw $e;
             }

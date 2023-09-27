@@ -2,7 +2,6 @@
 
 namespace App\controllers;
 use Exception;
-use PDOException;
 use App\models\Auth;
 use App\models\User;
 use App\services\Session;

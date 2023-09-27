@@ -1,7 +1,6 @@
 <?php
 
 use App\controllers\AccessControlController;
-use App\handlers\Handlers;
 use App\models\AccessControl;
 use App\services\ACL;
 use App\services\Session;
@@ -55,21 +54,22 @@ use App\services\Session;
 
 <?php 
 
-        if(isset($_POST['action'])) {
-            ACL::checkIfUserThenPermissionToInsert($user);
+    if(isset($_POST['action'])) {
+        
+        ACL::checkIfUserThenPermissionToInsert($user);
 
-            $accessControlController = new AccessControlController();
-            $accessControl = new AccessControl(
-                0, 
-                $_POST['description'], 
-                $_POST['permission_create'],
-                $_POST['permission_execute'],
-                $_POST['permission_read'],
-                $_POST['permission_update'],
-                $_POST['permission_delete'],
-            );
+        $accessControlController = new AccessControlController();
+        $accessControl = new AccessControl(
+            0, 
+            $_POST['description'], 
+            $_POST['permission_create'],
+            $_POST['permission_execute'],
+            $_POST['permission_read'],
+            $_POST['permission_update'],
+            $_POST['permission_delete'],
+        );
 
-            $accessControlController->create($accessControl);
-        }
+        $accessControlController->create($accessControl);
+    }
 
 ?>

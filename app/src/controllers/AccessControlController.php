@@ -3,8 +3,6 @@
 namespace App\controllers;
 use App\models\AccessControl;
 use Exception;
-use PDOException;
-use App\models\User;
 use App\handlers\Handlers;
 use App\services\Database;
 

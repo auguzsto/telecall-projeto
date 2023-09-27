@@ -1,7 +1,6 @@
 <?php
 
 namespace App\models;
-
 use App\models\User;
 
     class Auth {
