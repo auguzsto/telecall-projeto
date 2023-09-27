@@ -9,6 +9,8 @@ use App\handlers\Handlers;
 use App\services\Database;
 
     class UserController {
+
+        private string $table = "users";
         
         public function create(User $user): void {
             try {
@@ -29,7 +31,7 @@ use App\services\Database;
                     "created_at" => $user->getCreated_at(),
                 ];
 
-                $db->insert($columnsAndValues, "users");
+                $db->insert($columnsAndValues, $this->table);
                 
                 //Create basic token after register user.
                 $authController = new AuthController();
@@ -60,7 +62,7 @@ use App\services\Database;
                     "phone" => $user->getPhone(),
                 ];
 
-                $db->update($columnsAndValues, "users", "id = ".$user->getId());
+                $db->update($columnsAndValues, $this->table, "id = ".$user->getId());
 
                 Handlers::success("Atualizado", "Operação realizada com sucesso");
 
@@ -84,7 +86,7 @@ use App\services\Database;
                     "password" => password_hash($user->getPassword(), PASSWORD_BCRYPT),
                 ];
 
-                $db->update($columnsAndValues, "users", "id = ".$user->getId());
+                $db->update($columnsAndValues, $this->table, "id = ".$user->getId());
                 $authController->updateToken($user);
                 
                 Handlers::success("Atualizado", "Operação realizada com sucesso");
@@ -107,7 +109,7 @@ use App\services\Database;
                     "deleted_at" => $user->getDeleted_at(),
                 ];
 
-                $db->update($columnsAndValues, "users", "id = ".$user->getId());
+                $db->update($columnsAndValues, $this->table, "id = ".$user->getId());
                 $db->update($columnsAndValues, "auth", "user_id =".$user->getId());
 
                 Handlers::success("Atualizado", "Operação realizada com sucesso");
@@ -122,21 +124,21 @@ use App\services\Database;
 
         public function findAll(): array {
             $db = new Database();
-            return $db->selectWhere("*", "users", "deleted_at IS NULL");
+            return $db->selectWhere("*", $this->table, "deleted_at IS NULL");
         }
 
         public function findByName(string $first_name): array {
             $db = new Database();
-            return $db->selectWhereLike("*", "users", "deleted_at IS NULL and first_name", $first_name);
+            return $db->selectWhereLike("*", $this->table, "deleted_at IS NULL and first_name", $first_name);
         }
 
         public function findById(int $id): array {
             $db = new Database();
-            return $db->selectWhere("*", "users", "id = $id");
+            return $db->selectWhere("*", $this->table, "id = $id");
         }
 
         public function findByEmail(string $email): array {
             $db = new Database();
-            return $db->selectWhere("*", "users", "email = '$email'");
+            return $db->selectWhere("*", $this->table, "email = '$email'");
         }
     }

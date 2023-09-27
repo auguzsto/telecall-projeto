@@ -8,10 +8,12 @@ use App\services\Database;
 
     class AccessControlController {
 
+        private string $table = "access_control";
+
         public function findAll(): array {
             try {
                 $db = new Database();
-                return $db->selectWhere("*", "access_control", "deleted_at IS NULL");
+                return $db->selectWhere("*", $this->table, "deleted_at IS NULL");
 
             } catch (Exception $e) {
                 throw $e;
@@ -21,7 +23,7 @@ use App\services\Database;
         public function findById(int $id): array {
             try {
                 $db = new Database();
-                return $db->selectWhere("*", "access_control", "id = $id");
+                return $db->selectWhere("*", $this->table, "id = $id");
 
             } catch (Exception $e) {
                 throw $e;
@@ -41,7 +43,7 @@ use App\services\Database;
                     "permission_delete" => $accessControl->getPermission_create(),
                 ];
 
-                $db->insert($columnsAndValues, "access_control");
+                $db->insert($columnsAndValues, $this->table);
 
                 Handlers::success("Feito", "Operação realizada com sucesso");
 
@@ -64,7 +66,7 @@ use App\services\Database;
                     "permission_delete" => $accessControl->getPermission_delete(),
                 ];
 
-                $db->update($columnsAndValues, "access_control", "id = ".$accessControl->getId());
+                $db->update($columnsAndValues, $this->table, "id = ".$accessControl->getId());
 
                 Handlers::success("Feito", "As permissões do grupo foram atualizadas");
                 
@@ -82,7 +84,7 @@ use App\services\Database;
                     "deleted_at" => date("Y-m-d H:i:s")
                 ];
 
-                $db->update($columnsAndValues, "access_control", "id = ".$accessControl->getId());
+                $db->update($columnsAndValues, $this->table, "id = ".$accessControl->getId());
 
                 Handlers::success("Feito", "A permissão foi deletada");
 

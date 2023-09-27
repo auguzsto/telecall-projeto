@@ -9,13 +9,15 @@ use App\handlers\Handlers;
 use App\services\Database;
 
     class AuthController {
+
+        private string $table = "auth";
         
         public function signIn(string $email, string $password): void {
             try {
                 $db = new Database();
 
                 $encode = base64_encode($email.':'.hash('SHA256', $password));
-                $auth = $db->selectWhere("*", "auth", "deleted_at IS NULL and basic_token = '$encode'")[0];
+                $auth = $db->selectWhere("*", $this->table, "deleted_at IS NULL and basic_token = '$encode'")[0];
 
                 if($auth['basic_token'] != $encode) {
                     throw new Exception("Usuário ou senha inválidos.");
@@ -49,7 +51,7 @@ use App\services\Database;
                     "created_at" => $auth->getCreated_at(),
                 ];
 
-                $db->insert($columnsAndValues, "auth");
+                $db->insert($columnsAndValues, $this->table);
 
             } catch (Exception $e) {
                Handlers::error("Error", "Erro ao criar token de autenticação", $e->getMessage());
@@ -68,7 +70,7 @@ use App\services\Database;
                     "basic_token" => $auth->getBasicToken(),
                 ];
 
-                $db->update($columnsAndValues, "auth", "user_id = ".$user->getId());
+                $db->update($columnsAndValues, $this->table, "user_id = ".$user->getId());
 
             } catch (Exception $e) {
                 Handlers::error("Error", "Erro ao atualizar token de autenticação", $e->getMessage());
