@@ -28,7 +28,7 @@ require __DIR__ . "/../../../config.php";
         private function con(): PDO {
             try {
                 global $config;
-                $host = $config['hosts'];
+                $host = $config['host'];
                 $port = $config['port'];
                 $dbname = $config['database'];
                 $dbuser = $config['user'];
