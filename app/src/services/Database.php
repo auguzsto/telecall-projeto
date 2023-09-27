@@ -20,7 +20,8 @@ require __DIR__ . "/../../../config.php";
                 $this->con();
 
             } catch (Exception $e) {
-                Handlers::error("Sem conexão", "Não foi possível conectar ao banco de dados, verifique se os dados de conexão estão corretos.", $e->getMessage());
+                Handlers::error("Sem conexão", "Não foi possível conectar ao banco de dados. <br/> Verifique se os dados de conexão estão corretos.", $e->getMessage());
+                throw $e;
             }
         }
         
