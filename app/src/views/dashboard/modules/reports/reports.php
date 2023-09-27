@@ -13,7 +13,7 @@ use App\controllers\ReportController;
         <h1 class="h2">Relatórios</h1>  
     </div>
     <div>
-        <form method="post" target="_blank" class="input-group">
+        <form method="post" class="input-group">
             <select name="table" id="report" class="form-control">
                 <option value="users">Usuários</option>
             </select>
