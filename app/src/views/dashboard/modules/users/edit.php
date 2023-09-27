@@ -1,18 +1,16 @@
 <?php
 
-use App\controllers\AccessControlController;
 use App\models\User;
 use App\services\ACL;
-use App\services\Session;
+use App\handlers\Handlers;
 use App\controllers\UserController;
-    
-    Session::check();
-    $user = $_SESSION['session'];
+use App\controllers\AccessControlController;
 
     $userController = new UserController();
     $userById = User::fromMap($userController->findById($r['id'])[0]);
+
     $accessControlController = new AccessControlController();
-    $accessControlList = $accessControlController->findAll();
+    $accessControls = $accessControlController->findAll();
 
 ?>
 
@@ -24,36 +22,32 @@ use App\controllers\UserController;
     </div>
     <form method="POST">
         <h5>CPF</h5>
-        <input class="form-control" type="text" value="<?php echo $userById->getCpf(); ?>" disabled>
+        <input class="form-control" type="text" value="<?= $userById->getCpf(); ?>" disabled>
         <h5>Nome</h5>
-        <input class="form-control" type="text" value="<?php echo $userById->getFirstName(); ?>" disabled>
+        <input class="form-control" type="text" value="<?= $userById->getFirstName(); ?>" disabled>
         <h5>Último nome</h5>
-        <input class="form-control" type="text" value="<?php echo $userById->getLastName(); ?>" disabled>
+        <input class="form-control" type="text" value="<?= $userById->getLastName(); ?>" disabled>
         <h5>Senha</h5>
-        <div class="input-group"><input class="form-control" type="password" value="<?php echo $user->getPassword(); ?>" disabled><a href="/dashboard/user/?changepassword=<?php echo $r['id']; ?>"><div class="btn btn-dark">Alterar senha</div></a></div>
+        <div class="input-group"><input class="form-control" type="password" value="<?= $user->getPassword(); ?>" disabled><a href="/dashboard/users/?changepassword=<?= $r['id']; ?>"><div class="btn btn-dark">Alterar senha</div></a></div>
         <h5>E-mail</h5>
-        <input class="form-control" type="text" name="email" value="<?php echo $userById->getEmail(); ?>">
+        <input class="form-control" type="text" name="email" value="<?= $userById->getEmail(); ?>">
         <h5>Permissões</h5>
         <select name="id_access_control" id="" class="form-control">
-            <?php 
 
-                foreach($accessControlList as $permissions) {
-                    $id = $permissions['id'];
-                    $description = $permissions['description'];
-                    $selected = $userById->getAccessControl()->getId() == $id ? "selected" : "";
-                    echo "
-                        <option value='$id' $selected>$description</option>
-                    ";
-                }
-
-            ?>
+            <?php foreach($accessControls as $row): ?>
+                <?= $selected = $userById->getAccessControl()->getId() == $row['id'] ? "selected" : ""; ?>
+                <option value='<?= $row['id'] ?>' <?= $selected ?>>
+                    <?= $row['description'] ?>
+                </option>
+           <?php endforeach; ?>
+           
         </select>
         <h5>CEP</h5>
-        <input class="form-control" id="cep" name="cep" type="text" value="<?php echo $userById->getCep(); ?>">
+        <input class="form-control" id="cep" name="cep" type="text" value="<?= $userById->getCep(); ?>">
         <h5>Celular</h5>
-        <input class="form-control" id="celular" name="phone" type="text" value="<?php echo $userById->getPhone(); ?>">
+        <input class="form-control" id="celular" name="phone" type="text" value="<?= $userById->getPhone(); ?>">
         <h5>Endereço completo</h5>
-        <input class="form-control" type="text" name="address" value="<?php echo $userById->getAddress(); ?>">
+        <input class="form-control" type="text" name="address" value="<?= $userById->getAddress(); ?>">
         <button class="form-control btn btn-dark mt-2 mb-2" name="action">Atualizar</button>
     </form>
 </main>
@@ -62,7 +56,6 @@ use App\controllers\UserController;
 <?php
 
     if(isset($_POST['action_delete'])) {
-
         ACL::checkIfUserThenPermissionToDelete($user);
 
         $userController = new UserController();
@@ -70,7 +63,6 @@ use App\controllers\UserController;
     }
 
     if(isset($_POST['action'])) {
-
         ACL::checkIfUserThenPermissionToUpdate($user);
 
         $userController = new UserController();

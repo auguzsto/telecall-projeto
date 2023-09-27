@@ -1,6 +1,7 @@
 <?php
 
 namespace App\controllers;
+use Exception;
 use PDOException;
 use App\models\Auth;
 use App\models\User;
@@ -18,7 +19,7 @@ use App\services\Database;
                 $auth = $db->selectWhere("*", "auth", "deleted_at IS NULL and basic_token = '$encode'")[0];
 
                 if($auth['basic_token'] != $encode) {
-                    throw new PDOException("Usuário ou senha inválidos.");
+                    throw new Exception("Usuário ou senha inválidos.");
 
                 } else {
                     $user_id = $auth['user_id'];
@@ -27,10 +28,9 @@ use App\services\Database;
                     
                 }
 
-                throw new PDOException("Ocorreu um erro inesperado");
-
-            } catch (PDOException $e) {
-                Handlers::warning("Falha",  $e->getMessage());
+            } catch (Exception $e) {
+                Handlers::warning("Falha", $e->getMessage());
+                throw $e;
             }
         }
 
@@ -52,7 +52,7 @@ use App\services\Database;
 
                 $db->insert($columnsAndValues, "auth");
 
-            } catch (PDOException $e) {
+            } catch (Exception $e) {
                Handlers::error("Error", "Erro ao criar token de autenticação", $e->getMessage());
                throw $e;
             }
@@ -71,7 +71,7 @@ use App\services\Database;
 
                 $db->update($columnsAndValues, "auth", "user_id = ".$user->getId());
 
-            } catch (PDOException $e) {
+            } catch (Exception $e) {
                 Handlers::error("Error", "Erro ao atualizar token de autenticação", $e->getMessage());
                 throw $e;
             }

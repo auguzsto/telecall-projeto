@@ -8,7 +8,7 @@ use App\services\Session;
     Session::checkPermissions($user);
 
     $accessControlController = new AccessControlController();
-    $accessControlList = $accessControlController->findAll();
+    $accessControls = $accessControlController->findAll();
 
 ?>
 
@@ -37,23 +37,17 @@ use App\services\Session;
             </tr>
           </thead>
           <tbody>
-            <?php
-
-                foreach($accessControlList as $accessControl) {
-                    $id = $accessControl['id'];
-                    echo "
-                    <tr>
-                        <td>".$id."</td>
-                        <td><a href='/dashboad/permissions/?id_acl=$id'>".$accessControl['description']."</a></td>
-                        <td>".$accessControlController->translateValue($accessControl['permission_read'])."</td>
-                        <td>".$accessControlController->translateValue($accessControl['permission_execute'])."</td>
-                        <td>".$accessControlController->translateValue($accessControl['permission_create'])."</td>
-                        <td>".$accessControlController->translateValue($accessControl['permission_update'])."</td>
-                        <td>".$accessControlController->translateValue($accessControl['permission_delete'])."</td>
-                    </tr>
-            ";
-                }
-            ?>
+            <?php foreach($accessControls as $row): ?>
+              <tr>
+                <td><?= $row['id'] ?></td>
+                <td><a href='/dashboad/permissions/?id_acl=<?= $row['id']; ?>'><?= $row['description']; ?></a></td>
+                <td><?= $row['permission_read']; ?></td>
+                <td><?= $row['permission_execute']; ?></td>
+                <td><?= $row['permission_create']; ?></td>
+                <td><?= $row['permission_update']; ?></td>
+                <td><?= $row['permission_delete']; ?></td>
+              </tr>
+            <?php endforeach; ?>
           </tbody>
         </table>
       </div>

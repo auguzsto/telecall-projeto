@@ -4,6 +4,7 @@ namespace App\services;
 use App\config\Config;
 use App\handlers\Handlers;
 use App\services\Database;
+use Exception;
 use PDOException;
 
 require __DIR__ . "/../../../config.php";
@@ -19,11 +20,15 @@ require __DIR__ . "/../../../config.php";
                 case "default":
                     try {
                         $query = file_get_contents("app/src/db/$fileSQL");
+                        if(!$query) {
+                            throw new Exception("Aquivo não encontrado");
+                        }
                         $migration = str_replace(["CREATE TABLE", "INSERT INTO"], ["CREATE TABLE IF NOT EXISTS", "REPLACE INTO"], $query);
                         $db->query($migration);
                         break;
                         
-                    } catch (PDOException $e) {
+                    } catch (Exception $e) {
+                        Handlers::error("Problema", "Não foi possível executar $fileSQL", $e->getMessage());
                         throw $e;
                     }
                 

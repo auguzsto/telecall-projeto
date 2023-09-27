@@ -1,10 +1,6 @@
 <?php 
 
 use App\controllers\UserController;
-use App\services\Session;
-    
-    Session::check();
-    $user = $_SESSION['session'];
     
     $userController = new UserController();
     $users = $userController->findAll();
@@ -38,25 +34,23 @@ use App\services\Session;
             </tr>
           </thead>
           <tbody>
-            <?php
-
-                foreach($users as $user) {
-                    $id = $user['id'];
-                    echo "
-                    <tr>
-                        <td>".$id."</td>
-                        <td><a href='/dashboad/user/?id=$id'>".$user['first_name']." ".$user['last_name']."</a></td>
-                        <td>".$user['mother_name']."</td>
-                        <td>".$user['cpf']."</td>
-                        <td>".$user['birth']."</td>
-                        <td>".$user['email']."</td>
-                        <td>".$user['phone']."</td>
-                        <td>".$user['created_at']."</td>
-                        <td>".$user['updated_at']."</td>
-                    </tr>
-            ";
-                }
-            ?>
+            <?php foreach($users as $row): ?>
+              <tr>
+                <td><?= $row['id']; ?></td>
+                <td>
+                  <a href='/dashboad/users/?id=<?= $row['id'] ?>'>
+                    <?= $row['first_name']; ?> <?= $row['last_name']; ?>
+                  </a>
+                </td>
+                <td><?= $row['mother_name']; ?></td>
+                <td><?= $row['cpf']; ?></td>
+                <td><?= $row['birth']; ?></td>
+                <td><?= $row['email']; ?></td>
+                <td><?= $row['phone']; ?></td>
+                <td><?= $row['created_at']; ?></td>
+                <td><?= $row['updated_at']; ?></td>
+              </tr>
+            <?php endforeach; ?>
           </tbody>
         </table>
       </div>

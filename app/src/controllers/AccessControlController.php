@@ -15,7 +15,7 @@ use App\services\Database;
                 $db = new Database();
                 return $db->selectWhere("*", "access_control", "deleted_at IS NULL");
 
-            } catch (PDOException $e) {
+            } catch (Exception $e) {
                 throw $e;
             }
         }
@@ -25,7 +25,7 @@ use App\services\Database;
                 $db = new Database();
                 return $db->selectWhere("*", "access_control", "id = $id");
 
-            } catch (PDOException $e) {
+            } catch (Exception $e) {
                 throw $e;
             }
         }
@@ -47,8 +47,9 @@ use App\services\Database;
 
                 Handlers::success("Feito", "Operação realizada com sucesso");
 
-            } catch (PDOException $e) {
+            } catch (Exception $e) {
                 Handlers::error("Falha", "Ocorreu um erro inesperado", $e->getMessage());
+                throw $e;
             }
         }
 
@@ -68,7 +69,8 @@ use App\services\Database;
                 $db->update($columnsAndValues, "access_control", "id = ".$accessControl->getId());
 
                 Handlers::success("Feito", "As permissões do grupo foram atualizadas");
-            } catch (PDOException $e) {
+                
+            } catch (Exception $e) {
                 Handlers::error("Error", "Ocorrue uma falha inesperada", $e->getMessage());
                 throw $e;
             }
@@ -86,7 +88,7 @@ use App\services\Database;
 
                 Handlers::success("Feito", "A permissão foi deletada");
 
-            } catch (PDOException $e) {
+            } catch (Exception $e) {
                 Handlers::error("Error", "Ocorrue uma falha inesperada", $e->getMessage());
                 throw $e;
             }
