@@ -20,7 +20,7 @@ use App\services\Database;
                 $auth = $db->selectWhere("*", $this->table, "deleted_at IS NULL and basic_token = '$encode'")[0];
 
                 if($auth['basic_token'] != $encode) {
-                    throw new Exception("Usuário ou senha inválidos.");
+                    throw new Exception("Usuário ou senha incorretos.");
 
                 } else {
                     $user_id = $auth['user_id'];
@@ -54,7 +54,7 @@ use App\services\Database;
                 $db->insert($columnsAndValues, $this->table);
 
             } catch (Exception $e) {
-               Handlers::error("Error", "Erro ao criar token de autenticação", $e->getMessage());
+               Handlers::error("Problema", "Erro ao criar token de autenticação", $e->getMessage());
                throw $e;
             }
         }
@@ -73,7 +73,7 @@ use App\services\Database;
                 $db->update($columnsAndValues, $this->table, "user_id = ".$user->getId());
 
             } catch (Exception $e) {
-                Handlers::error("Error", "Erro ao atualizar token de autenticação", $e->getMessage());
+                Handlers::error("Problema", "Erro ao atualizar token de autenticação", $e->getMessage());
                 throw $e;
             }
         }

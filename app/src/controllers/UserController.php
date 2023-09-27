@@ -94,7 +94,6 @@ use App\services\Database;
                 Logger::createDatabaseLog($userLogged, $user->getId(), "atualização", "atualizou a senha do usuário ". $user->getId());
 
                 } catch (Exception $e) {
-                    Handlers::error("Problema", "Ocorreu um problema de execução", $e->getMessage());
                     throw $e;
                 }
          }
@@ -117,7 +116,6 @@ use App\services\Database;
                 Logger::createDatabaseLog($userLogged, $user->getId(), "exclusão", "deletou o usuário ".$user->getId());
 
                 } catch (Exception $e) {
-                    Handlers::error("Problema", "Ocorreu um problema de execução", $e->getMessage());
                     throw $e;
                 }
          }
