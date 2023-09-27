@@ -26,22 +26,24 @@ use App\controllers\ReportController;
             <input type="date" name="betweenFinal" id="" value="<?= date('Y-m-d'); ?>" class="form-control" required>
             <button type="submit" name="action" class="form-control btn btn-primary">Gerar relatório</button>
         </form>
+        <?php 
+
+            if(isset($_POST['action'])) {
+
+                $table = $_POST['table'];
+                $where = $_POST['where'];
+                $betweenBegin = $_POST['betweenBegin'];
+                $betweenFinal = $_POST['betweenFinal'];
+
+                $reports = $reportController->byTableBetweenDate("*", $table, $where, $betweenBegin, $betweenFinal);
+
+                $_SESSION['reports'] = $reports;
+                
+                header("Location: /dashboard/reports/?$table=$where&begin=$betweenBegin&final=$betweenFinal");
+                
+            } 
+
+        ?>
     </div>
 </main>
-
-<?php
-    
-    if(isset($_POST['action'])) {
-
-        $table = $_POST['table'];
-        $where = $_POST['where'];
-        $betweenBegin = $_POST['betweenBegin'];
-        $betweenFinal = $_POST['betweenFinal'];
-
-        $_SESSION['reports'] = $reportController->byTableBetweenDate("*", $table, $where, $betweenBegin, $betweenFinal);
-        
-        header("Location: /dashboard/reports/?$table=$where&begin=$betweenBegin&final=$betweenFinal");
-        
-    } 
-
-?>
+<?php require __DIR__ . "/../../footer.php"; ?>
