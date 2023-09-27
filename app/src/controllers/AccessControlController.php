@@ -48,7 +48,6 @@ use App\services\Database;
                 Handlers::success("Feito", "Operação realizada com sucesso");
 
             } catch (Exception $e) {
-                Handlers::error("Falha", "Ocorreu um erro inesperado", $e->getMessage());
                 throw $e;
             }
         }
@@ -71,7 +70,6 @@ use App\services\Database;
                 Handlers::success("Feito", "As permissões do grupo foram atualizadas");
                 
             } catch (Exception $e) {
-                Handlers::error("Error", "Ocorrue uma falha inesperada", $e->getMessage());
                 throw $e;
             }
         }
@@ -89,7 +87,6 @@ use App\services\Database;
                 Handlers::success("Feito", "A permissão foi deletada");
 
             } catch (Exception $e) {
-                Handlers::error("Error", "Ocorrue uma falha inesperada", $e->getMessage());
                 throw $e;
             }
         }
