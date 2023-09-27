@@ -40,7 +40,7 @@ use Exception;
         public static function get(): array {
             try {
                 $db = new Database();
-                return $db->query("SELECT * FROM log INNER JOIN(SELECT id, email  FROM users) users ON log.user_id = users.id;")->fetchAll();
+                return $db->query("SELECT * FROM log INNER JOIN(SELECT id, email AS user_email FROM users) users ON log.user_id = users.id;")->fetchAll();
                 
             } catch (Exception $e) {
                 throw $e;
