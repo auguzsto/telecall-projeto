@@ -5,7 +5,6 @@ use App\config\Config;
 use App\handlers\Handlers;
 use App\services\Database;
 use Exception;
-use PDOException;
 
 require __DIR__ . "/../../../config.php";
 

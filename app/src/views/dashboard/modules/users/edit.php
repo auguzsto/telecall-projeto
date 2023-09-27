@@ -2,7 +2,6 @@
 
 use App\models\User;
 use App\services\ACL;
-use App\handlers\Handlers;
 use App\controllers\UserController;
 use App\controllers\AccessControlController;
 
@@ -56,6 +55,7 @@ use App\controllers\AccessControlController;
 <?php
 
     if(isset($_POST['action_delete'])) {
+
         ACL::checkIfUserThenPermissionToDelete($user);
 
         $userController = new UserController();
@@ -63,6 +63,7 @@ use App\controllers\AccessControlController;
     }
 
     if(isset($_POST['action'])) {
+
         ACL::checkIfUserThenPermissionToUpdate($user);
 
         $userController = new UserController();

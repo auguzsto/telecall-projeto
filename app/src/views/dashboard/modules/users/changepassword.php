@@ -1,10 +1,8 @@
 <?php
 
-use App\controllers\AccessControlController;
 use App\models\User;
 use App\services\ACL;
 use App\services\Session;
-use App\handlers\Handlers;
 use App\controllers\UserController;
     
     Session::check();
@@ -32,6 +30,7 @@ use App\controllers\UserController;
 <?php
 
     if(isset($_POST['action'])) {
+
         ACL::checkIfUserThenPermissionToUpdate($user);
 
         $userController = new UserController();

@@ -1,9 +1,7 @@
 <?php
 
 namespace App\controllers;
-use App\handlers\Handlers;
 use Exception;
-use PDOException;
 use App\services\Database;
 
     class ReportController {

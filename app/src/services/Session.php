@@ -1,8 +1,6 @@
 <?php
 
 namespace App\services;
-
-use App\handlers\Handlers;
 use App\models\User;
 
     class Session {
