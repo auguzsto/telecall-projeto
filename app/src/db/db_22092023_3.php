@@ -14,7 +14,7 @@ CREATE TABLE access_control(
     PRIMARY KEY (id)
 );
 
-INSERT INTO access_controls (id, description, permission_create, permission_execute, permission_read, permission_update, permission_delete) VALUES (1, 'Controle Total', 'Y', 'Y', 'Y', 'Y', 'Y');
+INSERT INTO access_control (id, description, permission_create, permission_execute, permission_read, permission_update, permission_delete) VALUES (1, 'Controle Total', 'Y', 'Y', 'Y', 'Y', 'Y');
 INSERT INTO access_control (id, description, permission_create, permission_execute, permission_read, permission_update, permission_delete) VALUES (2, 'Apenas leitura',        'N', 'N', 'Y', 'N', 'N');
 INSERT INTO access_control (id, description, permission_create, permission_execute, permission_read, permission_update, permission_delete) VALUES (3, 'Leitura e execução',     'N', 'Y', 'Y', 'N', 'N');
 
