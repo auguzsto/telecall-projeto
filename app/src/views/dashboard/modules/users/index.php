@@ -6,8 +6,6 @@ use App\services\Session;
     $user = $_SESSION['session'];
     Session::checkPermissions($user);
 
-
-
     if(!isset($r)) {
         return require __DIR__ ."/list.php";
     }

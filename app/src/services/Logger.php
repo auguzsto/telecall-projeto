@@ -4,6 +4,7 @@ namespace App\services;
 
 use App\handlers\Handlers;
 use App\models\User;
+use Exception;
 use PDOException;
 
     class Logger {
@@ -35,5 +36,15 @@ use PDOException;
             $log = "Origem: $origin - $dateInLog - $getMessageException\n";
 
             file_put_contents("./logs/log_".$date.".txt", $log, FILE_APPEND);
+        }
+
+        public static function get(): array {
+            try {
+                $db = new Database();
+                return $db->query("SELECT * FROM log INNER JOIN(SELECT id, email  FROM users) users ON log.user_id = users.id;")->fetchAll();
+                
+            } catch (Exception $e) {
+                throw $e;
+            }
         }
     }

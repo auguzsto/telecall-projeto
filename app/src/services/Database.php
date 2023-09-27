@@ -3,8 +3,8 @@
 namespace App\services;
 
 use App\handlers\Handlers;
+use Exception;
 use PDO;
-use PDOException;
 use PDOStatement;
 
 require __DIR__ . "/../../../config.php";
@@ -19,9 +19,8 @@ require __DIR__ . "/../../../config.php";
             try {
                 $this->con();
 
-            } catch (PDOException $e) {
+            } catch (Exception $e) {
                 Handlers::error("Sem conexão", "Não foi possível conectar ao banco de dados, verifique se os dados de conexão estão corretos.", $e->getMessage());
-                throw $e;
             }
         }
         
@@ -37,15 +36,20 @@ require __DIR__ . "/../../../config.php";
                 $pdo = new PDO("mysql:host=$host:$port;dbname=$dbname", "$dbuser", "$dbpassword");
                 return $pdo;
                 
-            } catch (PDOException $e) {
+            } catch (Exception $e) {
                 $pdo = new PDO("mysql:host=$host:$port;", "$dbuser", "$dbpassword");
                 return $pdo;
             }
         }
 
         public function query(string $query): PDOStatement {
-            $pdo = $this->con();
-            return $pdo->query($query);
+            try {
+                $pdo = $this->con();
+                return $pdo->query($query);
+
+            } catch (Exception $e) {
+                throw $e;
+            }
         }
 
         public function insert(array $columnsAndValues, string $table): void {
@@ -56,8 +60,8 @@ require __DIR__ . "/../../../config.php";
                 
                 $pdo->prepare("INSERT INTO $table ($columns) VALUES (:$values)")->execute($columnsAndValues);
 
-            } catch (PDOException $e) {
-                Handlers::error("Problema no serviço", "Não foi possível inserir dados no banco", $e->getMessage());
+            } catch (Exception $e) {
+                Handlers::error("Problema", "Não foi possível inserir dados. <br/> Entre em contato com o administrador.", $e->getMessage());
                 throw $e;
             }
         }
@@ -70,8 +74,8 @@ require __DIR__ . "/../../../config.php";
                 $pdo->prepare("UPDATE $table SET $set = ? WHERE $where")->execute(array_values($columnsAndValues));
                 $pdo->prepare("UPDATE $table SET updated_at = ? WHERE $where")->execute([date('Y-m-d H:i:s')]);
 
-            } catch (PDOException $e) {
-                Handlers::error("Problema no serviço", "Não foi possível atualizar dados no banco", $e->getMessage());
+            } catch (Exception $e) {
+                Handlers::error("Problema", "Não foi possível atualizar dados. <br/> Entre em contato com o administrador.", $e->getMessage());
                 throw $e;
             }
         }
@@ -81,8 +85,8 @@ require __DIR__ . "/../../../config.php";
                 $pdo = $this->con();
                 return $pdo->query("SELECT $columns FROM $table ORDER BY id DESC")->fetchAll();
 
-            } catch (PDOException $e) {
-                Handlers::error("Problema no serviço", "Não foi possível retornar dados no banco", $e->getMessage());
+            } catch (Exception $e) {
+                Handlers::error("Problema", "Não foi possível recuperar dados. Entre em contato com o adinistrador.", $e->getMessage());
                 throw $e;
             }
         }
@@ -92,8 +96,8 @@ require __DIR__ . "/../../../config.php";
                 $pdo = $this->con();
                 return $pdo->query("SELECT $columns FROM $table WHERE $whereCondition")->fetchAll();
 
-            } catch (PDOException $e) {
-                Handlers::error("Problema no serviço", "Não foi possível retornar dados no banco", $e->getMessage());
+            } catch (Exception $e) {
+                Handlers::error("Problema", "Não foi possível recuperar dados. <br/> Entre em contato com o administrador.", $e->getMessage());
                 throw $e;
             }
         }
@@ -102,8 +106,8 @@ require __DIR__ . "/../../../config.php";
                 $pdo = $this->con();
                 return $pdo->query("SELECT $columns FROM $table WHERE $where LIKE '%$value%'")->fetchAll();
 
-            } catch (PDOException $e) {
-                Handlers::error("Problema no serviço", "Não foi possível retornar dados no banco", $e->getMessage());
+            } catch (Exception $e) {
+                Handlers::error("Problema", "Não foi possível recuperar dados. Entre em contato com o adinistrador.", $e->getMessage());
                 throw $e;
             }
         }
@@ -113,8 +117,8 @@ require __DIR__ . "/../../../config.php";
                 $pdo = $this->con();
                 return $pdo->query("SELECT $columns FROM $table WHERE date($where) BETWEEN '$betweenBegin' AND '$betweenFinal' ORDER BY $where DESC")->fetchAll();
 
-            } catch (PDOException $e) {
-                Handlers::error("Problema no serviço", "Inesperado", $e->getMessage());
+            } catch (Exception $e) {
+                Handlers::error("Problema", "Inesperado", $e->getMessage());
                 throw $e;
             }
         }

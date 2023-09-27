@@ -16,21 +16,21 @@ use App\controllers\UserController;
     </div>
     <form method="POST">
         <h5>CPF</h5>
-        <input class="form-control" type="text" value="<?php echo $user->getCpf(); ?>" disabled>
+        <input class="form-control" type="text" value="<?= $user->getCpf(); ?>" disabled>
         <h5>Nome</h5>
-        <input class="form-control" type="text" value="<?php echo $user->getFirstName(); ?>" disabled>
+        <input class="form-control" type="text" value="<?= $user->getFirstName(); ?>" disabled>
         <h5>Último nome</h5>
-        <input class="form-control" type="text" value="<?php echo $user->getLastName(); ?>" disabled>
+        <input class="form-control" type="text" value="<?= $user->getLastName(); ?>" disabled>
         <h5>Senha</h5>
-        <div class="input-group"><input class="form-control" type="password" name="password" value="<?php echo $user->getPassword(); ?>" disabled><a href="/dashboard/changepassword"><div class="btn btn-dark">Alterar senha</div></a></div>
+        <div class="input-group"><input class="form-control" type="password" name="password" value="<?= $user->getPassword(); ?>" disabled><a href="/dashboard/changepassword"><div class="btn btn-dark">Alterar senha</div></a></div>
         <h5>E-mail</h5>
-        <input class="form-control" type="text" name="email" value="<?php echo $user->getEmail(); ?>">
+        <input class="form-control" type="text" name="email" value="<?= $user->getEmail(); ?>">
         <h5>CEP</h5>
-        <input class="form-control" id="cep" type="text" name="cep" value="<?php echo $user->getCep(); ?>">
+        <input class="form-control" id="cep" type="text" name="cep" value="<?= $user->getCep(); ?>">
         <h5>Celular</h5>
-        <input class="form-control" id="celular" type="text" name="phone" value="<?php echo $user->getPhone(); ?>">
+        <input class="form-control" id="celular" type="text" name="phone" value="<?= $user->getPhone(); ?>">
         <h5>Endereço completo</h5>
-        <input class="form-control" type="text" name="address" value="<?php echo $user->getAddress(); ?>">
+        <input class="form-control" type="text" name="address" value="<?= $user->getAddress(); ?>">
         <button class="form-control btn btn-dark mt-2 mb-2" name="action">Atualizar</button>
     </form>
 </main>

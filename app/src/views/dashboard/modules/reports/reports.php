@@ -1,11 +1,6 @@
 <?php
 
 use App\controllers\ReportController;
-use App\services\Session;
-    
-    Session::check();
-    $user = $_SESSION['session'];
-    Session::checkPermissions($user);
 
     $reportController = new ReportController();
 
@@ -27,28 +22,26 @@ use App\services\Session;
                 <option value="updated_at">Atualizados em</option>
                 <option value="deleted_at">Deletados em</option>
             </select>
-            <input type="date" name="betweenBegin" id="" value="<?php echo date('Y-m-d'); ?>" class="form-control" required>
-            <input type="date" name="betweenFinal" id="" value="<?php echo date('Y-m-d'); ?>" class="form-control" required>
+            <input type="date" name="betweenBegin" id="" value="<?= date('Y-m-d'); ?>" class="form-control" required>
+            <input type="date" name="betweenFinal" id="" value="<?= date('Y-m-d'); ?>" class="form-control" required>
             <button type="submit" name="action" class="form-control btn btn-primary">Gerar relatório</button>
         </form>
-        <?php 
-
-        if(isset($_POST['action'])) {
-
-            $table = $_POST['table'];
-            $where = $_POST['where'];
-            $betweenBegin = $_POST['betweenBegin'];
-            $betweenFinal = $_POST['betweenFinal'];
-
-            $reports = $reportController->byTableBetweenDate("*", $table, $where, $betweenBegin, $betweenFinal);
-
-            $_SESSION['reports'] = $reports;
-            
-            header("Location: /dashboard/reports/?$table=$where&begin=$betweenBegin&final=$betweenFinal");
-            
-        } 
-
-        ?>
     </div>
 </main>
-<?php require __DIR__ . "/../../footer.php"; ?>
+
+<?php
+    
+    if(isset($_POST['action'])) {
+
+        $table = $_POST['table'];
+        $where = $_POST['where'];
+        $betweenBegin = $_POST['betweenBegin'];
+        $betweenFinal = $_POST['betweenFinal'];
+
+        $_SESSION['reports'] = $reportController->byTableBetweenDate("*", $table, $where, $betweenBegin, $betweenFinal);
+        
+        header("Location: /dashboard/reports/?$table=$where&begin=$betweenBegin&final=$betweenFinal");
+        
+    } 
+
+?>

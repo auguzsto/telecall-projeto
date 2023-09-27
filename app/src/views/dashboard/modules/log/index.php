@@ -1,17 +1,11 @@
 <?php
 
-use App\models\User;
+use App\services\Logger;
 use App\services\Session;
-use App\services\Database;
-use App\controllers\UserController;
     
     Session::check();
     $user = $_SESSION['session'];
     Session::checkPermissions($user);
-
-    $db = new Database();
-
-    $logs = $db->select("*", "log");
 
 ?>
 
@@ -33,22 +27,16 @@ use App\controllers\UserController;
             </tr>
           </thead>
           <tbody>
-            <?php
-
-                foreach($logs as $log) {
-                    $userController = new UserController();
-                    $userResponsible = User::fromMap($userController->findById($log['user_id'])[0]);
-                    echo "
-                    <tr>
-                        <td>(".$log['user_id'].") ".$userResponsible->getEmail()."</td>
-                        <td>".$log['description']."</td>
-                        <td>".$log['type_log']."</td>
-                        <td>".$log['changed_entity_id']."</td>      
-                        <td>".$log['created_at']."</td>
-                    </tr>
-            ";
-                }
-            ?>
+            <?php $logs = Logger::get(); ?>
+            <?php foreach($logs as $log): ?>
+              <tr>
+                <td>(<?= $log['user_id'] ?>) <?= $log['user_email'] ?></td>
+                <td><?= $log['description'] ?></td>
+                <td><?= $log['type_log'] ?></td>
+                <td><?= $log['changed_entity_id'] ?></td>
+                <td><?= $log['created_at'] ?></td>
+              </tr>
+            <?php endforeach ?>
           </tbody>
         </table>
     </div>

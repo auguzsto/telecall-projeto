@@ -32,7 +32,6 @@ use App\controllers\UserController;
 <?php
 
     if(isset($_POST['action'])) {
-
         ACL::checkIfUserThenPermissionToUpdate($user);
 
         $userController = new UserController();
@@ -40,9 +39,9 @@ use App\controllers\UserController;
         $repassword = $_POST['re-password'];
 
         if($password != $repassword) {
-            return Handlers::warning('Atenção','Refaça o procedimento para alterar sua senha, algo está incorreto.');
+            throw new Exception("Refaça o procedimento para alterar sua senha, algo está incorreto.");
         }
 
         $userById->setPassword($_POST['new-password']);
         $userController->updatePassword($userById);
-    }
+    } 

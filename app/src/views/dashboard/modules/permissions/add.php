@@ -1,6 +1,7 @@
 <?php
 
 use App\controllers\AccessControlController;
+use App\handlers\Handlers;
 use App\models\AccessControl;
 use App\services\ACL;
 use App\services\Session;
@@ -55,7 +56,6 @@ use App\services\Session;
 <?php 
 
         if(isset($_POST['action'])) {
-
             ACL::checkIfUserThenPermissionToInsert($user);
 
             $accessControlController = new AccessControlController();

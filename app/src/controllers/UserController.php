@@ -2,6 +2,7 @@
 
 namespace App\controllers;
 
+use Exception;
 use PDOException;
 use App\models\User;
 use App\services\Logger;
@@ -37,11 +38,12 @@ use App\services\Database;
 
                 Handlers::success("Sucesso", "Cadastro realizado");
 
-            } catch (PDOException $e) {
+            } catch (Exception $e) {
                 str_contains($e->getMessage(), "cpf") ? Handlers::warning("Atenção", "CPF já cadastrado.") : null;
                 str_contains($e->getMessage(), "phone") ? Handlers::warning("Atenção", "Celular já cadastrado.") : null;
                 str_contains($e->getMessage(), "email") ? Handlers::warning("Atenção", "E-mail já cadastrado.") : null;
                 str_contains($e->getMessage(), "bith") ? Handlers::warning("Atenção", "Verifque sua data de nascimento.") : null;
+                throw $e;
             }
 
         }
@@ -65,7 +67,7 @@ use App\services\Database;
 
                 Logger::createDatabaseLog($userLogged, $user->getId(), "atualização", "atualizou o usuário ".$user->getId());
 
-                } catch (PDOException $e) {
+                } catch (Exception $e) {
                     str_contains($e->getMessage(), "cpf") ? Handlers::warning("Atenção", "CPF já cadastrado.") : null;
                     str_contains($e->getMessage(), "phone") ? Handlers::warning("Atenção", "Celular já cadastrado.") : null;
                     str_contains($e->getMessage(), "email") ? Handlers::warning("Atenção", "E-mail já cadastrado.") : null;
@@ -90,8 +92,8 @@ use App\services\Database;
 
                 Logger::createDatabaseLog($userLogged, $user->getId(), "atualização", "atualizou a senha do usuário ". $user->getId());
 
-                } catch (PDOException $e) {
-                    Handlers::error("Falha", "Ocorreu um problema de execução", $e->getMessage());
+                } catch (Exception $e) {
+                    Handlers::error("Problema", "Ocorreu um problema de execução", $e->getMessage());
                     throw $e;
                 }
          }
@@ -113,32 +115,29 @@ use App\services\Database;
 
                 Logger::createDatabaseLog($userLogged, $user->getId(), "exclusão", "deletou o usuário ".$user->getId());
 
-                } catch (PDOException $e) {
-                    Handlers::error("Falha", "Ocorreu um problema de execução", $e->getMessage());
+                } catch (Exception $e) {
+                    Handlers::error("Problema", "Ocorreu um problema de execução", $e->getMessage());
+                    throw $e;
                 }
          }
 
         public function findAll(): array {
             $db = new Database();
-
             return $db->selectWhere("*", "users", "deleted_at IS NULL");
         }
 
         public function findByName(string $first_name): array {
             $db = new Database();
-
             return $db->selectWhereLike("*", "users", "deleted_at IS NULL and first_name", $first_name);
         }
 
         public function findById(int $id): array {
             $db = new Database();
-
             return $db->selectWhere("*", "users", "id = $id");
         }
 
         public function findByEmail(string $email): array {
             $db = new Database();
-
             return $db->selectWhere("*", "users", "email = '$email'");
         }
     }
