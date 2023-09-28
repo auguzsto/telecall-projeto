@@ -1,6 +1,7 @@
 <?php
 
 namespace App\models;
+use App\controllers\UserController;
 use App\models\User;
 
     class Auth {
@@ -11,6 +12,18 @@ use App\models\User;
         private string $created_at;
         private string $updated_at;
         private string $deleted_at;
+
+        public static function fromMap(array $map): Auth {
+            $auth = new self();
+            $userController = new UserController();
+
+            $user = User::fromMap($userController->findById($map['user_id'])[0]);
+            $auth->setId($map['id']);
+            $auth->setUser($user);
+            $auth->setBasicToken($user);
+
+            return $auth;
+        }
 
         public function setId(int $id): void {
             $this->id = $id;
