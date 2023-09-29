@@ -15,4 +15,14 @@ use App\services\Database;
                 throw $e;
             }
         }
+
+        public static function findAll(): array {
+            try {
+                $db = new Database();
+                return $db->select("*", "profiles");
+
+            } catch (Exception $e) {
+                throw $e;
+            }
+        }
     }
