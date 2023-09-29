@@ -16,4 +16,14 @@ use Exception;
             }
         }
 
+        public static function findAll(): array {
+            try {
+                $db = new Database();
+                return $db->select("*", "modules");
+
+            } catch (Exception $e) {
+                throw $e;
+            }
+        }
+
     }

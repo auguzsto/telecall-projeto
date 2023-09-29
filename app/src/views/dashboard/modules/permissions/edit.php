@@ -59,6 +59,7 @@ use App\services\Session;
     if(isset($_POST['action_delete'])) {
 
         ACL::checkIfUserThenPermissionToDelete($thisModule);
+        ProfileController::delete($profile);
     }
 
     if(isset($_POST['action'])) {

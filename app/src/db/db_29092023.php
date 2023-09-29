@@ -1,7 +1,7 @@
 CREATE DATABASE IF NOT EXISTS grp_16_bangu_noite;
 
 CREATE TABLE profiles (
-    id BIGINT,
+    id BIGINT AUTO_INCREMENT,
     name VARCHAR(50),
     created_at DATETIME,
     updated_at DATETIME,
@@ -10,8 +10,7 @@ CREATE TABLE profiles (
 );
 
 INSERT INTO profiles (id, name) VALUES (1, 'Default');
-INSERT INTO profiles (id, name) VALUES (2, 'Moderator');
-INSERT INTO profiles (id, name) VALUES (3, 'Administrator');
+INSERT INTO profiles (id, name) VALUES (2, 'Administrator');
 
 CREATE TABLE users(
         id BIGINT AUTO_INCREMENT,
@@ -52,7 +51,6 @@ CREATE TABLE profiles_modules_acl(
     profile_id BIGINT,
     module_id BIGINT,
     permission_create ENUM("Y", "N") NOT NULL,
-    permission_execute ENUM("Y", "N") NOT NULL,
     permission_read ENUM("Y", "N") NOT NULL,
     permission_update ENUM("Y", "N") NOT NULL,
     permission_delete ENUM("Y", "N") NOT NULL,
@@ -63,7 +61,17 @@ CREATE TABLE profiles_modules_acl(
     FOREIGN KEY (profile_id) REFERENCES profiles(id)
 );
 
-INSERT INTO profiles_modules_acl VALUES (1, 1, 'Y', 'Y', 'Y', 'Y', 'N', NULL, NULL, NULL);
+INSERT INTO profiles_modules_acl VALUES (2, 1, 'Y', 'Y', 'Y', 'Y', NULL, NULL, NULL);
+INSERT INTO profiles_modules_acl VALUES (2, 2, 'Y', 'Y', 'Y', 'Y', NULL, NULL, NULL);
+INSERT INTO profiles_modules_acl VALUES (2, 3, 'Y', 'Y', 'Y', 'Y', NULL, NULL, NULL);
+INSERT INTO profiles_modules_acl VALUES (2, 4, 'Y', 'Y', 'Y', 'Y', NULL, NULL, NULL);
+INSERT INTO profiles_modules_acl VALUES (2, 5, 'Y', 'Y', 'Y', 'Y', NULL, NULL, NULL);
+
+INSERT INTO profiles_modules_acl VALUES (1, 1, 'N', 'Y', 'Y', 'N', NULL, NULL, NULL);
+INSERT INTO profiles_modules_acl VALUES (1, 2, 'N', 'N', 'N', 'N', NULL, NULL, NULL);
+INSERT INTO profiles_modules_acl VALUES (1, 3, 'N', 'N', 'N', 'N', NULL, NULL, NULL);
+INSERT INTO profiles_modules_acl VALUES (1, 4, 'N', 'N', 'N', 'N', NULL, NULL, NULL);
+INSERT INTO profiles_modules_acl VALUES (1, 5, 'N', 'N', 'N', 'N', NULL, NULL, NULL);
 
 CREATE TABLE auth(
     id BIGINT AUTO_INCREMENT,

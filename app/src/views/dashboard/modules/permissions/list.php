@@ -17,7 +17,7 @@ use App\services\Session;
           <h1 class="h2">Perfis e permissões</h1>
         </div>
         <div>
-          <a href="/dashboard/permissions/?add_acl"><div class="btn btn-dark">Adicionar</div></a>
+          <a href="/dashboard/permissions/?add_profile"><div class="btn btn-dark">Adicionar</div></a>
         </div>
       </div>
       <div class="table-responsive">

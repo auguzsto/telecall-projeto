@@ -10,7 +10,7 @@ use App\services\Session;
         return require __DIR__ ."/list.php";
     }
 
-    if(isset($r['add_acl'])) {
+    if(isset($r['add_profile'])) {
         return require __DIR__ ."/add.php";
     }
 
