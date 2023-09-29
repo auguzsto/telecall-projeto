@@ -3,13 +3,9 @@
 use App\models\User;
 use App\services\ACL;
 use App\controllers\UserController;
-use App\controllers\AccessControlController;
 
     $userController = new UserController();
     $userById = User::fromMap($userController->findById($r['id'])[0]);
-
-    $accessControlController = new AccessControlController();
-    $accessControls = $accessControlController->findAll();
 
 ?>
 
@@ -32,13 +28,6 @@ use App\controllers\AccessControlController;
         <input class="form-control" type="text" name="email" value="<?= $userById->getEmail(); ?>">
         <h5>Permissões</h5>
         <select name="id_access_control" id="" class="form-control">
-
-            <?php foreach($accessControls as $row): ?>
-                <?= $selected = $userById->getAccessControl()->getId() == $row['id'] ? "selected" : ""; ?>
-                <option value='<?= $row['id'] ?>' <?= $selected ?>>
-                    <?= $row['description'] ?>
-                </option>
-           <?php endforeach; ?>
            
         </select>
         <h5>CEP</h5>
@@ -56,7 +45,7 @@ use App\controllers\AccessControlController;
 
     if(isset($_POST['action_delete'])) {
 
-        ACL::checkIfUserThenPermissionToDelete($user);
+        ACL::checkIfUserThenPermissionToDelete($thisModule);
 
         $userController = new UserController();
         $userController->delete($userById);
@@ -64,11 +53,10 @@ use App\controllers\AccessControlController;
 
     if(isset($_POST['action'])) {
 
-        ACL::checkIfUserThenPermissionToUpdate($user);
+        ACL::checkIfUserThenPermissionToUpdate($thisModule);
 
         $userController = new UserController();
 
-        $userById->getAccessControl()->setId($_POST['id_access_control']);
         $userById->setEmail($_POST['email']);
         $userById->setPhone($_POST['phone']);
         $userById->setCep($_POST['cep']);

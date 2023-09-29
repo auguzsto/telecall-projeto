@@ -1,13 +1,13 @@
 <?php
 
 use App\controllers\AccessControlController;
-use App\models\AccessControl;
+use App\controllers\ProfileController;
+use App\models\Profile;
 use App\services\ACL;
 use App\services\Session;
     
     Session::check();
     $user = $_SESSION['session'];
-    Session::checkPermissions($user);
 
 ?>
 
@@ -15,38 +15,12 @@ use App\services\Session;
 
 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Criar controle de acesso</h1>
+        <h1 class="h2">Criar perfil</h1>
     </div>
     <form method="POST">
         <h5>Nome</h5>
-        <input class="form-control" type="text" name="description" required>
-        <div class="input-group">
-        </div>
-        <h5>Este grupo poder ler dados?</h5>
-        <select name="permission_read" id="" class="form-control">
-            <option value="Y">Sim</option>
-            <option value="N">Não</option>
-        </select>
-        <h5>Este grupo poder executar dados?</h5>
-        <select name="permission_execute" id="" class="form-control">
-            <option value="Y">Sim</option>
-            <option value="N">Não</option>
-        </select>
-        <h5>Este grupo poder criar dados?</h5>
-        <select name="permission_create" id="" class="form-control">
-            <option value="N">Não</option>
-            <option value="Y">Sim</option>
-        </select>
-        <h5>Este grupo poder atualizar dados?</h5>
-        <select name="permission_update" id="" class="form-control">
-            <option value="N">Não</option>
-            <option value="Y">Sim</option>
-        </select>
-        <h5>Este grupo poder deletar dados?</h5>
-        <select name="permission_delete" id="" class="form-control">
-            <option value="N">Não</option>
-            <option value="Y">Sim</option>
-        </select>
+        <input class="form-control" type="text" name="name_profile" required>
+        
         <button class="form-control btn btn-dark mt-2 mb-2" name="action">Adicionar</button>
     </form>
 </main>
@@ -55,21 +29,17 @@ use App\services\Session;
 <?php 
 
     if(isset($_POST['action'])) {
+
+        $profile = new Profile();
+        $profile->setName($_POST['name_profile']);
         
-        ACL::checkIfUserThenPermissionToInsert($user);
+        ACL::checkIfUserThenPermissionToInsert($thisModule);
 
-        $accessControlController = new AccessControlController();
-        $accessControl = new AccessControl(
-            0, 
-            $_POST['description'], 
-            $_POST['permission_create'],
-            $_POST['permission_execute'],
-            $_POST['permission_read'],
-            $_POST['permission_update'],
-            $_POST['permission_delete'],
-        );
+        ProfileController::create($profile);
+        $profile->setId(ProfileController::findByName($profile->getName())['id']);
+        
+        AccessControlController::createPermissionsDefault($profile);
 
-        $accessControlController->create($accessControl);
     }
 
 ?>

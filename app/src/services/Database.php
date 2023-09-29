@@ -84,7 +84,7 @@ require __DIR__ . "/../../../config.php";
         public function select(string $columns, string $table): array {
             try {
                 $pdo = $this->con();
-                return $pdo->query("SELECT $columns FROM $table ORDER BY id DESC")->fetchAll();
+                return $pdo->query("SELECT $columns FROM $table WHERE deleted_at IS NULL ORDER BY id DESC")->fetchAll();
 
             } catch (Exception $e) {
                 Handlers::error("Problema", "Não foi possível recuperar dados. Entre em contato com o adinistrador.", $e->getMessage());
@@ -95,7 +95,7 @@ require __DIR__ . "/../../../config.php";
         public function selectWhere(string $columns, string $table, string $whereCondition): array {
             try {
                 $pdo = $this->con();
-                return $pdo->query("SELECT $columns FROM $table WHERE $whereCondition")->fetchAll();
+                return $pdo->query("SELECT $columns FROM $table WHERE $whereCondition AND deleted_at IS NULL")->fetchAll();
 
             } catch (Exception $e) {
                 Handlers::error("Problema", "Não foi possível recuperar dados. <br/> Entre em contato com o administrador.", $e->getMessage());

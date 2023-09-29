@@ -7,11 +7,30 @@ use App\models\User;
 use App\handlers\Handlers;
 
     class ACL {
+
+        public static function checkIfUserThenPermissionToRead(int $thisModule): bool {
+            try {
+
+                $permission = (object) $_SESSION['permissions'][$thisModule];
+
+                if($permission->permission_read != "Y") {
+                    return false;
+                }
+
+                return true;
+
+            } catch (Exception $e) {
+                Handlers::warning("Negado", $e->getMessage());
+                throw $e;
+            }
+        }
         
-        public static function checkIfUserThenPermissionToInsert(User $user): void {
+        public static function checkIfUserThenPermissionToInsert(int $thisModule): void {
             try {
 
-                if($user->getAccessControl()->getPermission_create() != "Y") {
+                $permission = (object) $_SESSION['permissions'][$thisModule];
+
+                if($permission->permission_create != "Y") {
                     throw new Exception("Você não possui permissão para inserção");
                 }
 
@@ -21,38 +40,44 @@ use App\handlers\Handlers;
             }
         }
 
-        public static function checkIfUserThenPermissionToExecute(User $user): void {
+        public static function checkIfUserThenPermissionToExecute(int $thisModule): void {
             try {
 
-                if($user->getAccessControl()->getPermission_execute() != "Y") {
+                $permission = (object) $_SESSION['permissions'][$thisModule];
+
+                if($permission->permission_execute != "Y") {
+                    throw new Exception("Você não possui permissão para executar.");
+                }
+
+            } catch (Exception $e) {
+                Handlers::warning("Negado", $e->getMessage());
+                throw $e;
+            }
+        }
+
+
+        public static function checkIfUserThenPermissionToUpdate(int $thisModule): void {
+            try {
+
+                $permission = (object) $_SESSION['permissions'][$thisModule];
+
+                if($permission->permission_update != "Y") {
+                    throw new Exception("Você não possui permissão para atualizar.");
+                }
+
+            } catch (Exception $e) {
+                Handlers::warning("Negado", $e->getMessage());
+                throw $e;
+            }
+        }
+
+        public static function checkIfUserThenPermissionToDelete(int $thisModule): void {
+            try {
+
+                $permission = (object) $_SESSION['permissions'][$thisModule];
+
+                if($permission->permission_delete != "Y") {
                     throw new Exception("Você não possui permissão para inserção");
-                }
-
-            } catch (Exception $e) {
-                Handlers::warning("Negado", $e->getMessage());
-                throw $e;
-            }
-        }
-
-
-        public static function checkIfUserThenPermissionToUpdate(User $user): void {
-            try {
-
-                if($user->getAccessControl()->getPermission_update() != "Y") {
-                    throw new Exception("Você não possui permissão para atualização");
-                }
-
-            } catch (Exception $e) {
-                Handlers::warning("Negado", $e->getMessage());
-                throw $e;
-            }
-        }
-
-        public static function checkIfUserThenPermissionToDelete(User $user): void {
-            try {
-
-                if($user->getAccessControl()->getPermission_delete() != "Y") {
-                    throw new Exception("Você não possui permissão para exclusão");
                 }
 
             } catch (Exception $e) {

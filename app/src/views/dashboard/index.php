@@ -20,5 +20,3 @@ use App\services\Session;
 
 <?php require __DIR__ . "/footer.php"; ?>
 
-<?php Session::checkPermissions($user); ?>
-
