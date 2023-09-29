@@ -25,6 +25,17 @@ use Exception;
             }
         }
 
+        public static function getPermissionByProfileAndModule(Profile $profile, int $module_id): array {
+            try {
+                $db = new Database();
+                $profile_id = $profile->getId();
+                return $db->selectWhere("*", "profiles_modules_acl", "profile_id = $profile_id AND module_id = $module_id")[0];
+
+            } catch (Exception $e) {
+                throw $e;
+            }
+        }
+
         public static function createPermissionsDefault(Profile $profile): void {
             try {
                 $db = new Database();
@@ -36,15 +47,29 @@ use Exception;
                     $columnsAndValues = [
                         "profile_id" => $profile->getId(),
                         "module_id" => $module->getId(),
-                        "permission_read" => "Y",
+                        "permission_read" => "N",
                         "permission_create" => "N",
-                        "permission_update" => "Y",
+                        "permission_update" => "N",
                         "permission_delete" => "N",
                     ];
 
                     $db->insert($columnsAndValues, "profiles_modules_acl");
                     
                 }
+
+                Handlers::success("Feito", "Perfil criado.");
+
+            } catch (Exception $e) {
+                throw $e;
+            }
+        }
+
+        public static function updatePermissionInProfile(array $columnsAndValues, Profile $profile, int $module_id): void {
+            try {
+                $db = new Database();
+                $profile_id = $profile->getId();
+
+                $db->update($columnsAndValues, "profiles_modules_acl", "module_id = $module_id AND profile_id = $profile_id");
 
                 Handlers::success("Feito", "Perfil criado.");
 
