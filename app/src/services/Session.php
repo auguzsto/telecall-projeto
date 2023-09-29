@@ -1,6 +1,7 @@
 <?php
 
 namespace App\services;
+use App\controllers\AccessControlController;
 use App\models\User;
 
     class Session {
@@ -9,6 +10,8 @@ use App\models\User;
             session_start();
 
             $_SESSION['session'] = $user;
+            $_SESSION['permissions'] = AccessControlController::getPermissionsByProfile($user->getProfile());
+
             Logger::createDatabaseLog($user, $user->getId(), "sigin", "usuário realizou acesso");
             header("Location: /dashboard/");
         }
@@ -37,15 +40,15 @@ use App\models\User;
             
         }
 
-        public static function checkPermissions(User $user) {
-            if($user->getAccessControl()->getPermission_execute() != "Y") {
-                return header('Location: /dashboard/profile');
-              }
+        // public static function checkPermissions(User $user) {
+        //     if($user->getAccessControl()->getPermission_execute() != "Y") {
+        //         return header('Location: /dashboard/profile');
+        //       }
 
-            if($user->getAccessControl()->getPermission_read() != "Y") {
-                return header('Location: /dashboard/signout');
-            }
-        }
+        //     if($user->getAccessControl()->getPermission_read() != "Y") {
+        //         return header('Location: /dashboard/signout');
+        //     }
+        // }
 
         public static function destroy() {
             session_start();

@@ -1,9 +1,9 @@
 <?php
 
-use App\models\AccessControl;
+use App\services\ACL;
 
-    function showTools(AccessControl $accessControl, string $tool): string {
-        return $accessControl->getPermission_execute() == "Y" && $accessControl->getPermission_read() == "Y" ? print $tool : '';
+    function showTools(int $thisModule, $tool): string {
+        return ACL::checkIfUserThenPermissionToRead($thisModule) ? print $tool : '';
     }
 
 ?>
@@ -68,28 +68,28 @@ use App\models\AccessControl;
               Meu perfil
             </a>
           </li>
-          <?php showTools($user->getAccessControl(), 
+          <?php showTools(0, 
           '<li class="nav-item">
             <a class="nav-link" href="/dashboard/users">
               <span data-feather="bar-chart-2"></span>
               Usuários
             </a>
           </li>');?>
-          <?php showTools($user->getAccessControl(), 
+          <?php showTools(1, 
           '<li class="nav-item">
             <a class="nav-link" href="/dashboard/log">
               <span data-feather="bar-chart-2"></span>
               Log de alterações
             </a>
           </li>');?>
-          <?php showTools($user->getAccessControl(), 
+          <?php showTools(2, 
           '<li class="nav-item">
             <a class="nav-link" href="/dashboard/reports">
               <span data-feather="bar-chart-2"></span>
               Relatórios
             </a>
           </li>');?>
-          <?php showTools($user->getAccessControl(), 
+          <?php showTools(3, 
           '<li class="nav-item">
             <a class="nav-link" href="/dashboard/permissions">
               <span data-feather="bar-chart-2"></span>

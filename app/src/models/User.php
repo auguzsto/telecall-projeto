@@ -1,12 +1,13 @@
 <?php
 
 namespace App\models;
-use App\controllers\AccessControlController;
+use App\controllers\ProfileController;
+use App\models\Profile;
 
     class User {
-        
+
         private int $id;
-        private AccessControl $accessControl;
+        private Profile $profile;
         private string $first_name;
         private string $last_name;
         private string $mother_name;
@@ -24,7 +25,7 @@ use App\controllers\AccessControlController;
         public static function fromMap(array $map): User {
             $user = new self();
             isset($map['id']) ? $user->setId($map['id']) : null;
-            $user->setAccessControl(AccessControl::fromMap($user->getAccessControlById($map['id_access_control'])));
+            $user->setProfile(Profile::fromMap($user->getArrayProfileById($map['profile_id'])));
             $user->setFirstName($map['first_name']);
             $user->setLastName($map['last_name']);
             $user->setMotherName($map['mother_name']);
@@ -40,17 +41,16 @@ use App\controllers\AccessControlController;
             return $user;
         }
 
-        private function getAccessControlById(int $id): array {
-            $accessControlController = new AccessControlController();
-            return $accessControlController->findById($id)[0];
+        public function getArrayProfileById(int $profile_id): array {
+            return ProfileController::findById($profile_id);
         }
 
         public function setId(int $id): void {
             $this->id = $id;
         }
-
-        public function setAccessControl(AccessControl $accessControl): void {
-            $this->accessControl = $accessControl;
+        
+        public function setProfile(Profile $profile): void {
+            $this->profile = $profile;
         }
 
         public function setFirstName(string $first_name): void {
@@ -108,8 +108,8 @@ use App\controllers\AccessControlController;
             return $this->id;
         }
 
-        public function getAccessControl(): AccessControl {
-            return $this->accessControl;
+        public function getProfile(): Profile {
+            return $this->profile;
         }
 
         public function getFirstName(): string {
