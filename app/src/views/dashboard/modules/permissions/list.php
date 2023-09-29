@@ -1,14 +1,9 @@
 <?php
 
-use App\controllers\AccessControlController;
 use App\services\Session;
 
     Session::check();
     $user = $_SESSION['session'];
-    Session::checkPermissions($user);
-
-    $accessControlController = new AccessControlController();
-    $accessControls = $accessControlController->findAll();
 
 ?>
 

@@ -4,7 +4,7 @@ use App\services\Session;
     
     Session::check();
     $user = $_SESSION['session'];
-    Session::checkPermissions($user);
+    $thisModule = 1;
 
     if(!isset($r)) {
         return require __DIR__ ."/list.php";

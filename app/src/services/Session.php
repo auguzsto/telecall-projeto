@@ -40,15 +40,13 @@ use App\models\User;
             
         }
 
-        // public static function checkPermissions(User $user) {
-        //     if($user->getAccessControl()->getPermission_execute() != "Y") {
-        //         return header('Location: /dashboard/profile');
-        //       }
-
-        //     if($user->getAccessControl()->getPermission_read() != "Y") {
-        //         return header('Location: /dashboard/signout');
-        //     }
-        // }
+        public static function checkPermissions($thisModule) {
+            
+            if(!ACL::checkIfUserThenPermissionToRead($thisModule)) {
+                return header("Location: /dashboard/profile");
+            }
+            
+        }
 
         public static function destroy() {
             session_start();

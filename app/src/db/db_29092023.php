@@ -44,8 +44,9 @@ CREATE TABLE modules(
 
 INSERT INTO modules (id, name) VALUES (1, 'perfil');
 INSERT INTO modules (id, name) VALUES (2, 'usuários');
-INSERT INTO modules (id, name) VALUES (3, 'permissões');
+INSERT INTO modules (id, name) VALUES (3, 'logs');
 INSERT INTO modules (id, name) VALUES (4, 'relatórios');
+INSERT INTO modules (id, name) VALUES (5, 'perfis');
 
 CREATE TABLE profiles_modules_acl(
     profile_id BIGINT,
@@ -61,6 +62,8 @@ CREATE TABLE profiles_modules_acl(
     FOREIGN KEY (module_id) REFERENCES modules(id),
     FOREIGN KEY (profile_id) REFERENCES profiles(id)
 );
+
+INSERT INTO profiles_modules_acl VALUES (1, 1, 'Y', 'Y', 'Y', 'Y', 'N', NULL, NULL, NULL);
 
 CREATE TABLE auth(
     id BIGINT AUTO_INCREMENT,

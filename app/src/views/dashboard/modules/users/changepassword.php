@@ -31,7 +31,7 @@ use App\controllers\UserController;
 
     if(isset($_POST['action'])) {
 
-        ACL::checkIfUserThenPermissionToUpdate($user);
+        ACL::checkIfUserThenPermissionToUpdate($thisModule);
 
         $userController = new UserController();
         $password = $_POST['new-password'];

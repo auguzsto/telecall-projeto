@@ -5,7 +5,7 @@ use App\controllers\UserController;
     
     Session::check();
     $user = $_SESSION['session'];
-    $thisModule = 1;
+    $thisModule = 0;
 
 ?>
 

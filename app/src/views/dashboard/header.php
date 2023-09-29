@@ -62,38 +62,39 @@ use App\services\ACL;
               Dashboard
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/dashboard/profile">
-              <span data-feather="users"></span>
-              Meu perfil
-            </a>
-          </li>
           <?php showTools(0, 
+          '<li class="nav-item">
+            <a class="nav-link" href="/dashboard/profile">
+              <span data-feather="bar-chart-2"></span>
+              Perfil
+            </a>
+          </li>');?>
+          <?php showTools(1, 
           '<li class="nav-item">
             <a class="nav-link" href="/dashboard/users">
               <span data-feather="bar-chart-2"></span>
               Usuários
             </a>
           </li>');?>
-          <?php showTools(1, 
+          <?php showTools(2, 
           '<li class="nav-item">
             <a class="nav-link" href="/dashboard/log">
               <span data-feather="bar-chart-2"></span>
               Log de alterações
             </a>
           </li>');?>
-          <?php showTools(2, 
+          <?php showTools(3, 
           '<li class="nav-item">
             <a class="nav-link" href="/dashboard/reports">
               <span data-feather="bar-chart-2"></span>
               Relatórios
             </a>
           </li>');?>
-          <?php showTools(3, 
+          <?php showTools(4, 
           '<li class="nav-item">
             <a class="nav-link" href="/dashboard/permissions">
               <span data-feather="bar-chart-2"></span>
-              Permissões
+              Perfils
             </a>
           </li>');?>
         </ul>

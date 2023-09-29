@@ -17,6 +17,7 @@ use App\services\Database;
                 $db = new Database();
 
                 $columnsAndValues = [
+                    "profile_id" => $user->getProfile()->getId(),
                     "first_name" =>$user->getFirstName(), 
                     "last_name" => $user->getLastName(),
                     "mother_name" => $user->getMotherName(),
