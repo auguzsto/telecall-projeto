@@ -102,6 +102,9 @@ CREATE TABLE asks_2fa(
         ask_1 varchar(255) DEFAULT "Qual o nome da sua mãe",
         ask_2 varchar(255) DEFAULT "Qual a data do seu nascimento",
         ask_3 varchar(255) DEFAULT "Qual o CEP do seu endereço",
+        created_at DATETIME,
+        updated_at DATETIME,
+        deleted_at DATETIME,
         PRIMARY KEY (id)
     );
 
