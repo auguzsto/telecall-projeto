@@ -55,6 +55,7 @@ use App\services\Database;
                 $db = new Database();
 
                 $columnsAndValues = [
+                    "profile_id" => $user->getProfile()->getId(),
                     "email" => $user->getEmail(),
                     "cep" => $user->getCep(),
                     "address" => $user->getAddress(),

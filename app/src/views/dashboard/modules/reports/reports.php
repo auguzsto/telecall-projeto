@@ -1,6 +1,7 @@
 <?php
 
 use App\controllers\ReportController;
+use App\services\ACL;
 
     $reportController = new ReportController();
 
@@ -27,6 +28,8 @@ use App\controllers\ReportController;
             <button type="submit" name="action" class="form-control btn btn-primary">Gerar relatório</button>
         </form>
         <?php 
+
+            ACL::checkIfUserThenPermissionToRead($thisModule);
 
             if(isset($_POST['action'])) {
 

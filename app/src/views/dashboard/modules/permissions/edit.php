@@ -1,10 +1,9 @@
 <?php
 
 use App\controllers\AccessControlController;
-use App\controllers\ModuleController;
 use App\controllers\ProfileController;
-use App\models\Module;
 use App\models\Profile;
+use App\services\ACL;
 use App\services\Session;
     
     Session::check();
@@ -82,14 +81,23 @@ use App\services\Session;
               </tr>
             </tbody>
           </table>
-          <button class="form-control btn btn-dark mt-2 mb-2" name="action">Adicionar</button>
+          <button class="form-control btn btn-dark mt-2 mb-2" name="action">Atualizar</button>
         </form>
       </div>   
 </main>
 <?php require __DIR__ . "/../../footer.php"; ?>
 <?php
 
+    if(isset($_POST['action_delete'])) {
+
+      ACL::checkIfUserThenPermissionToDelete($thisModule);
+      ProfileController::delete($profile);
+
+    }
+
     if(isset($_POST['action'])) {
+
+      ACL::checkIfUserThenPermissionToUpdate($thisModule);
 
       $columnsAndValuesProfile = [
         "permission_read" => $_POST['permission_read_profile'] != "on" ? "N": "Y",

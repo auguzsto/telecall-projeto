@@ -3,7 +3,6 @@
 namespace App\services;
 
 use Exception;
-use App\models\User;
 use App\handlers\Handlers;
 
     class ACL {
@@ -77,7 +76,7 @@ use App\handlers\Handlers;
                 $permission = (object) $_SESSION['permissions'][$thisModule];
 
                 if($permission->permission_delete != "Y") {
-                    throw new Exception("Você não possui permissão para inserção");
+                    throw new Exception("Você não possui permissão para deletar.");
                 }
 
             } catch (Exception $e) {

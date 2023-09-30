@@ -1,11 +1,13 @@
 <?php
 
+use App\controllers\ProfileController;
 use App\models\User;
 use App\services\ACL;
 use App\controllers\UserController;
 
     $userController = new UserController();
     $userById = User::fromMap($userController->findById($r['id'])[0]);
+    $profiles = ProfileController::findAll();
 
 ?>
 
@@ -27,8 +29,10 @@ use App\controllers\UserController;
         <h5>E-mail</h5>
         <input class="form-control" type="text" name="email" value="<?= $userById->getEmail(); ?>">
         <h5>Permissões</h5>
-        <select name="id_access_control" id="" class="form-control">
-           
+        <select name="profile_id" id="" class="form-control">
+            <?php foreach($profiles as $row): ?>
+                <option value="<?= $row['id'] ?>" <?= $userById->getProfile()->getId() != $row['id'] ? "" : "selected" ?>><?= $row['name'] ?></option>
+            <?php endforeach ?>
         </select>
         <h5>CEP</h5>
         <input class="form-control" id="cep" name="cep" type="text" value="<?= $userById->getCep(); ?>">
@@ -36,7 +40,7 @@ use App\controllers\UserController;
         <input class="form-control" id="celular" name="phone" type="text" value="<?= $userById->getPhone(); ?>">
         <h5>Endereço completo</h5>
         <input class="form-control" type="text" name="address" value="<?= $userById->getAddress(); ?>">
-        <button class="form-control btn btn-dark mt-2 mb-2" name="action">Atualizar</button>
+        <button class="form-control btn btn-dark mt-2 mb-2" name="action_user">Atualizar</button>
     </form>
 </main>
 <?php require __DIR__ . "/../../footer.php"; ?>
@@ -51,12 +55,13 @@ use App\controllers\UserController;
         $userController->delete($userById);
     }
 
-    if(isset($_POST['action'])) {
+    if(isset($_POST['action_user'])) {
 
         ACL::checkIfUserThenPermissionToUpdate($thisModule);
 
         $userController = new UserController();
 
+        $userById->getProfile()->setId($_POST['profile_id']);
         $userById->setEmail($_POST['email']);
         $userById->setPhone($_POST['phone']);
         $userById->setCep($_POST['cep']);

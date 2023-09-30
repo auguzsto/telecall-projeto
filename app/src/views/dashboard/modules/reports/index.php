@@ -4,6 +4,8 @@ use App\services\Session;
     
     Session::check();
     $user = $_SESSION['session'];
+    $thisModule = 3;
+    Session::checkPermissions($thisModule);
 
     if(!isset($r)) {
         return require __DIR__ ."/reports.php";

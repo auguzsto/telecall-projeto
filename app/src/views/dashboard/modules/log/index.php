@@ -5,6 +5,8 @@ use App\services\Session;
     
     Session::check();
     $user = $_SESSION['session'];
+    $thisModule = 2;
+    Session::checkPermissions($thisModule);
 
 ?>
 
