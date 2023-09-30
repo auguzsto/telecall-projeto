@@ -17,6 +17,7 @@ use App\services\ACL;
         <form method="post" class="input-group">
             <select name="table" id="report" class="form-control">
                 <option value="users">Usuários</option>
+                <option value="profiles">Perfis</option>
             </select>
             <select name="where" id="report" class="form-control">
                 <option value="created_at">Criados em</option>
