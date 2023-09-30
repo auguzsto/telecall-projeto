@@ -3,7 +3,6 @@
 namespace App\services;
 
 use Exception;
-use App\models\User;
 use App\handlers\Handlers;
 
     class ACL {

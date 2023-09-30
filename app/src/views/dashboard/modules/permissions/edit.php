@@ -1,9 +1,7 @@
 <?php
 
 use App\controllers\AccessControlController;
-use App\controllers\ModuleController;
 use App\controllers\ProfileController;
-use App\models\Module;
 use App\models\Profile;
 use App\services\Session;
     
@@ -82,7 +80,7 @@ use App\services\Session;
               </tr>
             </tbody>
           </table>
-          <button class="form-control btn btn-dark mt-2 mb-2" name="action">Adicionar</button>
+          <button class="form-control btn btn-dark mt-2 mb-2" name="action">Atualizar</button>
         </form>
       </div>   
 </main>

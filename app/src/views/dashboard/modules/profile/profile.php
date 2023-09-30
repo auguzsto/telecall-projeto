@@ -6,6 +6,7 @@ use App\controllers\UserController;
     Session::check();
     $user = $_SESSION['session'];
     $thisModule = 0;
+    Session::checkPermissions($thisModule);
 
 ?>
 
