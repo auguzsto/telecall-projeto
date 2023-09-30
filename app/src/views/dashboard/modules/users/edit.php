@@ -40,7 +40,7 @@ use App\controllers\UserController;
         <input class="form-control" id="celular" name="phone" type="text" value="<?= $userById->getPhone(); ?>">
         <h5>Endereço completo</h5>
         <input class="form-control" type="text" name="address" value="<?= $userById->getAddress(); ?>">
-        <button class="form-control btn btn-dark mt-2 mb-2" name="action">Atualizar</button>
+        <button class="form-control btn btn-dark mt-2 mb-2" name="action_user">Atualizar</button>
     </form>
 </main>
 <?php require __DIR__ . "/../../footer.php"; ?>
@@ -55,7 +55,7 @@ use App\controllers\UserController;
         $userController->delete($userById);
     }
 
-    if(isset($_POST['action'])) {
+    if(isset($_POST['action_user'])) {
 
         ACL::checkIfUserThenPermissionToUpdate($thisModule);
 

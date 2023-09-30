@@ -3,6 +3,7 @@
 use App\controllers\AccessControlController;
 use App\controllers\ProfileController;
 use App\models\Profile;
+use App\services\ACL;
 use App\services\Session;
     
     Session::check();
@@ -87,7 +88,16 @@ use App\services\Session;
 <?php require __DIR__ . "/../../footer.php"; ?>
 <?php
 
+    if(isset($_POST['action_delete'])) {
+
+      ACL::checkIfUserThenPermissionToDelete($thisModule);
+      ProfileController::delete($profile);
+
+    }
+
     if(isset($_POST['action'])) {
+
+      ACL::checkIfUserThenPermissionToUpdate($thisModule);
 
       $columnsAndValuesProfile = [
         "permission_read" => $_POST['permission_read_profile'] != "on" ? "N": "Y",
