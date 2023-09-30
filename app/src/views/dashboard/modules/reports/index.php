@@ -15,4 +15,8 @@ use App\services\Session;
         return require __DIR__ ."/templates/report_users.php";
     }
 
+    if(isset($r['profiles'])) {
+        return require __DIR__ ."/templates/report_profiles.php";
+    }
+
 ?>

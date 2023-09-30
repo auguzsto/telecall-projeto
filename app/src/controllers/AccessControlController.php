@@ -5,6 +5,7 @@ use App\handlers\Handlers;
 use App\models\Module;
 use App\models\Profile;
 use App\services\Database;
+use App\services\Logger;
 use Exception;
 
     class AccessControlController {
@@ -57,7 +58,7 @@ use Exception;
                     
                 }
 
-                Handlers::success("Feito", "Perfil criado.");
+                Handlers::success("Feito", "Permissões criadas.");
 
             } catch (Exception $e) {
                 throw $e;
@@ -66,12 +67,14 @@ use Exception;
 
         public static function updatePermissionInProfile(array $columnsAndValues, Profile $profile, int $module_id): void {
             try {
+                
                 $db = new Database();
                 $profile_id = $profile->getId();
 
                 $db->update($columnsAndValues, "profiles_modules_acl", "module_id = $module_id AND profile_id = $profile_id");
+                ProfileController::update($profile);
 
-                Handlers::success("Feito", "Perfil criado.");
+                Handlers::success("Feito", "Permissões atulizadas.");
 
             } catch (Exception $e) {
                 throw $e;

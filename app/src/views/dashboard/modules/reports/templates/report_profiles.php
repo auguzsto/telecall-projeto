@@ -3,7 +3,7 @@ use App\services\Logger;
 
     $reports = $_SESSION['reports'];
 
-    switch($r['users']) {
+    switch($r['profiles']) {
       case "created_at":
         $type = "criados";
         break;
@@ -24,12 +24,12 @@ use App\services\Logger;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Relatório de usuários <?= $type; ?> entre <?= $r['begin']; ?> à <?= $r['final']; ?></title>
+    <title>Relatório de perfis <?= $type; ?> entre <?= $r['begin']; ?> à <?= $r['final']; ?></title>
     <link rel="stylesheet" href="/app/assets/css/bootstrap.min.css">
 </head>
 <body>
   <div class="d-flex justify-content-between p-2">
-    <h2>Relatório de usuários <?= $type; ?> entre <?= $r['begin']; ?> à <?= $r['final']; ?></h2>
+    <h2>Relatório de perfis <?= $type; ?> entre <?= $r['begin']; ?> à <?= $r['final']; ?></h2>
     <a onclick="window.print()"><div class="btn btn-dark d-print-none">Imprmir | PDF</div></a>
   </div>
 <div class="table-responsive">
@@ -37,12 +37,7 @@ use App\services\Logger;
           <thead>
             <tr>
               <th>ID</th>
-              <th>Nome completo</th>
-              <th>Nome materno</th>
-              <th>CPF</th>
-              <th>Data de nascimento</th>
-              <th>E-mail</th>
-              <th>Celular</th>
+              <th>Nome</th>
               <th>Criado em</th>
               <th>Alterado em</th>
             </tr>
@@ -51,12 +46,7 @@ use App\services\Logger;
           <?php foreach($reports as $row): ?>
               <tr>
                 <td><?= $row['id']; ?></td>
-                <td><?= $row['first_name']; ?> <?= $row['last_name']; ?></td>
-                <td><?= $row['mother_name']; ?></td>
-                <td><?= $row['cpf']; ?></td>
-                <td><?= $row['birth']; ?></td>
-                <td><?= $row['email']; ?></td>
-                <td><?= $row['phone']; ?></td>
+                <td><?= $row['name']; ?></td>
                 <td><?= $row['created_at']; ?></td>
                 <td><?= $row['updated_at']; ?></td>
               </tr>
@@ -72,5 +62,5 @@ use App\services\Logger;
 </html>
 
 <?php 
-      Logger::createDatabaseLog($user, 1, "seleção", "usuário gerou um relatório sobre usuários $type");
+      Logger::createDatabaseLog($user, 1, "seleção", "usuário gerou um relatório sobre perfis $type");
       unset($_SESSION['reports']);
