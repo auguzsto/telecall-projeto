@@ -1,0 +1,32 @@
+services:
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    restart: always
+    ports:
+      - 8080:80
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./:/var/www/html
+    links:
+      - php-fpm
+
+  php-fpm:
+    image: bitnami/php-fpm:latest
+    container_name: php-fpm
+    restart: always
+    ports:
+      - 9000:9000
+    volumes:
+      - ./:/var/www/html
+    links:
+      - mariadb
+
+  mariadb:
+    image: mariadb:latest
+    container_name: mariadb
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      MARIADB_ROOT_PASSWORD: password
