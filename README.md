@@ -37,7 +37,7 @@ Antes de tudo, certifique que tenha docker e docker-compose instalado.
 ```
 git clone https://github.com/auguzsto/telecall-projeto.git
 ```
-2. Configure as variáveis, em **config.php**, para conexão de acordo com seu banco de dados.
+2. Em **config.php**, altere $config['host'] = "127.0.0.1" para $config['host'] = "mariadb";
 ```
     $config['host'] = "mariadb";
     $config['port'] = "3306";
