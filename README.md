@@ -6,14 +6,13 @@ Implementação de back-end utilizando PHP. Proíbido a utilização de qualquer
 - PHP
     - ext-pdo
     - ext-pdo_mysql
-- Composer
 - MySQL ou MariaDB
 
-# Como correr o projeto?
+# Como correr o projeto sem Docker?
 Antes de tudo, certifique que tenha os requerimentos necessários acima.
-1. Clone e instale as depedências.
+1. Clone o repositório.
 ```
-git clone https://github.com/auguzsto/telecall-projeto.git && cd telecall-projeto && composer install
+git clone https://github.com/auguzsto/telecall-projeto.git
 ```
 2. Configure as variáveis, em **config.php**, para conexão de acordo com seu banco de dados.
 ```
@@ -21,12 +20,33 @@ git clone https://github.com/auguzsto/telecall-projeto.git && cd telecall-projet
     $config['port'] = "PORTA";
     $config['user'] = "USUÁRIO";
     $config['password'] = "SENHA";
+    $config['database'] = "grp_16_bangu_noite";
+
 ```
 3. Rode o servidor web nativo do php.
 ```
 php -S 0.0.0.0:8000 -t .
 ```
 4. Acesse o projeto
+```
+ http://localhost:8000/
+```
+# Como correr o projeto com Docker?
+Antes de tudo, certifique que tenha docker e docker-compose instalado.
+1. Clone o repositório.
+```
+git clone https://github.com/auguzsto/telecall-projeto.git
+```
+2. Configure as variáveis, em **config.php**, para conexão de acordo com seu banco de dados.
+```
+    $config['host'] = "mariadb";
+    $config['port'] = "3306";
+    $config['user'] = "root";
+    $config['password'] = "password";
+    $config['database'] = "grp_16_bangu_noite";
+
+```
+3. Acesse o projeto
 ```
  http://localhost:8000/
 ```
