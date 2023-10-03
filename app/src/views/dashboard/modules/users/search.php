@@ -3,7 +3,9 @@
 use App\controllers\UserController;
     
     $userController = new UserController();
-    $users = $userController->findByName(urldecode($r['name']));
+    if(isset($r['name'])) $users = $userController->findAllByName(urldecode($r['name']));
+    if(isset($r['cpf']))  $users = $userController->findAllByCpf(urldecode($r['cpf']));
+    if(isset($r['email'])) $users = $userController->findAllByEmail(urldecode($r['email']));
 
 ?>
 

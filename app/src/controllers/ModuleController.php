@@ -9,7 +9,7 @@ use Exception;
         public static function findById(int $id): array {
             try {
                 $db = new Database();
-                return $db->selectWhere("*", "modules", "id = ". $id)[0];
+                return $db->select("*", "modules")->where("id = $id")->toArray()[0];
 
             } catch (Exception $e) {
                 throw $e;
@@ -19,7 +19,7 @@ use Exception;
         public static function findAll(): array {
             try {
                 $db = new Database();
-                return $db->select("*", "modules");
+                return $db->select("*", "modules")->orderDesc("id")->toArray();
 
             } catch (Exception $e) {
                 throw $e;

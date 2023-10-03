@@ -12,7 +12,7 @@ use App\services\Database;
         public static function findById(int $id): array {
             try {
                 $db = new Database();
-                return $db->selectWhere("*", "profiles", "id = ". $id)[0];
+                return $db->select("*", "profiles")->where("id = $id")->toArray()[0];
 
             } catch (Exception $e) {
                 throw $e;
@@ -22,7 +22,7 @@ use App\services\Database;
         public static function findByName(string $name): array {
             try {
                 $db = new Database();
-                return $db->selectWhere("*", "profiles", "name = '$name'")[0];
+                return $db->select("*", "profiles")->where("name = '$name'")->orderDesc("id")->toArray()[0];
 
             } catch (Exception $e) {
                 throw $e;
@@ -32,7 +32,7 @@ use App\services\Database;
         public static function findAll(): array {
             try {
                 $db = new Database();
-                return $db->select("*", "profiles");
+                return $db->select("*", "profiles")->orderDesc("id")->toArray();
 
             } catch (Exception $e) {
                 throw $e;

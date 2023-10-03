@@ -8,7 +8,7 @@ use App\controllers\UserController;
     Session::check();
     $user = $_SESSION['session'];
     $userController = new UserController();
-    $userById = User::fromMap($userController->findById($r['changepassword'])[0]);
+    $userById = User::fromMap($userController->findById($r['changepassword']));
 ?>
 
 <?php require __DIR__ . "/../../header.php"; ?>

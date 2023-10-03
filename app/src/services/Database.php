@@ -11,6 +11,8 @@ require __DIR__ . "/../../../config.php";
 
     class Database {
 
+        private string $query;
+
         public function __construct() {
             $this->doCon();
         }
@@ -81,36 +83,9 @@ require __DIR__ . "/../../../config.php";
             }
         }
 
-        public function select(string $columns, string $table): array {
-            try {
-                $pdo = $this->con();
-                return $pdo->query("SELECT $columns FROM $table WHERE deleted_at IS NULL ORDER BY id DESC")->fetchAll();
-
-            } catch (Exception $e) {
-                Handlers::error("Problema", "Não foi possível recuperar dados. Entre em contato com o adinistrador.", $e->getMessage());
-                throw $e;
-            }
-        }
-
-        public function selectWhere(string $columns, string $table, string $whereCondition): array {
-            try {
-                $pdo = $this->con();
-                return $pdo->query("SELECT $columns FROM $table WHERE $whereCondition AND deleted_at IS NULL")->fetchAll();
-
-            } catch (Exception $e) {
-                Handlers::error("Problema", "Não foi possível recuperar dados. <br/> Entre em contato com o administrador.", $e->getMessage());
-                throw $e;
-            }
-        }
-        public function selectWhereLike(string $columns, string $table, string $where, string $value): array {
-            try {
-                $pdo = $this->con();
-                return $pdo->query("SELECT $columns FROM $table WHERE $where LIKE '%$value%'")->fetchAll();
-
-            } catch (Exception $e) {
-                Handlers::error("Problema", "Não foi possível recuperar dados. Entre em contato com o adinistrador.", $e->getMessage());
-                throw $e;
-            }
+        public function select(string $columns, string $table): self {
+            $this->query = "SELECT $columns FROM $table WHERE deleted_at IS NULL";
+            return $this;
         }
 
         public function selectDataBetweenDate(string $columns, string $table, string $where, string $betweenBegin, string $betweenFinal): array {
@@ -122,5 +97,39 @@ require __DIR__ . "/../../../config.php";
                 Handlers::error("Problema", "Inesperado", $e->getMessage());
                 throw $e;
             }
+        }
+
+        public function toArray(): array {
+            try {
+                return $this->con()->query($this->query)->fetchAll();
+            } catch (Exception $e) {
+                Handlers::error("Problema", "Não foi possível recuperar dados. Entre em contato com o administrador.", $e->getMessage());
+                throw $e;
+            }
+        }
+
+        public function where(string $condition): self {
+            $this->query = $this->query . " AND $condition";
+            return $this;
+        }
+
+        public function like(string $value): self {
+            $this->query = $this->query . " LIKE '%$value%'";
+            return $this;
+        }
+
+        public function and(string $condition): self {
+            $this->query = $this->query . " AND $condition";
+            return $this;
+        }
+
+        public function orderDesc(string $column): self {
+            $this->query = $this->query . " ORDER BY $column DESC";
+            return $this;
+        }
+
+        public function orderAsc(string $column): self {
+            $this->query = $this->query . " ORDER BY $column ASC";
+            return $this;
         }
     }

@@ -14,12 +14,7 @@ use Exception;
             try {
                 $db = new Database();
                 $profile_id = $profile->getId();
-                return $db->query("
-                    SELECT 
-                        *
-                    FROM 
-                        profiles_modules_acl pma
-                    WHERE pma.profile_id = $profile_id ORDER BY module_id ASC")->fetchAll();
+                return $db->select("*", "profiles_modules_acl")->where("profile_id = '$profile_id'")->orderAsc("module_id")->toArray();
                     
             } catch (Exception $e) {
                 throw $e;
@@ -30,7 +25,7 @@ use Exception;
             try {
                 $db = new Database();
                 $profile_id = $profile->getId();
-                return $db->selectWhere("*", "profiles_modules_acl", "profile_id = $profile_id AND module_id = $module_id")[0];
+                return $db->select("*", "profiles_modules_acl")->where("profile_id = $profile_id")->and("module_id = $module_id")->toArray()[0];
 
             } catch (Exception $e) {
                 throw $e;
