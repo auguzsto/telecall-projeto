@@ -132,7 +132,7 @@ use App\services\Database;
 
         public function findById(int $id): array {
             $db = new Database();
-            return $db->select("*", $this->table)->where("id = $id")->orderDesc()->toArray();
+            return $db->select("*", $this->table)->where("id = $id")->toArray()[0];
         }
 
         public function findByEmail(string $email): array {

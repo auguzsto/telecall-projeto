@@ -17,7 +17,7 @@ use App\models\User;
             $auth = new self();
             $userController = new UserController();
 
-            $user = User::fromMap($userController->findById($map['user_id'])[0]);
+            $user = User::fromMap($userController->findById($map['user_id']));
             $auth->setId($map['id']);
             $auth->setUser($user);
             $auth->setBasicToken($user);

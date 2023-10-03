@@ -6,7 +6,7 @@ use App\services\ACL;
 use App\controllers\UserController;
 
     $userController = new UserController();
-    $userById = User::fromMap($userController->findById($r['id'])[0]);
+    $userById = User::fromMap($userController->findById($r['id']));
     $profiles = ProfileController::findAll();
 
 ?>
