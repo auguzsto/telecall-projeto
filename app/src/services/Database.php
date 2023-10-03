@@ -88,28 +88,6 @@ require __DIR__ . "/../../../config.php";
             return $this;
         }
 
-        public function selectWhere(string $columns, string $table, string $whereCondition): array {
-            try {
-                $pdo = $this->con();
-                return $pdo->query("SELECT $columns FROM $table WHERE $whereCondition AND deleted_at IS NULL")->fetchAll();
-
-            } catch (Exception $e) {
-                Handlers::error("Problema", "Não foi possível recuperar dados. <br/> Entre em contato com o administrador.", $e->getMessage());
-                throw $e;
-            }
-        }
-
-        public function selectWhereLike(string $columns, string $table, string $where, string $value): array {
-            try {
-                $pdo = $this->con();
-                return $pdo->query("SELECT $columns FROM $table WHERE $where LIKE '%$value%'")->fetchAll();
-
-            } catch (Exception $e) {
-                Handlers::error("Problema", "Não foi possível recuperar dados. Entre em contato com o adinistrador.", $e->getMessage());
-                throw $e;
-            }
-        }
-
         public function selectDataBetweenDate(string $columns, string $table, string $where, string $betweenBegin, string $betweenFinal): array {
             try {
                 $pdo = $this->con();
@@ -130,17 +108,13 @@ require __DIR__ . "/../../../config.php";
             }
         }
 
-        public function toObject(): object {
-            try {
-                return $this->con()->query($this->query)->fetchObject();
-            } catch (Exception $e) {
-                Handlers::error("Problema", "Não foi possível recuperar dados. Entre em contato com o adinistrador.", $e->getMessage());
-                throw $e;
-            }
-        }
-
         public function where(string $condition): object {
             $this->query = $this->query . " AND $condition";
+            return $this;
+        }
+
+        public function like(string $value): object {
+            $this->query = $this->query . " LIKE '%$value%'";
             return $this;
         }
 
