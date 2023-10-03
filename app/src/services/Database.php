@@ -103,7 +103,7 @@ require __DIR__ . "/../../../config.php";
             try {
                 return $this->con()->query($this->query)->fetchAll();
             } catch (Exception $e) {
-                Handlers::error("Problema", "Não foi possível recuperar dados. Entre em contato com o adinistrador.", $e->getMessage());
+                Handlers::error("Problema", "Não foi possível recuperar dados. Entre em contato com o administrador.", $e->getMessage());
                 throw $e;
             }
         }

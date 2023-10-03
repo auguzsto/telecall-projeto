@@ -72,7 +72,7 @@ use App\services\Database;
         private function findByEncode(string $encode): array {
             try {
                 $db = new Database();
-                $find = $db->select("*", $this->table)->where("basic_token = '$encode'")->toArray()[0];
+                $find = $db->select("*", $this->table)->where("basic_tokens = '$encode'")->toArray()[0];
 
                 if(empty($find)) {
                     throw new Exception("Usuário ou senha incorretos.");
