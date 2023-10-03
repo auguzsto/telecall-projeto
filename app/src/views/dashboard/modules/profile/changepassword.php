@@ -1,8 +1,9 @@
 <?php
 
-use App\controllers\UserController;
-use App\handlers\Handlers;
+use App\services\ACL;
 use App\services\Session;
+use App\handlers\Handlers;
+use App\controllers\UserController;
     
     Session::check();
     $user = $_SESSION['session'];
@@ -32,6 +33,8 @@ use App\services\Session;
 <?php
 
     if(isset($_POST['action'])) {
+        
+        ACL::checkIfUserThenPermissionToUpdate($thisModule);
 
         $userController = new UserController();
         $currentPassword = password_verify($_POST['current-password'], $user->getPassword());
