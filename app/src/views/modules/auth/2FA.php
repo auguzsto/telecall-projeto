@@ -7,7 +7,7 @@ use App\services\Database;
     $user = $_SESSION['2fa'];
 
     $db = new Database();
-    $asks = $db->select("ask_1, ask_2, ask_3", "asks_2fa")[0];
+    $asks = $db->select("ask_1, ask_2, ask_3", "asks_2fa")->orderDesc()->toArray()[0];
     $rand = rand(0, 2);
     $tagIdByRand = $rand == 2 ? "cep" : null;
 

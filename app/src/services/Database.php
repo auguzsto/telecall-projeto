@@ -11,6 +11,8 @@ require __DIR__ . "/../../../config.php";
 
     class Database {
 
+        private string $query;
+
         public function __construct() {
             $this->doCon();
         }
@@ -81,15 +83,9 @@ require __DIR__ . "/../../../config.php";
             }
         }
 
-        public function select(string $columns, string $table): array {
-            try {
-                $pdo = $this->con();
-                return $pdo->query("SELECT $columns FROM $table WHERE deleted_at IS NULL ORDER BY id DESC")->fetchAll();
-
-            } catch (Exception $e) {
-                Handlers::error("Problema", "Não foi possível recuperar dados. Entre em contato com o adinistrador.", $e->getMessage());
-                throw $e;
-            }
+        public function select(string $columns, string $table): object {
+            $this->query = "SELECT $columns FROM $table WHERE deleted_at IS NULL";
+            return $this;
         }
 
         public function selectWhere(string $columns, string $table, string $whereCondition): array {
@@ -102,6 +98,7 @@ require __DIR__ . "/../../../config.php";
                 throw $e;
             }
         }
+
         public function selectWhereLike(string $columns, string $table, string $where, string $value): array {
             try {
                 $pdo = $this->con();
@@ -122,5 +119,38 @@ require __DIR__ . "/../../../config.php";
                 Handlers::error("Problema", "Inesperado", $e->getMessage());
                 throw $e;
             }
+        }
+
+        public function toArray(): array {
+            try {
+                return $this->con()->query($this->query)->fetchAll();
+            } catch (Exception $e) {
+                Handlers::error("Problema", "Não foi possível recuperar dados. Entre em contato com o adinistrador.", $e->getMessage());
+                throw $e;
+            }
+        }
+
+        public function toObject(): object {
+            try {
+                return $this->con()->query($this->query)->fetchObject();
+            } catch (Exception $e) {
+                Handlers::error("Problema", "Não foi possível recuperar dados. Entre em contato com o adinistrador.", $e->getMessage());
+                throw $e;
+            }
+        }
+
+        public function where(string $condition): object {
+            $this->query = $this->query . " AND $condition";
+            return $this;
+        }
+
+        public function and(string $condition): object {
+            $this->query = $this->query . " AND $condition";
+            return $this;
+        }
+
+        public function orderDesc(): object {
+            $this->query = $this->query . " ORDER BY id DESC";
+            return $this;
         }
     }

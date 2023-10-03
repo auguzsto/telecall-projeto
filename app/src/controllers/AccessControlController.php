@@ -30,7 +30,7 @@ use Exception;
             try {
                 $db = new Database();
                 $profile_id = $profile->getId();
-                return $db->selectWhere("*", "profiles_modules_acl", "profile_id = $profile_id AND module_id = $module_id")[0];
+                return $db->select("*", "profiles_modules_acl")->where("profile_id = $profile_id")->and("module_id = $module_id")->toArray()[0];
 
             } catch (Exception $e) {
                 throw $e;
