@@ -94,7 +94,7 @@ use App\services\ACL;
           '<li class="nav-item">
             <a class="nav-link" href="/dashboard/permissions">
               <span data-feather="bar-chart-2"></span>
-              Perfils
+              Perfis
             </a>
           </li>');?>
         </ul>

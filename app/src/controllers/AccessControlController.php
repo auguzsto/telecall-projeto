@@ -47,6 +47,7 @@ use Exception;
                         "permission_create" => "N",
                         "permission_update" => "N",
                         "permission_delete" => "N",
+                        "created_at" => date("Y-m-d H:i:s"),
                     ];
 
                     $db->insert($columnsAndValues, "profiles_modules_acl");

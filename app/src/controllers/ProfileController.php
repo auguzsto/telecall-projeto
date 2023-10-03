@@ -12,7 +12,13 @@ use App\services\Database;
         public static function findById(int $id): array {
             try {
                 $db = new Database();
-                return $db->select("*", "profiles")->where("id = $id")->toArray()[0];
+                $find = $db->select("*", "profiles")->where("id = $id")->toArray()[0];
+                
+                if($find != null) {
+                    return $find;
+                }
+
+                return $db->select("*", "profiles")->where("id = 1")->toArray()[0];
 
             } catch (Exception $e) {
                 throw $e;
