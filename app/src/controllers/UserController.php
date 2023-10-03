@@ -122,12 +122,12 @@ use App\services\Database;
 
         public function findAll(): array {
             $db = new Database();
-            return $db->select("*", $this->table)->orderDesc()->toArray();
+            return $db->select("*", $this->table)->orderDesc("created_at")->toArray();
         }
 
         public function findByName(string $first_name): array {
             $db = new Database();
-            return $db->select("*", $this->table)->where("first_name = '$first_name'")->orderDesc()->toArray();
+            return $db->select("*", $this->table)->where("first_name")->like("$first_name")->orderDesc("created_at")->toArray();;
         }
 
         public function findById(int $id): array {
@@ -137,6 +137,6 @@ use App\services\Database;
 
         public function findByEmail(string $email): array {
             $db = new Database();
-            return $db->select("*", $this->table)->where("email = '$email'")->orderDesc()->toArray();
+            return $db->select("*", $this->table)->where("email = '$email'")->orderDesc("id")->toArray()[0];
         }
     }

@@ -22,7 +22,7 @@ use App\services\Database;
         public static function findByName(string $name): array {
             try {
                 $db = new Database();
-                return $db->select("*", "profiles")->where("name = '$name'")->orderDesc()->toArray()[0];
+                return $db->select("*", "profiles")->where("name = '$name'")->orderDesc("id")->toArray()[0];
 
             } catch (Exception $e) {
                 throw $e;
@@ -32,7 +32,7 @@ use App\services\Database;
         public static function findAll(): array {
             try {
                 $db = new Database();
-                return $db->select("*", "profiles")->orderDesc()->toArray();
+                return $db->select("*", "profiles")->orderDesc("id")->toArray();
 
             } catch (Exception $e) {
                 throw $e;

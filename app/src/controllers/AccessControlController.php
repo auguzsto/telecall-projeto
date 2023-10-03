@@ -14,12 +14,7 @@ use Exception;
             try {
                 $db = new Database();
                 $profile_id = $profile->getId();
-                return $db->query("
-                    SELECT 
-                        *
-                    FROM 
-                        profiles_modules_acl pma
-                    WHERE pma.profile_id = $profile_id ORDER BY module_id ASC")->fetchAll();
+                return $db->select("*", "profiles_modules_acl")->where("profile_id = '$profile_id'")->orderAsc("module_id")->toArray();
                     
             } catch (Exception $e) {
                 throw $e;

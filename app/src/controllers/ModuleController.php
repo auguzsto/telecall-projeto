@@ -19,7 +19,7 @@ use Exception;
         public static function findAll(): array {
             try {
                 $db = new Database();
-                return $db->select("*", "modules")->orderDesc()->toArray();
+                return $db->select("*", "modules")->orderDesc("id")->toArray();
 
             } catch (Exception $e) {
                 throw $e;

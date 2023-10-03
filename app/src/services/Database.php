@@ -83,7 +83,7 @@ require __DIR__ . "/../../../config.php";
             }
         }
 
-        public function select(string $columns, string $table): object {
+        public function select(string $columns, string $table): self {
             $this->query = "SELECT $columns FROM $table WHERE deleted_at IS NULL";
             return $this;
         }
@@ -108,23 +108,28 @@ require __DIR__ . "/../../../config.php";
             }
         }
 
-        public function where(string $condition): object {
+        public function where(string $condition): self {
             $this->query = $this->query . " AND $condition";
             return $this;
         }
 
-        public function like(string $value): object {
+        public function like(string $value): self {
             $this->query = $this->query . " LIKE '%$value%'";
             return $this;
         }
 
-        public function and(string $condition): object {
+        public function and(string $condition): self {
             $this->query = $this->query . " AND $condition";
             return $this;
         }
 
-        public function orderDesc(): object {
-            $this->query = $this->query . " ORDER BY id DESC";
+        public function orderDesc(string $column): self {
+            $this->query = $this->query . " ORDER BY $column DESC";
+            return $this;
+        }
+
+        public function orderAsc(string $column): self {
+            $this->query = $this->query . " ORDER BY $column ASC";
             return $this;
         }
     }
