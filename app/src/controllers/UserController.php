@@ -125,15 +125,26 @@ use App\services\Database;
             return $db->select("*", $this->table)->orderDesc("created_at")->toArray();
         }
 
-        public function findByName(string $first_name): array {
+        public function findAllByName(string $first_name): array {
             $db = new Database();
             return $db->select("*", $this->table)->where("first_name")->like("$first_name")->orderDesc("created_at")->toArray();;
+        }
+
+        public function findAllByCpf(string $cpf): array {
+            $db = new Database();
+            return $db->select("*", $this->table)->where("cpf")->like("$cpf")->orderDesc("created_at")->toArray();;
+        }
+
+        public function findAllByEmail(string $email): array {
+            $db = new Database();
+            return $db->select("*", $this->table)->where("email")->like("$email")->orderDesc("created_at")->toArray();
         }
 
         public function findById(int $id): array {
             $db = new Database();
             return $db->select("*", $this->table)->where("id = $id")->toArray()[0];
         }
+
 
         public function findByEmail(string $email): array {
             $db = new Database();

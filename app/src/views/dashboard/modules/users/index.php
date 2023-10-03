@@ -19,6 +19,14 @@ use App\services\Session;
         return require __DIR__ ."/search.php";
     }
 
+    if(isset($r['email'])) {
+        return require __DIR__ ."/search.php";
+    }
+
+    if(isset($r['cpf'])) {
+        return require __DIR__ ."/search.php";
+    }
+
     if(isset($r['changepassword'])) {
         return require __DIR__ ."/changepassword.php";
     }
