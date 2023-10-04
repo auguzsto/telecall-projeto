@@ -119,3 +119,10 @@ Regras para submeter o formulário.
 - A resposta deve ser preenchida.
 - A geração da pergunta deve ser aleatória e o usuário deve responder de acordo com o valor
 correspondente que cadastrado no Banco de Dados.
+
+## Diagrama de relacionamento modelo entidade.
+<center><img src = 'https://i.imgur.com/q8A2f79.png'></center>
+
+## Fluxograma de arquitetura utilizando Docker.
+<i> Isto é apenas uma demonstração, utilizando Docker, para balancemento de carga</i>
+<center> <img src= 'https://i.imgur.com/I92P25k.png'></center>
