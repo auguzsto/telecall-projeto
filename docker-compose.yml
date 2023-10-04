@@ -1,14 +1,43 @@
 version: '3'
 
 services:
-  nginx:
+  load_balancer:
     image: nginx:stable
-    container_name: nginx
+    container_name: load_balancer
     restart: always
     ports:
-      - 8000:80
+      - "80:80"
     volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./docker/load-balance/nginx.conf:/etc/nginx/nginx.conf
+    links:
+      - ap1
+      - ap2
+    depends_on:
+      - ap1
+      - ap2
+
+  ap1:
+    image: nginx:stable
+    container_name: ap1
+    restart: always
+    ports:
+      - "80"
+    volumes:
+      - ./docker/php-fpm/nginx.conf:/etc/nginx/nginx.conf
+      - ./:/var/www/html
+    links:
+      - php-fpm
+    depends_on:
+      - php-fpm
+    
+  ap2:
+    image: nginx:stable
+    container_name: ap2
+    restart: always
+    ports:
+      - "80"
+    volumes:
+      - ./docker/php-fpm/nginx.conf:/etc/nginx/nginx.conf
       - ./:/var/www/html
     links:
       - php-fpm
@@ -20,7 +49,7 @@ services:
     container_name: php-fpm
     restart: always
     ports:
-      - 9000:9000
+      - "9000"
     volumes:
       - ./:/var/www/html
     links:
