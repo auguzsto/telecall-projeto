@@ -2,7 +2,7 @@ version: '3'
 
 services:
   nginx:
-    image: nginx:latest
+    image: nginx:stable
     container_name: nginx
     restart: always
     ports:
@@ -12,9 +12,11 @@ services:
       - ./:/var/www/html
     links:
       - php-fpm
+    depends_on:
+      - php-fpm
 
   php-fpm:
-    image: bitnami/php-fpm:latest
+    image: bitnami/php-fpm:8.2.11-debian-11-r3
     container_name: php-fpm
     restart: always
     ports:
@@ -23,9 +25,11 @@ services:
       - ./:/var/www/html
     links:
       - mariadb
+    depends_on:
+      - mariadb
 
   mariadb:
-    image: mariadb:latest
+    image: mariadb:lts
     container_name: mariadb
     restart: always
     ports:
