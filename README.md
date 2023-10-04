@@ -121,8 +121,8 @@ Regras para submeter o formulário.
 correspondente que cadastrado no Banco de Dados.
 
 ## Diagrama de relacionamento modelo entidade.
-<center><img src = 'https://i.imgur.com/q8A2f79.png'></center>
+<div align='center'><img src = 'https://i.imgur.com/q8A2f79.png'></div>
 
 ## Fluxograma de arquitetura utilizando Docker.
 <i> Isto é apenas uma demonstração, utilizando Docker, para balancemento de carga</i>
-<center> <img src= 'https://i.imgur.com/I92P25k.png'></center>
+<div align='center'><img src= 'https://i.imgur.com/I92P25k.png'></div>
