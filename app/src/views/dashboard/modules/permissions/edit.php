@@ -1,23 +1,16 @@
 <?php
 
 use App\controllers\AccessControlController;
-use App\controllers\ModuleController;
 use App\controllers\ProfileController;
 use App\models\AccessControl;
-use App\models\Module;
 use App\models\Profile;
 use App\services\ACL;
     
     $profile = Profile::fromMap(ProfileController::findById($r['profile_id']));
     $permissons = AccessControlController::getPermissionsByProfile($profile);
-    $modulesAll = ModuleController::findAll();
 
     function checked(string $permisson): string {
         return $permisson != "Y" ? '' : 'checked';
-    }
-
-    function value(string $permisson): string {
-      return $permisson != "Y" ? "N" : "Y";
     }
 
 ?>
@@ -44,7 +37,7 @@ use App\services\ACL;
               <?php foreach($permissons as $row): $accessControl = AccessControl::fromMap($row) ?>
                 <tr>
                   <?php $module = $accessControl->getModule(); ?>
-                  <td><?= $module->getName(); ?></td>
+                  <td><?= ucfirst($module->getName()); ?></td>
                   <td><input type="checkbox" name="read-<?= $module->getId(); ?>" id="" <?= checked($accessControl->getPermission_read()); ?>></td>
                   <td><input type="checkbox" name="create-<?= $module->getId(); ?>" id="" <?= checked($accessControl->getPermission_create()); ?>></td>
                   <td><input type="checkbox"  name="update-<?= $module->getId(); ?>" id="" <?= checked($accessControl->getPermission_update()); ?>></td>
