@@ -7,7 +7,6 @@ use App\controllers\ModuleController;
 
         private Module $module;
         private string $permission_create;
-        private string $permission_execute;
         private string $permission_read;
         private string $permission_update;
         private string $permission_delete;
@@ -17,7 +16,6 @@ use App\controllers\ModuleController;
             $access_control->setModule(Module::fromMap(ModuleController::findById($map['module_id'])));
             $access_control->setPermission_create($map['permission_create']);
             $access_control->setPermission_delete($map['permission_delete']);
-            $access_control->setPermission_execute($map['permission_execute']);
             $access_control->setPermission_read($map['permission_read']);
             $access_control->setPermission_update($map['permission_update']);
 
@@ -29,10 +27,6 @@ use App\controllers\ModuleController;
 
         public function getPermission_create(): string {
             return $this->permission_create;
-        }
-
-        public function getPermission_execute(): string {
-            return $this->permission_execute;
         }
 
         public function getPermission_read(): string {

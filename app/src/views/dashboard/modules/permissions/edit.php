@@ -2,22 +2,12 @@
 
 use App\controllers\AccessControlController;
 use App\controllers\ProfileController;
+use App\models\AccessControl;
 use App\models\Profile;
 use App\services\ACL;
-use App\services\Session;
     
-    Session::check();
-    $user = $_SESSION['session'];
     $profile = Profile::fromMap(ProfileController::findById($r['profile_id']));
     $permissons = AccessControlController::getPermissionsByProfile($profile);
-    
-    $modules = [
-      "profile" => AccessControlController::getPermissionByProfileAndModule($profile, 1),
-      "users" => AccessControlController::getPermissionByProfileAndModule($profile, 2),
-      "logs" => AccessControlController::getPermissionByProfileAndModule($profile, 3),
-      "reports" => AccessControlController::getPermissionByProfileAndModule($profile, 4),
-      "profiles" => AccessControlController::getPermissionByProfileAndModule($profile, 5),
-    ];
 
     function checked(string $permisson): string {
         return $permisson != "Y" ? '' : 'checked';
@@ -44,47 +34,21 @@ use App\services\Session;
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>Perfil</td>
-                  <td><input type="checkbox" name="permission_read_profile" <?= checked($modules['profile'][3]); ?>></td>
-                  <td><input type="checkbox" name="permission_create_profile" <?= checked($modules['profile'][2]); ?>></td>
-                  <td><input type="checkbox" name="permission_update_profile" <?= checked($modules['profile'][4]); ?>></td>
-                  <td><input type="checkbox" name="permission_delete_profile" <?= checked($modules['profile'][5]); ?>></td>
-              </tr>
-              <tr>
-                <td>Usuários</td>
-                  <td><input type="checkbox" name="permission_read_users" <?= checked($modules['users'][3]); ?>></td>
-                  <td><input type="checkbox" name="permission_create_users" <?= checked($modules['users'][2]); ?>></td>
-                  <td><input type="checkbox" name="permission_update_users" <?= checked($modules['users'][4]); ?>></td>
-                  <td><input type="checkbox" name="permission_delete_users" <?= checked($modules['users'][5]); ?>></td>
-              </tr>
-              <tr>
-                <td>Logs</td>
-                  <td><input type="checkbox" name="permission_read_logs" <?= checked($modules['logs'][3]); ?>></td>
-                  <td><input type="checkbox" name="permission_create_logs" <?= checked($modules['logs'][2]); ?>></td>
-                  <td><input type="checkbox" name="permission_update_logs" <?= checked($modules['logs'][4]); ?>></td>
-                  <td><input type="checkbox" name="permission_delete_logs" <?= checked($modules['logs'][5]); ?>></td>
-              </tr>
-              <tr>
-                <td>Relatórios</td>
-                  <td><input type="checkbox" name="permission_read_reports" <?= checked($modules['reports'][3]); ?>></td>
-                  <td><input type="checkbox" name="permission_create_reports" <?= checked($modules['reports'][2]); ?>></td>
-                  <td><input type="checkbox" name="permission_update_reports" <?= checked($modules['reports'][4]); ?>></td>
-                  <td><input type="checkbox" name="permission_delete_reports" <?= checked($modules['reports'][5]); ?>></td>
-              </tr>
-              <tr>
-                <td>Perfis</td>
-                  <td><input type="checkbox" name="permission_read_profiles" <?= checked($modules['profiles'][3]); ?>></td>
-                  <td><input type="checkbox" name="permission_create_profiles" <?= checked($modules['profiles'][2]); ?>></td>
-                  <td><input type="checkbox" name="permission_update_profiles" <?= checked($modules['profiles'][4]); ?>></td>
-                  <td><input type="checkbox" name="permission_delete_profiles" <?= checked($modules['profiles'][5]); ?>></td>
-              </tr>
+              <?php foreach($permissons as $row): $accessControl = AccessControl::fromMap($row) ?>
+                <tr>
+                  <?php $module = $accessControl->getModule(); ?>
+                  <td><?= ucfirst($module->getName()); ?></td>
+                  <td><input type="checkbox" name="read-<?= $module->getId(); ?>" id="" <?= checked($accessControl->getPermission_read()); ?>></td>
+                  <td><input type="checkbox" name="create-<?= $module->getId(); ?>" id="" <?= checked($accessControl->getPermission_create()); ?>></td>
+                  <td><input type="checkbox"  name="update-<?= $module->getId(); ?>" id="" <?= checked($accessControl->getPermission_update()); ?>></td>
+                  <td><input type="checkbox" name="delete-<?= $module->getId(); ?>" id="" <?= checked($accessControl->getPermission_delete()); ?>></td>
+                </tr>
+              <?php endforeach ?>
             </tbody>
           </table>
           <button class="form-control btn btn-dark mt-2 mb-2" name="action">Atualizar</button>
         </form>
       </div>   
-</main>
 <?php require __DIR__ . "/../../footer.php"; ?>
 <?php
 
@@ -99,45 +63,24 @@ use App\services\Session;
 
       ACL::checkIfUserThenPermissionToUpdate($thisModule);
 
-      $columnsAndValuesProfile = [
-        "permission_read" => $_POST['permission_read_profile'] != "on" ? "N": "Y",
-        "permission_create" => $_POST['permission_create_profile'] != "on" ? "N": "Y",
-        "permission_update" => $_POST['permission_update_profile'] != "on" ? "N": "Y",
-        "permission_delete" => $_POST['permission_delete_profile'] != "on" ? "N": "Y",
-      ];
+      foreach($permissons as $row) {
+        $accessControl = AccessControl::fromMap($row);
+        $module = $accessControl->getModule();
+        $read = "read-" . $module->getId();
+        $create = "create-" . $module->getId();
+        $update = "update-" . $module->getId();
+        $delete = "delete-" . $module->getId();
 
-      $columnsAndValuesUsers= [
-        "permission_read" => $_POST['permission_read_users'] != "on" ? "N": "Y",
-        "permission_create" => $_POST['permission_create_users'] != "on" ? "N": "Y",
-        "permission_update" => $_POST['permission_update_users'] != "on" ? "N": "Y",
-        "permission_delete" => $_POST['permission_delete_users'] != "on" ? "N": "Y",
-      ];
+        $columnsAndValues = [
+          str_replace($read, "permission_read", $read) => $_POST[$read] != "on" ? "N": "Y",
+          str_replace($create, "permission_create", $create) => $_POST[$create] != "on" ? "N": "Y",
+          str_replace($update, "permission_update", $update) => $_POST[$update] != "on" ? "N": "Y",
+          str_replace($delete, "permission_delete", $delete) => $_POST[$delete] != "on" ? "N": "Y",
+        ];
+        
+        AccessControlController::updatePermissionInProfile($columnsAndValues, $profile, $module->getId());
 
-      $columnsAndValuesLogs= [
-        "permission_read" => $_POST['permission_read_logs'] != "on" ? "N": "Y",
-        "permission_create" => $_POST['permission_create_logs'] != "on" ? "N": "Y",
-        "permission_update" => $_POST['permission_update_logs'] != "on" ? "N": "Y",
-        "permission_delete" => $_POST['permission_delete_logs'] != "on" ? "N": "Y",
-      ];
-
-      $columnsAndValuesReports= [
-        "permission_read" => $_POST['permission_read_reports'] != "on" ? "N": "Y",
-        "permission_create" => $_POST['permission_create_reports'] != "on" ? "N": "Y",
-        "permission_update" => $_POST['permission_update_reports'] != "on" ? "N": "Y",
-        "permission_delete" => $_POST['permission_delete_reports'] != "on" ? "N": "Y",
-      ];
-
-      $columnsAndValuesProfiles= [
-        "permission_read" => $_POST['permission_read_profiles'] != "on" ? "N": "Y",
-        "permission_create" => $_POST['permission_create_profiles'] != "on" ? "N": "Y",
-        "permission_update" => $_POST['permission_update_profiles'] != "on" ? "N": "Y",
-        "permission_delete" => $_POST['permission_delete_profiles'] != "on" ? "N": "Y",
-      ];
-
-      AccessControlController::updatePermissionInProfile($columnsAndValuesProfile, $profile, $modules['profile'][1]);
-      AccessControlController::updatePermissionInProfile($columnsAndValuesUsers, $profile, $modules['users'][1]);
-      AccessControlController::updatePermissionInProfile($columnsAndValuesLogs, $profile, $modules['logs'][1]);
-      AccessControlController::updatePermissionInProfile($columnsAndValuesReports, $profile, $modules['reports'][1]);
-      AccessControlController::updatePermissionInProfile($columnsAndValuesProfiles, $profile, $modules['profiles'][1]);
-
+      }
     }
+  ?>
+</main>
