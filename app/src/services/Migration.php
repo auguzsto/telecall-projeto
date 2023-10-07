@@ -11,7 +11,7 @@ require __DIR__ . "/../../../config.php";
     class Migration {
 
         public static function auto(string $fileSQL, string $type): void {
-            $db = new Database();
+            $db = Database::getInstace();
             global $config;
 
             switch($type) {

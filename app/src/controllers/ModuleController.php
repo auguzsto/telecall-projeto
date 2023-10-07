@@ -8,7 +8,7 @@ use Exception;
 
         public static function findById(int $id): array {
             try {
-                $db = new Database();
+                $db = Database::getInstace();
                 return $db->select("*", "modules")->where("id = $id")->toArray()[0];
 
             } catch (Exception $e) {
@@ -18,7 +18,7 @@ use Exception;
 
         public static function findAll(): array {
             try {
-                $db = new Database();
+                $db = Database::getInstace();
                 return $db->select("*", "modules")->orderDesc("id")->toArray();
 
             } catch (Exception $e) {

@@ -28,7 +28,7 @@ use App\services\Database;
 
         public function basicToken(User $user): void {
             try {
-                $db = new Database();
+                $db = Database::getInstace();
                 $auth = new Auth();
                 $userController  = new UserController();
 
@@ -52,7 +52,7 @@ use App\services\Database;
         
         public function updateToken(User $user): void {
             try {
-                $db = new Database();
+                $db = Database::getInstace();
                 $auth = new Auth();
 
                 $auth->setBasicToken($user);
@@ -71,7 +71,7 @@ use App\services\Database;
 
         private function findByEncode(string $encode): array {
             try {
-                $db = new Database();
+                $db = Database::getInstace();
                 $find = $db->select("*", $this->table)->where("basic_token = '$encode'")->toArray()[0];
 
                 if(empty($find)) {

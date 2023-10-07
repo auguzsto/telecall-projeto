@@ -9,7 +9,7 @@ use App\services\Database;
         public function byTableBetweenDate(string $columns, string $table, string $where, string $betweenBegin, $betweenFinal): array {
             try {
                 
-                $db = new Database();
+                $db = Database::getInstace();
                 return $db->selectDataBetweenDate($columns, $table, $where, $betweenBegin, $betweenFinal);
                 
             } catch (Exception $e) {

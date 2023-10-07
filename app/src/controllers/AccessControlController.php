@@ -12,7 +12,7 @@ use Exception;
 
         public static function getPermissionsByProfile(Profile $profile): array {
             try {
-                $db = new Database();
+                $db = Database::getInstace();
                 $profile_id = $profile->getId();
                 return $db->select("*", "profiles_modules_acl")->where("profile_id = '$profile_id'")->orderAsc("module_id")->toArray();
                     
@@ -23,7 +23,7 @@ use Exception;
 
         public static function getPermissionByProfileAndModule(Profile $profile, int $module_id): array {
             try {
-                $db = new Database();
+                $db = Database::getInstace();
                 $profile_id = $profile->getId();
                 return $db->select("*", "profiles_modules_acl")->where("profile_id = $profile_id")->and("module_id = $module_id")->toArray()[0];
 
@@ -34,7 +34,7 @@ use Exception;
 
         public static function createPermissionsDefault(Profile $profile): void {
             try {
-                $db = new Database();
+                $db = Database::getInstace();
                 $modules = ModuleController::findAll();
 
                 foreach($modules as $row) {
@@ -64,7 +64,7 @@ use Exception;
         public static function updatePermissionInProfile(array $columnsAndValues, Profile $profile, int $module_id): void {
             try {
                 
-                $db = new Database();
+                $db = Database::getInstace();
                 $profile_id = $profile->getId();
 
                 $db->update($columnsAndValues, "profiles_modules_acl", "module_id = $module_id AND profile_id = $profile_id");
