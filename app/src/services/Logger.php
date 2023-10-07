@@ -10,7 +10,7 @@ use Exception;
 
         public static function createDatabaseLog(User $user,int $changed_entity_id, string $type_log, string $description): void {
             try {
-                $db = new Database();
+                $db = Database::getInstace();
 
                 $columnsAndValues = [
                     "user_id" => $user->getId(),
@@ -39,7 +39,7 @@ use Exception;
 
         public static function get(): array {
             try {
-                $db = new Database();
+                $db = Database::getInstace();
                 return $db->query("SELECT * FROM log INNER JOIN(SELECT id, email AS user_email FROM users) users ON log.user_id = users.id ORDER BY created_at DESC;")->fetchAll();
                 
             } catch (Exception $e) {

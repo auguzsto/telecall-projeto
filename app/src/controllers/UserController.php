@@ -14,7 +14,7 @@ use App\services\Database;
         
         public function create(User $user): void {
             try {
-                $db = new Database();
+                $db = Database::getInstace();
 
                 $columnsAndValues = [
                     "profile_id" => $user->getProfile()->getId(),
@@ -52,7 +52,7 @@ use App\services\Database;
         public function update(User $user): void {
             try {
                 $userLogged = $_SESSION['session'];
-                $db = new Database();
+                $db = Database::getInstace();
 
                 $columnsAndValues = [
                     "profile_id" => $user->getProfile()->getId(),
@@ -79,7 +79,7 @@ use App\services\Database;
         public function updatePassword(User $user): void {
             try {
                 $userLogged = $_SESSION['session'];
-                $db = new Database();
+                $db = Database::getInstace();
                 $authController = new AuthController();
 
                 $columnsAndValues = [
@@ -101,7 +101,7 @@ use App\services\Database;
         public function delete(User $user): void {
             try {
                 $userLogged = $_SESSION['session'];
-                $db = new Database();
+                $db = Database::getInstace();
                 $user->setDeleted_at(date('Y-m-d H:i:s'));
 
                 $columnsAndValues = [
@@ -121,33 +121,33 @@ use App\services\Database;
          }
 
         public function findAll(): array {
-            $db = new Database();
+            $db = Database::getInstace();
             return $db->select("*", $this->table)->orderDesc("created_at")->toArray();
         }
 
         public function findAllByName(string $first_name): array {
-            $db = new Database();
+            $db = Database::getInstace();
             return $db->select("*", $this->table)->where("first_name")->like("$first_name")->orderDesc("created_at")->toArray();;
         }
 
         public function findAllByCpf(string $cpf): array {
-            $db = new Database();
+            $db = Database::getInstace();
             return $db->select("*", $this->table)->where("cpf")->like("$cpf")->orderDesc("created_at")->toArray();;
         }
 
         public function findAllByEmail(string $email): array {
-            $db = new Database();
+            $db = Database::getInstace();
             return $db->select("*", $this->table)->where("email")->like("$email")->orderDesc("created_at")->toArray();
         }
 
         public function findById(int $id): array {
-            $db = new Database();
+            $db = Database::getInstace();
             return $db->select("*", $this->table)->where("id = $id")->toArray()[0];
         }
 
 
         public function findByEmail(string $email): array {
-            $db = new Database();
+            $db = Database::getInstace();
             return $db->select("*", $this->table)->where("email = '$email'")->orderDesc("id")->toArray()[0];
         }
     }

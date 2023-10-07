@@ -6,7 +6,7 @@ use App\services\Database;
     Session::check2FA();
     $user = $_SESSION['2fa'];
 
-    $db = new Database();
+    $db = Database::getInstace();
     $asks = $db->select("ask_1, ask_2, ask_3", "asks_2fa")->toArray()[0];
     $rand = rand(0, 2);
     $tagIdByRand = $rand == 2 ? "cep" : null;

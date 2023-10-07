@@ -11,7 +11,7 @@ use App\services\Database;
 
         public static function findById(int $id): array {
             try {
-                $db = new Database();
+                $db = Database::getInstace();
                 $find = $db->select("*", "profiles")->where("id = $id")->toArray()[0];
                 
                 if($find != null) {
@@ -27,7 +27,7 @@ use App\services\Database;
 
         public static function findByName(string $name): array {
             try {
-                $db = new Database();
+                $db = Database::getInstace();
                 return $db->select("*", "profiles")->where("name = '$name'")->orderDesc("id")->toArray()[0];
 
             } catch (Exception $e) {
@@ -37,7 +37,7 @@ use App\services\Database;
 
         public static function findAll(): array {
             try {
-                $db = new Database();
+                $db = Database::getInstace();
                 return $db->select("*", "profiles")->orderDesc("id")->toArray();
 
             } catch (Exception $e) {
@@ -49,7 +49,7 @@ use App\services\Database;
             try {
                 
                 $userLogged = $_SESSION['session'];
-                $db = new Database();
+                $db = Database::getInstace();
 
                 $columnsAndValues = [
                     "name" => $profile->getName(),
@@ -71,7 +71,7 @@ use App\services\Database;
         public static function update(Profile $profile): void {
             try {
                 
-                $db = new Database();
+                $db = Database::getInstace();
 
                 $columnsAndValues = [
                     "name" => $profile->getName(),
@@ -89,7 +89,7 @@ use App\services\Database;
             try {
 
                 $userLogged = $_SESSION['session'];
-                $db = new Database();
+                $db = Database::getInstace();
 
                 $columnsAndValues = [
                     "deleted_at" => date("Y-m-d H:i:s"),
