@@ -58,7 +58,7 @@ require __DIR__ . "/../../../config.php";
 
         public function query(string $query): PDOStatement {
             try {
-                $pdo = &$this->con();
+                $pdo = $this->con();
                 return $pdo->query($query);
 
             } catch (Exception $e) {
@@ -68,7 +68,7 @@ require __DIR__ . "/../../../config.php";
 
         public function insert(array $columnsAndValues, string $table): void {
             try {
-                $pdo = &$this->con();
+                $pdo = $this->con();
                 $columns = implode(", ", array_keys($columnsAndValues));
                 $values = implode(", :", array_keys($columnsAndValues));
                 
@@ -82,7 +82,7 @@ require __DIR__ . "/../../../config.php";
 
         public function update(array $columnsAndValues, string $table, string $where): void {
             try {
-                $pdo = &$this->con();
+                $pdo = $this->con();
                 $set = implode("=?, ", array_keys($columnsAndValues));
     
                 $pdo->prepare("UPDATE $table SET $set = ? WHERE $where")->execute(array_values($columnsAndValues));
@@ -100,7 +100,7 @@ require __DIR__ . "/../../../config.php";
 
         public function selectDataBetweenDate(string $columns, string $table, string $where, string $betweenBegin, string $betweenFinal): array {
             try {
-                $pdo = &$this->con();
+                $pdo = $this->con();
                 return $pdo->query("SELECT $columns FROM $table WHERE date($where) BETWEEN '$betweenBegin' AND '$betweenFinal' ORDER BY $where DESC")->fetchAll();
 
             } catch (Exception $e) {
@@ -111,7 +111,7 @@ require __DIR__ . "/../../../config.php";
 
         public function toArray(): array {
             try {
-                $pdo = &$this->con();
+                $pdo = $this->con();
                 return $pdo->query($this->query)->fetchAll();
             } catch (Exception $e) {
                 Handlers::error("Problema", "Não foi possível recuperar dados. Entre em contato com o administrador.", $e->getMessage());
