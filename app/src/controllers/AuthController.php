@@ -4,6 +4,7 @@ namespace App\controllers;
 use Exception;
 use App\models\Auth;
 use App\models\User;
+use App\services\Logger;
 use App\services\Session;
 use App\handlers\Handlers;
 use App\services\Database;
@@ -14,9 +15,8 @@ use App\services\Database;
         
         public function signIn(string $email, string $password): void {
             try {
-
-                $encode = $this->encode($email, $password);
-                $auth = Auth::fromMap($this->findByEncode($encode));
+            
+                $auth = Auth::fromMap($this->findByEncode($email, $password));
                 
                 Session::twoFactorAuthentication($auth->getUser());
 
@@ -69,12 +69,14 @@ use App\services\Database;
             }
         }
 
-        private function findByEncode(string $encode): array {
+        private function findByEncode(string $email, string $password): array {
             try {
                 $db = Database::getInstace();
+                $encode = $this->encode($email, $password);
                 $find = $db->select("*", $this->table)->where("basic_token = '$encode'")->toArray()[0];
 
                 if(empty($find)) {
+                    Logger::createDatabaseLog($email, "signIn", "falhou autenticação");
                     throw new Exception("Usuário ou senha incorretos.");
                 }
 

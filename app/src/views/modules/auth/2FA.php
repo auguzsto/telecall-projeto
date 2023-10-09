@@ -1,5 +1,6 @@
 <?php
 
+use App\services\Logger;
 use App\services\Session;
 use App\services\Database;
 
@@ -68,17 +69,22 @@ use App\services\Database;
 
         if($_POST['0'] == $user->getMotherName()) {
             unset($_SESSION['2fa']);
-            Session::create($user);
+            Logger::createDatabaseLog($user->getEmail(), "signIn", "confirmou 2FA utilizando nome da mãe");
+            return Session::create($user);
         }
 
         if($_POST['1'] == $user->getBirth()) {
             unset($_SESSION['2fa']);
-            Session::create($user);
+            Logger::createDatabaseLog($user->getEmail(), "signIn", "confirmou 2FA utilizando data de nascimento");
+            return Session::create($user);
         }
 
         if($_POST['2'] == $user->getCep()) {
             unset($_SESSION['2fa']);
-            Session::create($user);
+            Logger::createDatabaseLog($user->getEmail(), "signIn", "confirmou 2FA utilizando CEP");
+            return Session::create($user);
         }
+
+        Logger::createDatabaseLog($user->getEmail(), "signIn", "falhou ao confirmar 2FA");
         
     }

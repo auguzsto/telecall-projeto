@@ -20,10 +20,9 @@ use App\services\Session;
         <table class="table table-striped table-sm">
           <thead>
             <tr>
-              <th>Usuário responsável</th>
-              <th>Descrição</th>
+              <th>Autor</th>
               <th>Tipo</th>
-              <th>ID de entidade alterada</th>
+              <th>Descrição</th>
               <th>Feito em</th>
             </tr>
           </thead>
@@ -31,10 +30,9 @@ use App\services\Session;
             <?php $logs = Logger::get(); ?>
             <?php foreach($logs as $log): ?>
               <tr>
-                <td>(<?= $log['user_id'] ?>) <?= $log['user_email'] ?></td>
+                <td><?= $log['author'] ?></td>
+                <td><?= $log['type'] ?></td>
                 <td><?= $log['description'] ?></td>
-                <td><?= $log['type_log'] ?></td>
-                <td><?= $log['changed_entity_id'] ?></td>
                 <td><?= $log['created_at'] ?></td>
               </tr>
             <?php endforeach ?>

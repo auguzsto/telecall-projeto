@@ -8,6 +8,7 @@ use App\services\Session;
     Session::checkPermissions($thisModule);
 
     if(!isset($r)) {
+        require __DIR__ . "/../../header.php";
         return require __DIR__ ."/reports.php";
     }
 

@@ -62,5 +62,5 @@ use App\services\Logger;
 </html>
 
 <?php 
-      Logger::createDatabaseLog($user, 1, "seleção", "usuário gerou um relatório sobre perfis $type");
+      Logger::createDatabaseLog($user->getEmail(), "seleção", "gerou relatório sobre perfis $type");
       unset($_SESSION['reports']);

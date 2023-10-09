@@ -61,7 +61,7 @@ use App\services\Database;
                 Handlers::success("Feito", "Perfil criado.");
                 $profileCreated = Profile::fromMap(ProfileController::findByName($profile->getName()));
 
-                Logger::createDatabaseLog($userLogged, $profileCreated->getId(), "inserção", "usuário criou um novo perfil ". $profileCreated->getId());
+                Logger::createDatabaseLog($userLogged->getEmail(), "inserção", "criou um novo perfil ID ". $profileCreated->getId());
 
             } catch (Exception $e) {
                 throw $e;
@@ -99,7 +99,7 @@ use App\services\Database;
 
                 Handlers::success("Feito", "Perfil excluído.");
 
-                Logger::createDatabaseLog($userLogged, $profile->getId(), "exclusão", "usuário realizou a exclusão perfil ". $profile->getId());
+                Logger::createDatabaseLog($userLogged->getEmail(), "exclusão", "excluiu o perfil ID ". $profile->getId());
 
             } catch (Exception $e) {
                 throw $e;

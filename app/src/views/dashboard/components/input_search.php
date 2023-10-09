@@ -12,11 +12,14 @@
 
 <?php
 
+use App\services\Logger;
+
     if(isset($_POST['action'])) {
 
       $columns = $_POST['columns'];
-      
       $value = urlencode($_POST['value']);
+
+      Logger::createDatabaseLog($user->getEmail(), "seleção", "pesquisou por ".strtoupper($columns)." que contenha $value");
       header("Location: /dashboard/users/?$columns=$value");
 
     }
