@@ -12,7 +12,7 @@ use App\models\User;
             $_SESSION['session'] = $user;
             $_SESSION['permissions'] = AccessControlController::getPermissionsByProfile($user->getProfile());
 
-            Logger::createDatabaseLog($user, $user->getId(), "sigin", "usuário realizou acesso");
+            Logger::createDatabaseLog($user->getEmail(), "signIn", "realizou acesso no sistema");
             header("Location: /dashboard/");
         }
 

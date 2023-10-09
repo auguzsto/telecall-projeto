@@ -8,14 +8,13 @@ use Exception;
 
     class Logger {
 
-        public static function createDatabaseLog(User $user,int $changed_entity_id, string $type_log, string $description): void {
+        public static function createDatabaseLog(string $author, string $type, string $description): void {
             try {
                 $db = Database::getInstace();
 
                 $columnsAndValues = [
-                    "user_id" => $user->getId(),
-                    "type_log" => $type_log,
-                    "changed_entity_id" => $changed_entity_id,
+                    "author" => $author,
+                    "type" => $type,
                     "description" => $description,
                     "created_at" => date("Y-m-d H:i:s"),
                 ];
@@ -40,7 +39,7 @@ use Exception;
         public static function get(): array {
             try {
                 $db = Database::getInstace();
-                return $db->query("SELECT * FROM log INNER JOIN(SELECT id, email AS user_email FROM users) users ON log.user_id = users.id ORDER BY created_at DESC;")->fetchAll();
+                return $db->select("*", "log")->orderDesc("created_at")->toArray();
                 
             } catch (Exception $e) {
                 throw $e;

@@ -72,5 +72,5 @@ use App\services\Logger;
 </html>
 
 <?php 
-      Logger::createDatabaseLog($user, 1, "seleção", "usuário gerou um relatório sobre usuários $type");
+      Logger::createDatabaseLog($user->getEmail(), "seleção", "gerou relatório sobre usuários $type");
       unset($_SESSION['reports']);

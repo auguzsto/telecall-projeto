@@ -66,7 +66,7 @@ use App\services\Database;
 
                 Handlers::success("Atualizado", "Operação realizada com sucesso");
 
-                Logger::createDatabaseLog($userLogged, $user->getId(), "atualização", "atualizou o usuário ".$user->getId());
+                Logger::createDatabaseLog($userLogged->getEmail(), "atualização", "atualizou o usuário ".$user->getId());
 
                 } catch (Exception $e) {
                     str_contains($e->getMessage(), "cpf") ? Handlers::warning("Atenção", "CPF já cadastrado.") : null;
@@ -91,7 +91,7 @@ use App\services\Database;
                 
                 Handlers::success("Atualizado", "Operação realizada com sucesso");
 
-                Logger::createDatabaseLog($userLogged, $user->getId(), "atualização", "atualizou a senha do usuário ". $user->getId());
+                Logger::createDatabaseLog($userLogged->getEmail(), "atualização", "atualizou a senha do usuário ID ". $user->getId());
 
                 } catch (Exception $e) {
                     throw $e;
@@ -113,7 +113,7 @@ use App\services\Database;
 
                 Handlers::success("Atualizado", "Operação realizada com sucesso");
 
-                Logger::createDatabaseLog($userLogged, $user->getId(), "exclusão", "deletou o usuário ".$user->getId());
+                Logger::createDatabaseLog($userLogged->getEmail(), "exclusão", "excluiu o usuário ID ".$user->getId());
 
                 } catch (Exception $e) {
                     throw $e;
