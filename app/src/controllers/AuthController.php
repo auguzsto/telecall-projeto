@@ -17,7 +17,6 @@ use App\services\Database;
             try {
             
                 $auth = Auth::fromMap($this->findByEncode($email, $password));
-                
                 Session::twoFactorAuthentication($auth->getUser());
 
             } catch (Exception $e) {
@@ -34,7 +33,7 @@ use App\services\Database;
 
                 $user->setId($userController->findByEmail($user->getEmail())['id']);
                 $auth->setBasicToken($user);
-                $auth->setCreated_at();
+                $auth->setCreated_at(date('Y-m-d H:i:s'));
                 
                 $columnsAndValues = [
                     "user_id" => $user->getId(),
@@ -54,6 +53,7 @@ use App\services\Database;
             try {
                 $db = Database::getInstace();
                 $auth = new Auth();
+                $uuid = $user->getId();
 
                 $auth->setBasicToken($user);
 
@@ -61,7 +61,7 @@ use App\services\Database;
                     "basic_token" => $auth->getBasicToken(),
                 ];
 
-                $db->update($columnsAndValues, $this->table, "user_id = ".$user->getId());
+                $db->update($columnsAndValues, $this->table, "user_id = '$uuid'");
 
             } catch (Exception $e) {
                 Handlers::error("Problema", "Erro ao atualizar token de autenticação", $e->getMessage());

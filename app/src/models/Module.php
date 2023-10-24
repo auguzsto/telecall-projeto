@@ -1,9 +1,10 @@
 <?php
 
 namespace App\models;
+use App\models\Model;
 
-    class Module {
-        private int $id;
+    class Module extends Model {
+
         private string $name;
 
         public static function fromMap(array $map): Module {
@@ -14,16 +15,8 @@ namespace App\models;
             return $module;
         }
 
-        public function getId(): int {
-            return $this->id;
-        }
-
         public function getName(): string {
             return $this->name;
-        }
-
-        public function setId(int $id): void {
-            $this->id = $id;
         }
 
         public function setName(string $name): void {

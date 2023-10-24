@@ -9,16 +9,16 @@ use App\services\Database;
 
     class ProfileController {
 
-        public static function findById(int $id): array {
+        public static function findById(string $id): array {
             try {
                 $db = Database::getInstace();
-                $find = $db->select("*", "profiles")->where("id = $id")->toArray()[0];
+                $find = $db->select("*", "profiles")->where("id = '$id'")->toArray()[0];
                 
                 if($find != null) {
                     return $find;
                 }
 
-                return $db->select("*", "profiles")->where("id = 1")->toArray()[0];
+                return $db->select("*", "profiles")->where("id = 'be73c606-eb68-47e7-80f6-457ca8f52e62'")->toArray()[0];
 
             } catch (Exception $e) {
                 throw $e;
@@ -72,13 +72,14 @@ use App\services\Database;
             try {
                 
                 $db = Database::getInstace();
+                $uuid = $profile->getId();
 
                 $columnsAndValues = [
                     "name" => $profile->getName(),
                     "updated_at" => date("Y-m-d H:i:s"),
                 ];
 
-                $db->update($columnsAndValues, "profiles", "id = " . $profile->getId());
+                $db->update($columnsAndValues, "profiles", "id = '$uuid'");
 
             } catch (Exception $e) {
                 throw $e;
@@ -90,12 +91,13 @@ use App\services\Database;
 
                 $userLogged = $_SESSION['session'];
                 $db = Database::getInstace();
+                $uuid = $profile->getId();
 
                 $columnsAndValues = [
                     "deleted_at" => date("Y-m-d H:i:s"),
                 ];
 
-                $db->update($columnsAndValues, "profiles", "id = " . $profile->getId());
+                $db->update($columnsAndValues, "profiles", "id = '$uuid'");
 
                 Handlers::success("Feito", "Perfil excluído.");
 

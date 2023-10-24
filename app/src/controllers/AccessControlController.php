@@ -36,12 +36,13 @@ use Exception;
             try {
                 $db = Database::getInstace();
                 $modules = ModuleController::findAll();
+                $uuid = $profile->getId();
 
                 foreach($modules as $row) {
                     $module = Module::fromMap(ModuleController::findById($row['id']));
                 
                     $columnsAndValues = [
-                        "profile_id" => $profile->getId(),
+                        "profile_id" => "$uuid",
                         "module_id" => $module->getId(),
                         "permission_read" => "N",
                         "permission_create" => "N",
@@ -61,13 +62,13 @@ use Exception;
             }
         }
 
-        public static function updatePermissionInProfile(array $columnsAndValues, Profile $profile, int $module_id): void {
+        public static function updatePermissionInProfile(array $columnsAndValues, Profile $profile, string $module_id): void {
             try {
                 
                 $db = Database::getInstace();
                 $profile_id = $profile->getId();
 
-                $db->update($columnsAndValues, "profiles_modules_acl", "module_id = $module_id AND profile_id = $profile_id");
+                $db->update($columnsAndValues, "profiles_modules_acl", "module_id = '$module_id' AND profile_id = '$profile_id'");
                 ProfileController::update($profile);
 
                 Handlers::success("Feito", "Permissões atulizadas.");

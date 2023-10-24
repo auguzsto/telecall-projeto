@@ -46,9 +46,13 @@ git clone https://github.com/auguzsto/telecall-projeto.git
     $config['database'] = "grp_16_bangu_noite";
 
 ```
-3. Acesse o projeto
+3. Suba os containers
 ```
- http://localhost:8000/
+ docker-compose up
+```
+4. Acesse o projeto
+```
+ http://localhost
 ```
 
 ## Contexto.
@@ -100,7 +104,7 @@ script sql.
 - [x] Alteração de senha - (Master | Comum)
     - Somente o usuário comum poderá alterar a
 senha dele próprio
-- [ ] Modelo do banco de dados - (Master | Comum)
+- [x] Modelo do banco de dados - (Master | Comum)
     - Essa tela deverá ter uma imagem com a
 modelagem do banco de dados utilizada para
 este sistema.

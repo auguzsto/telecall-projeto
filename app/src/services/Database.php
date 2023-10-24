@@ -72,7 +72,7 @@ require __DIR__ . "/../../../config.php";
                 $columns = implode(", ", array_keys($columnsAndValues));
                 $values = implode(", :", array_keys($columnsAndValues));
                 
-                $pdo->prepare("INSERT INTO $table ($columns) VALUES (:$values)")->execute($columnsAndValues);
+                $pdo->prepare("INSERT INTO $table (id, $columns) VALUES (UUID(), :$values)")->execute($columnsAndValues);
 
             } catch (Exception $e) {
                 Handlers::error("Problema", "Não foi possível inserir dados. <br/> Entre em contato com o administrador.", $e->getMessage());

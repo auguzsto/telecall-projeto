@@ -53,6 +53,7 @@ use App\services\Database;
             try {
                 $userLogged = $_SESSION['session'];
                 $db = Database::getInstace();
+                $uuid = $user->getId();
 
                 $columnsAndValues = [
                     "profile_id" => $user->getProfile()->getId(),
@@ -62,11 +63,11 @@ use App\services\Database;
                     "phone" => $user->getPhone(),
                 ];
 
-                $db->update($columnsAndValues, $this->table, "id = ".$user->getId());
+                $db->update($columnsAndValues, $this->table, "id = '$uuid'");
 
                 Handlers::success("Atualizado", "Operação realizada com sucesso");
 
-                Logger::createDatabaseLog($userLogged->getEmail(), "atualização", "atualizou o usuário ".$user->getId());
+                Logger::createDatabaseLog($userLogged->getEmail(), "atualização", "atualizou o usuário $uuid");
 
                 } catch (Exception $e) {
                     str_contains($e->getMessage(), "cpf") ? Handlers::warning("Atenção", "CPF já cadastrado.") : null;
@@ -81,17 +82,18 @@ use App\services\Database;
                 $userLogged = $_SESSION['session'];
                 $db = Database::getInstace();
                 $authController = new AuthController();
+                $uuid = $user->getId();
 
                 $columnsAndValues = [
                     "password" => password_hash($user->getPassword(), PASSWORD_BCRYPT),
                 ];
 
-                $db->update($columnsAndValues, $this->table, "id = ".$user->getId());
+                $db->update($columnsAndValues, $this->table, "id = '$uuid'");
                 $authController->updateToken($user);
                 
                 Handlers::success("Atualizado", "Operação realizada com sucesso");
 
-                Logger::createDatabaseLog($userLogged->getEmail(), "atualização", "atualizou a senha do usuário ID ". $user->getId());
+                Logger::createDatabaseLog($userLogged->getEmail(), "atualização", "atualizou a senha do usuário ID $uuid");
 
                 } catch (Exception $e) {
                     throw $e;
@@ -140,9 +142,9 @@ use App\services\Database;
             return $db->select("*", $this->table)->where("email")->like("$email")->orderDesc("created_at")->toArray();
         }
 
-        public function findById(int $id): array {
+        public function findById(string $id): array {
             $db = Database::getInstace();
-            return $db->select("*", $this->table)->where("id = $id")->toArray()[0];
+            return $db->select("*", $this->table)->where("id = '$id'")->toArray()[0];
         }
 
 
