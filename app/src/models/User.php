@@ -1,12 +1,11 @@
 <?php
 
 namespace App\models;
-use App\controllers\ProfileController;
+use App\models\Model;
 use App\models\Profile;
+use App\controllers\ProfileController;
 
-    class User {
-
-        private int $id;
+    class User extends Model {
         private Profile $profile;
         private string $first_name;
         private string $last_name;
@@ -18,9 +17,6 @@ use App\models\Profile;
         private string $cep;
         private string $address;
         private string $birth;
-        private string $created_at;
-        private string $updated_at;
-        private string $deleted_at;
 
         public static function fromMap(array $map): User {
             $user = new self();
@@ -41,12 +37,8 @@ use App\models\Profile;
             return $user;
         }
 
-        public function getArrayProfileById(int $profile_id): array {
+        public function getArrayProfileById(string $profile_id): array {
             return ProfileController::findById($profile_id);
-        }
-
-        public function setId(int $id): void {
-            $this->id = $id;
         }
         
         public function setProfile(Profile $profile): void {
@@ -90,22 +82,6 @@ use App\models\Profile;
         }
         public function setBirth(string $birth): void {
             $this->birth = $birth;
-        }
-
-        public function setCreated_at(string $date): void {
-            $this->created_at = $date;
-        }
-
-        public function setUpdated_at(string $date): void {
-            $this->updated_at = $date;
-        }
-
-        public function setDeleted_at(string $date): void {
-            $this->deleted_at = $date;
-        }
-
-        public function getId(): int {
-            return $this->id;
         }
 
         public function getProfile(): Profile {
@@ -152,15 +128,4 @@ use App\models\Profile;
             return $this->birth;
         }
 
-        public function getCreated_at(): string {
-            return $this->created_at;
-        }
-        
-        public function getUpdate_at(): string {
-            return $this->updated_at;
-        }
-
-        public function getDeleted_at(): string {
-            return $this->deleted_at;
-        }
 }

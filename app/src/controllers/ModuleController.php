@@ -6,10 +6,10 @@ use Exception;
 
     class ModuleController {
 
-        public static function findById(int $id): array {
+        public static function findById(string $id): array {
             try {
                 $db = Database::getInstace();
-                return $db->select("*", "modules")->where("id = $id")->toArray()[0];
+                return $db->select("*", "modules")->where("id = '$id'")->toArray()[0];
 
             } catch (Exception $e) {
                 throw $e;
