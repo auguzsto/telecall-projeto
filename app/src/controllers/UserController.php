@@ -105,17 +105,18 @@ use App\services\Database;
                 $userLogged = $_SESSION['session'];
                 $db = Database::getInstace();
                 $user->setDeleted_at(date('Y-m-d H:i:s'));
+                $uuid = $user->getId();
 
                 $columnsAndValues = [
                     "deleted_at" => $user->getDeleted_at(),
                 ];
 
-                $db->update($columnsAndValues, $this->table, "id = ".$user->getId());
-                $db->update($columnsAndValues, "auth", "user_id =".$user->getId());
+                $db->update($columnsAndValues, $this->table, "id = '$uuid'");
+                $db->update($columnsAndValues, "auth", "user_id = '$uuid'");
 
                 Handlers::success("Atualizado", "Operação realizada com sucesso");
 
-                Logger::createDatabaseLog($userLogged->getEmail(), "exclusão", "excluiu o usuário ID ".$user->getId());
+                Logger::createDatabaseLog($userLogged->getEmail(), "exclusão", "excluiu o usuário ID $uuid");
 
                 } catch (Exception $e) {
                     throw $e;
