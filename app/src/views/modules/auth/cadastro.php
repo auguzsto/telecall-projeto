@@ -32,10 +32,11 @@
                                      <input type="text" name="cpf" id="cpf" placeholder="Apenas números são permitidos." class="form-control" maxlength="14" autocomplete="off" value="<?php echo $_POST['cpf']; ?>" required minlength="14">
 
                                      <h5>Senha: *</h5>
-                                     <input type="password" name="password" id="password" placeholder="Digite sua senha." class="form-control">
+                                     <input type="password" name="password" id="password" placeholder="Digite sua senha." class="form-control" required minlength="8">
 
                                      <h5>Repita a senha: *</h5>
-                                     <input type="password" name="rePassword" id="rePassword" placeholder="Digite sua senha novamente." class="form-control">
+                                     <input type="password" name="rePassword" id="rePassword" placeholder="Digite sua senha novamente." class="form-control" required minlength="8">
+                                     <div id="error-password"></div>
 
                                      <h5>Nome: *</h5>
                                      <input type="text" autocomplete="off" name="first_name" id="first_name" placeholder="Seu primeiro nome" class="form-control" value="<?php echo $_POST['first_name']; ?>" required minlength="3">
