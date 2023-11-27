@@ -4,8 +4,21 @@ $(document).ready(function() {
     $("#cep").mask('00000-000', {reverse: false});
 });
 
+let repassord = document.querySelector('#rePassword');
+let password = document.getElementById('password');
 let cep = document.getElementById('cep');
 let address = document.getElementById('address');
+
+repassord.addEventListener('change', function (e) {
+    
+    if(e.target.value != password.value) {
+        e.target.classList.add("border", "border-danger");
+        document.querySelector('#error-password').innerHTML = "<h6 class='p-1 text-danger'>Senhas não coincidem</h6>";
+    } else {
+        e.target.classList.remove("border", "border-danger");
+        document.querySelector('#error-password').innerHTML = "";
+    }
+});
 
 async function getAddressByCep(cep) {
     const options = {
@@ -44,4 +57,4 @@ cep.addEventListener('keyup', async function (e) {
         }
     }
 
-})
+});

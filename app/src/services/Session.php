@@ -42,9 +42,9 @@ use App\models\User;
 
         public static function checkPermissions($thisModule) {
             
-            // if(!ACL::checkIfUserThenPermissionToRead($thisModule)) {
-            //     return header("Location: /dashboard/profile");
-            // }
+            if(!ACL::checkIfUserThenPermissionToRead($thisModule)) {
+                return header("Location: /dashboard/profile");
+            }
             
         }
 

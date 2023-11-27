@@ -4,7 +4,7 @@ use App\services\Session;
     
     Session::check();
     $user = $_SESSION['session'];
-
+    Session::checkPermissions("1");
 ?>
 
 <?php require __DIR__ . "/header.php"; ?>
